@@ -12,7 +12,7 @@ export default function App() {
   const [open, setOpen] = useState("1");
   const [low, setLow] = useState("1");
 
-  const { isCandleValid, ...candleShapeDetails } = useCandleShape({
+  const { error, ...candleShapeDetails } = useCandleShape({
     high: toNumber(high),
     low: toNumber(low),
     open: toNumber(open),
@@ -25,12 +25,13 @@ export default function App() {
       <View style={styles.container}>
         <View style={styles.candleContainer}>
           <Candle
-            isCandleValid={isCandleValid}
+            isCandleValid={!error}
             candleShapeDetails={candleShapeDetails}
           />
         </View>
         <View style={styles.inputsContainer}>
           <CandleInputs
+            error={error}
             high={high}
             setHigh={setHigh}
             low={low}
@@ -68,6 +69,6 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   inputsContainer: {
-    height: "25%",
+    height: "30%",
   },
 });

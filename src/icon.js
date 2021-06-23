@@ -1,4 +1,4 @@
-import { Entypo } from "@expo/vector-icons";
+import { Entypo, Ionicons } from "@expo/vector-icons";
 import camelCase from "lodash/camelCase";
 import React from "react";
 import { View } from "react-native";
@@ -30,6 +30,7 @@ const customIcon =
 const ICON_OPTIONS = {
   plus: customIcon(Entypo, "plus"),
   minus: customIcon(Entypo, "minus"),
+  warningOutline: customIcon(Ionicons, "warning-outline"),
   blankSpace: ({ size, ...otherProps }) => (
     <MaterialIcons
       name="check-box-outline-blank"

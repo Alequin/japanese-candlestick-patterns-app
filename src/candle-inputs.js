@@ -1,5 +1,5 @@
 import { round } from "lodash";
-import React from "react";
+import React, { useMemo } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,6 +10,7 @@ import {
 import { Icon } from "./icon";
 
 export const CandleInputs = ({
+  error,
   high,
   setHigh,
   low,
@@ -29,6 +30,7 @@ export const CandleInputs = ({
         <Input title="Open" value={open} setValue={setOpen} />
         <Input title="Close" value={close} setValue={setClose} />
       </View>
+      <Warning error={error} />
     </View>
   );
 };
@@ -73,12 +75,33 @@ const Input = ({ title, value, setValue }) => {
   );
 };
 
+const Warning = ({ error }) => {
+  const style = useMemo(
+    () => ({ ...styles.warningContainer, opacity: error ? 1 : 0 }),
+    [error]
+  );
+
+  return (
+    <View style={style}>
+      <View style={styles.warningTitle}>
+        <Icon
+          style={styles.warningIcon}
+          icon="warningOutline"
+          color="red"
+          size={30}
+        />
+        <Text>Invalid Candle</Text>
+      </View>
+      <Text style={styles.warningText}>{error}</Text>
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 20,
     height: "100%",
     width: "100%",
-
     justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: "white",
@@ -116,5 +139,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "white",
     elevation: 8,
+  },
+  warningContainer: {
+    alignItems: "center",
+  },
+  warningTitle: {
+    marginTop: 10,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  warningIcon: {
+    marginRight: 5,
+  },
+  warningText: {
+    textAlign: "center",
   },
 });

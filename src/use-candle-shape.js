@@ -6,7 +6,7 @@ export const useCandleShape = (candleData) =>
     const validCandleData = getValidCandleData(candleData);
 
     if (some(validCandleData, isNull))
-      return { isCandleValid: false, isBullish: true };
+      return { error: invalidCandleReason(candleData), isBullish: true };
 
     const isBullish = validCandleData.close >= validCandleData.open;
 
@@ -27,6 +27,16 @@ const getValidCandleData = (candleData) => {
   validCandleData.close = validClose(validCandleData);
 
   return validCandleData;
+};
+
+const invalidCandleReason = ({ high, low, open, close }) => {
+  if (low > high) return "Your 'low' cannot be greater than your 'high'";
+  if (high < low) return "Your 'high' cannot be less than your 'low'";
+  if (open > high) return "Your 'open' cannot be greater than you 'high'";
+  if (open < low) return "Your 'open' cannot be less than you 'low'";
+  if (close > high) return "Your 'close' cannot be greater than you 'high'";
+  if (close < low) return "Your 'close' cannot be less than you 'low'";
+  throw new Error("No matching invalid candle reason found");
 };
 
 const heights = (isBullish, validCandleData) => {
