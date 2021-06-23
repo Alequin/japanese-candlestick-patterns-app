@@ -1,14 +1,16 @@
+import Constants from "expo-constants";
+import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Candle } from "./src/candle";
 import { CandleInputs } from "./src/candle-inputs";
 import { useCandleShape } from "./src/use-candle-shape";
 
 export default function App() {
-  const [high, setHigh] = useState("0");
-  const [close, setClose] = useState("0");
-  const [open, setOpen] = useState("0");
-  const [low, setLow] = useState("0");
+  const [high, setHigh] = useState("1");
+  const [close, setClose] = useState("1");
+  const [open, setOpen] = useState("1");
+  const [low, setLow] = useState("1");
 
   const { isCandleValid, ...candleShapeDetails } = useCandleShape({
     high: toNumber(high),
@@ -18,21 +20,28 @@ export default function App() {
   });
 
   return (
-    <View style={styles.container}>
-      <Candle
-        isCandleValid={isCandleValid}
-        candleShapeDetails={candleShapeDetails}
-      />
-      <CandleInputs
-        high={high}
-        setHigh={setHigh}
-        low={low}
-        setLow={setLow}
-        open={open}
-        setOpen={setOpen}
-        close={close}
-        setClose={setClose}
-      />
+    <View style={styles.page}>
+      <StatusBar style="light" />
+      <View style={styles.container}>
+        <View style={styles.candleContainer}>
+          <Candle
+            isCandleValid={isCandleValid}
+            candleShapeDetails={candleShapeDetails}
+          />
+        </View>
+        <View style={styles.inputsContainer}>
+          <CandleInputs
+            high={high}
+            setHigh={setHigh}
+            low={low}
+            setLow={setLow}
+            open={open}
+            setOpen={setOpen}
+            close={close}
+            setClose={setClose}
+          />
+        </View>
+      </View>
     </View>
   );
 }
@@ -43,25 +52,22 @@ const toNumber = (value) => {
 };
 
 const styles = StyleSheet.create({
+  page: {
+    paddingTop: Constants.statusBarHeight + 10,
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   container: {
     height: "100%",
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    width: "90%",
   },
   candleContainer: {
-    height: "50%",
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
+    height: "60%",
+    marginVertical: 15,
   },
-  stick: {
-    borderWidth: 1,
-    borderColor: "black",
+  inputsContainer: {
     height: "25%",
-  },
-  body: {
-    width: "10%",
-    height: "50%",
   },
 });

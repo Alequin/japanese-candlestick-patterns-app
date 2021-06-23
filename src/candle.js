@@ -12,9 +12,15 @@ export const Candle = ({
 }) => {
   return isCandleValid ? (
     <View style={styles.candleContainer}>
-      <CandleStick height={`${topStickHeightPercentage}%`} />
-      <CandleBody height={`${bodyHeightPercentage}%`} isBullish={isBullish} />
-      <CandleStick height={`${bottomStickHeightPercentage}%`} />
+      {topStickHeightPercentage > 0 ? (
+        <CandleStick height={`${topStickHeightPercentage}%`} />
+      ) : null}
+      {bodyHeightPercentage > 0 ? (
+        <CandleBody height={`${bodyHeightPercentage}%`} isBullish={isBullish} />
+      ) : null}
+      {bottomStickHeightPercentage > 0 ? (
+        <CandleStick height={`${bottomStickHeightPercentage}%`} />
+      ) : null}
     </View>
   ) : (
     <View style={styles.candleContainer}>
@@ -31,7 +37,7 @@ const CandleStick = ({ height }) => {
     [height]
   );
 
-  return <View style={style}></View>;
+  return <View style={style} />;
 };
 
 const CandleBody = ({ height, isBullish }) => {
@@ -44,15 +50,17 @@ const CandleBody = ({ height, isBullish }) => {
     [height]
   );
 
-  return <View style={style}></View>;
+  return <View style={style} />;
 };
 
 const styles = StyleSheet.create({
   candleContainer: {
-    height: "50%",
+    height: "100%",
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
+
+    backgroundColor: "white",
   },
   stick: {
     borderWidth: 1,

@@ -1,4 +1,4 @@
-import { isNull, some } from "lodash";
+import { isNull, some, uniq } from "lodash";
 import { useMemo } from "react";
 
 export const useCandleShape = (candleData) =>
@@ -10,14 +10,10 @@ export const useCandleShape = (candleData) =>
 
     const isBullish = validCandleData.close >= validCandleData.open;
 
-    const heights = isBullish
-      ? bullishHeights(validCandleData)
-      : bearishHeights(validCandleData);
-
     return {
       isCandleValid: true,
       isBullish,
-      ...heights,
+      ...heights(isBullish, validCandleData),
     };
   }, Object.values(candleData));
 
@@ -33,6 +29,20 @@ const getValidCandleData = (candleData) => {
   return validCandleData;
 };
 
+const heights = (isBullish, validCandleData) => {
+  if (uniq(Object.values(validCandleData)).length === 1)
+    return neutralHeights();
+
+  return isBullish
+    ? bullishHeights(validCandleData)
+    : bearishHeights(validCandleData);
+};
+
+const neutralHeights = () => ({
+  bodyHeightPercentage: 1,
+  topStickHeightPercentage: 0,
+  bottomStickHeightPercentage: 0,
+});
 const bullishHeights = ({ high, low, open, close }) => {
   const fullHeight = high - low;
   return {
@@ -67,15 +77,15 @@ const validClose = ({ high, low, close }) => {
   return isCandleBodyPriceValid(high, low, close) ? close : null;
 };
 const isCandleBodyPriceValid = (high, low, bodyPrice) => {
-  return high > bodyPrice && low < bodyPrice;
+  return high >= bodyPrice && low <= bodyPrice;
 };
 
 const bodyHeight = (close, open, fullHeight) => {
   const height = (Math.abs(close - open) / fullHeight) * 100;
-  return height || 1;
+  return height || 0;
 };
 
 const stickHeight = (high, bodyTop, fullHeight) => {
   const height = (Math.abs(high - bodyTop) / fullHeight) * 100;
-  return height || 1;
+  return height || 0;
 };
