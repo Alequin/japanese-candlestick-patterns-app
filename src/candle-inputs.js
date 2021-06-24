@@ -1,5 +1,5 @@
 import { round } from "lodash";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -45,33 +45,64 @@ const Input = ({ title, value, setValue }) => {
         keyboardType="numeric"
       />
       <View style={styles.inputButtonsContainer}>
-        <TouchableOpacity
-          onPress={() => {
+        <HoldableOpacity
+          onHold={(valueToDecreaseBy) => {
             const number = Number(value);
             return !isNaN(number)
-              ? setValue(round(number - 0.00001, 5))
+              ? setValue((previousValue) =>
+                  round(Number(previousValue) - valueToDecreaseBy, 5).toFixed(5)
+                )
               : setValue(1);
           }}
         >
           <View style={styles.inputButton}>
             <Icon icon="minus" color="black" size={25} />
           </View>
-        </TouchableOpacity>
+        </HoldableOpacity>
         <Text>{title}</Text>
-        <TouchableOpacity
-          onPress={() => {
+        <HoldableOpacity
+          onHold={(valueToIncreaseBy) => {
             const number = Number(value);
             return !isNaN(number)
-              ? setValue(round(number + 0.00001, 5))
+              ? setValue((previousValue) =>
+                  round(Number(previousValue) + valueToIncreaseBy, 5).toFixed(5)
+                )
               : setValue(1);
           }}
         >
           <View style={styles.inputButton}>
             <Icon icon="plus" color="black" size={25} />
           </View>
-        </TouchableOpacity>
+        </HoldableOpacity>
       </View>
     </View>
+  );
+};
+
+const HoldableOpacity = ({ onHold, ...props }) => {
+  const [onHoldInterval, setOnHoldInterval] = useState(null);
+
+  return (
+    <TouchableOpacity
+      {...props}
+      onPressIn={async () => {
+        onHold(0.00001);
+        let loopCount = 0;
+        setOnHoldInterval(
+          setInterval(async () => {
+            loopCount++;
+            if (loopCount > 30) return onHold(0.01155);
+            if (loopCount > 20) return onHold(0.00115);
+            if (loopCount > 10) return onHold(0.00011);
+            onHold(0.00001);
+          }, 100)
+        );
+      }}
+      onPressOut={() => {
+        clearInterval(onHoldInterval);
+        setOnHoldInterval(null);
+      }}
+    />
   );
 };
 
