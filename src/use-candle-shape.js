@@ -30,12 +30,11 @@ const getValidCandleData = (candleData) => {
 };
 
 const invalidCandleReason = ({ high, low, open, close }) => {
-  if (low > high) return "Your 'low' cannot be greater than your 'high'";
-  if (high < low) return "Your 'high' cannot be less than your 'low'";
-  if (open > high) return "Your 'open' cannot be greater than you 'high'";
-  if (open < low) return "Your 'open' cannot be less than you 'low'";
-  if (close > high) return "Your 'close' cannot be greater than you 'high'";
-  if (close < low) return "Your 'close' cannot be less than you 'low'";
+  if (high < low) return "The 'high' is less than the 'low'";
+  if (open > high) return "The 'open' is greater than the 'high'";
+  if (open < low) return "The 'open' is less than the 'low'";
+  if (close > high) return "The 'close' is greater than the 'high'";
+  if (close < low) return "The 'close' is less than the 'low'";
   throw new Error("No matching invalid candle reason found");
 };
 
