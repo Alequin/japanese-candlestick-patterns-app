@@ -7,10 +7,10 @@ import { CandleInputs } from "./src/candle-inputs";
 import { useCandleShape } from "./src/use-candle-shape";
 
 export default function App() {
-  const [high, setHigh] = useState("1");
-  const [close, setClose] = useState("1");
-  const [open, setOpen] = useState("1");
-  const [low, setLow] = useState("1");
+  const [high, setHigh] = useState("1.0000");
+  const [close, setClose] = useState("1.0000");
+  const [open, setOpen] = useState("1.0000");
+  const [low, setLow] = useState("1.0000");
 
   const { error, ...candleShapeDetails } = useCandleShape({
     high: toNumber(high),
@@ -21,7 +21,6 @@ export default function App() {
 
   return (
     <View style={styles.page}>
-      <StatusBar style="light" />
       <View style={styles.container}>
         <View style={styles.candleContainer}>
           <Candle
@@ -70,5 +69,6 @@ const styles = StyleSheet.create({
   },
   inputsContainer: {
     height: "30%",
+    minHeight: 250,
   },
 });

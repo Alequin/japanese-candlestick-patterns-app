@@ -38,12 +38,18 @@ export const CandleInputs = ({
 const Input = ({ title, value, setValue }) => {
   return (
     <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.input}
-        value={value.toString()}
-        onChangeText={(value) => setValue(value)}
-        keyboardType="numeric"
-      />
+      <View style={styles.inputWrapper}>
+        <Icon icon="blankSpace" color="black" size={22} />
+        <TextInput
+          style={styles.input}
+          value={value}
+          onChangeText={(value) => setValue(value)}
+          keyboardType="numeric"
+        />
+        <TouchableOpacity onPress={() => setValue("")}>
+          <Icon icon="cross" color="black" size={22} />
+        </TouchableOpacity>
+      </View>
       <View style={styles.inputButtonsContainer}>
         <HoldableOpacity
           onHold={(valueToDecreaseBy) => {
@@ -138,20 +144,24 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   inputRow: {
+    width: "100%",
     flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
+    justifyContent: "space-between",
   },
   inputContainer: {
-    paddingHorizontal: "5%",
-    width: "50%",
+    width: "45%",
     justifyContent: "center",
     alignItems: "center",
   },
-  input: {
+  inputWrapper: {
     width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
     borderBottomWidth: 1,
     borderColor: "black",
+  },
+  input: {
+    flex: 1,
     color: "black",
     textAlign: "center",
   },
@@ -169,7 +179,7 @@ const styles = StyleSheet.create({
     margin: 5,
     flexDirection: "row",
     backgroundColor: "white",
-    elevation: 8,
+    elevation: 2,
   },
   warningContainer: {
     alignItems: "center",
