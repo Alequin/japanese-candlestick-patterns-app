@@ -1,5 +1,4 @@
 import Constants from "expo-constants";
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Candle } from "./src/candle";
@@ -7,39 +6,25 @@ import { CandleInputs } from "./src/candle-inputs";
 import { useCandleShape } from "./src/use-candle-shape";
 
 export default function App() {
-  const [high, setHigh] = useState("1.0000");
-  const [close, setClose] = useState("1.0000");
-  const [open, setOpen] = useState("1.0000");
-  const [low, setLow] = useState("1.0000");
+  const [numberOfCandles, setNumberOfCandles] = useState(2);
 
-  const { error, ...candleShapeDetails } = useCandleShape({
-    high: toNumber(high),
-    low: toNumber(low),
-    open: toNumber(open),
-    close: toNumber(close),
-  });
+  const { candlesShapes, activeCandle, error } =
+    useCandleShape(numberOfCandles);
 
   return (
     <View style={styles.page}>
       <View style={styles.container}>
         <View style={styles.candleContainer}>
-          <Candle
-            isCandleValid={!error}
-            candleShapeDetails={candleShapeDetails}
-          />
+          {candlesShapes.map((candleShapeDetails, index) => (
+            <Candle
+              key={index}
+              isCandleValid={!error}
+              candleShapeDetails={candleShapeDetails}
+            />
+          ))}
         </View>
         <View style={styles.inputsContainer}>
-          <CandleInputs
-            error={error}
-            high={high}
-            setHigh={setHigh}
-            low={low}
-            setLow={setLow}
-            open={open}
-            setOpen={setOpen}
-            close={close}
-            setClose={setClose}
-          />
+          <CandleInputs error={error} activeCandle={activeCandle} />
         </View>
       </View>
     </View>
@@ -65,7 +50,10 @@ const styles = StyleSheet.create({
   },
   candleContainer: {
     height: "60%",
+    width: "100%",
     marginVertical: 15,
+    flexDirection: "row",
+    justifyContent: "center",
   },
   inputsContainer: {
     height: "30%",

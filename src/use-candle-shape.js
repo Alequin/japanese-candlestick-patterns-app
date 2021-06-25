@@ -1,23 +1,64 @@
-import { isNull, some, uniq } from "lodash";
-import { useMemo } from "react";
+import { isFunction, isNull, mapValues, some, uniq } from "lodash";
+import { useState } from "react";
 
-export const useCandleShape = (candleData) =>
-  useMemo(() => {
-    const validCandleData = getValidCandleData(candleData);
+export const useCandleShape = (numberOfCandles) => {
+  const [activeCandleIndex, setActiveCandleIndex] = useState(0);
+  const [candles, setCandles] = useState(
+    new Array(numberOfCandles).fill(null).map(() => ({
+      high: "1.0000",
+      low: "1.0000",
+      open: "1.0000",
+      close: "1.0000",
+    }))
+  );
 
-    if (some(validCandleData, isNull))
-      return { error: invalidCandleReason(candleData), isBullish: true };
+  const candlesShapes = candles
+    .map((candle) => mapValues(candle, (value) => Number(value)))
+    .map((candle) => {
+      const validCandle = getValidCandle(candle);
 
-    const isBullish = validCandleData.close >= validCandleData.open;
+      const isError = some(validCandle, isNull);
 
-    return {
-      isCandleValid: true,
-      isBullish,
-      ...heights(isBullish, validCandleData),
-    };
-  }, Object.values(candleData));
+      // Default to be bullish in error situation
+      const isBullish = !isError ? validCandle.close >= validCandle.open : true;
 
-const getValidCandleData = (candleData) => {
+      return {
+        error: isError ? invalidCandleReason(candle) : null,
+        isBullish,
+        ...candle,
+        ...(!isError ? heights(isBullish, validCandle) : null),
+      };
+    });
+
+  const setActiveCandleValueFor = (key) => (value) => {
+    setCandles((previousCandles) => {
+      const newValue = isFunction(value)
+        ? value(previousCandles[activeCandleIndex][key])
+        : value;
+      previousCandles[activeCandleIndex][key] = newValue;
+      console.log(
+        "🚀 ~ file: use-candle-shape.js ~ line 35 ~ setCandles ~ previousCandles",
+        previousCandles
+      );
+      return [...previousCandles]; // new array to allow the state to update
+    });
+  };
+
+  return {
+    error: candlesShapes.find(({ error }) => error)?.error,
+    candlesShapes,
+    activeCandle: {
+      index: activeCandleIndex,
+      ...candles[activeCandleIndex],
+      setHigh: setActiveCandleValueFor("high"),
+      setLow: setActiveCandleValueFor("low"),
+      setOpen: setActiveCandleValueFor("open"),
+      setClose: setActiveCandleValueFor("close"),
+    },
+  };
+};
+
+const getValidCandle = (candleData) => {
   const validCandleData = {
     ...candleData,
     high: validHigh(candleData),

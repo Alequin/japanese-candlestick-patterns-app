@@ -11,23 +11,16 @@ import { Icon } from "./icon";
 
 export const CandleInputs = ({
   error,
-  high,
-  setHigh,
-  low,
-  setLow,
-  open,
-  setOpen,
-  close,
-  setClose,
+  activeCandle: { high, setHigh, low, setLow, open, setOpen, close, setClose },
 }) => {
   return (
     <View style={styles.container}>
       <View style={styles.inputRow}>
         <Input title="High" value={high} setValue={setHigh} />
-        <Input title="Low" value={low} setValue={setLow} />
+        <Input title="Open" value={open} setValue={setOpen} />
       </View>
       <View style={styles.inputRow}>
-        <Input title="Open" value={open} setValue={setOpen} />
+        <Input title="Low" value={low} setValue={setLow} />
         <Input title="Close" value={close} setValue={setClose} />
       </View>
       <Warning error={error} />
@@ -58,7 +51,7 @@ const Input = ({ title, value, setValue }) => {
               ? setValue((previousValue) =>
                   round(Number(previousValue) - valueToDecreaseBy, 5).toFixed(5)
                 )
-              : setValue(1);
+              : setValue("1");
           }}
         >
           <View style={styles.inputButton}>

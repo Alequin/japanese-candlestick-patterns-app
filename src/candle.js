@@ -56,10 +56,10 @@ const CandleBody = ({ height, isBullish }) => {
 const styles = StyleSheet.create({
   candleContainer: {
     height: "100%",
-    width: "100%",
+    width: "10%",
     alignItems: "center",
     justifyContent: "center",
-
+    margin: 10,
     backgroundColor: "white",
   },
   stick: {
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     height: "25%",
   },
   body: {
-    width: "10%",
+    width: "100%",
     height: "50%",
   },
 });
