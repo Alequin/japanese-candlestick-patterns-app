@@ -1,22 +1,28 @@
 import React, { useMemo } from "react";
 import { StyleSheet, View } from "react-native";
+import { BULLISH } from "./candle-types";
 
 export const Candle = ({
   isCandleValid,
   candleShapeDetails: {
-    isBullish,
+    candleType,
     topStickHeightPercentage,
     bodyHeightPercentage,
     bottomStickHeightPercentage,
   },
 }) => {
+  console.log("🚀 ~ file: candle.js ~ line 14 ~ candleType", candleType);
   return isCandleValid ? (
     <View style={styles.candleContainer}>
       {topStickHeightPercentage > 0 ? (
         <CandleStick height={`${topStickHeightPercentage}%`} />
       ) : null}
       {bodyHeightPercentage > 0 ? (
-        <CandleBody height={`${bodyHeightPercentage}%`} isBullish={isBullish} />
+        <CandleBody
+          height={`${bodyHeightPercentage}%`}
+          candleType={candleType}
+          isBullish={candleType === BULLISH}
+        />
       ) : null}
       {bottomStickHeightPercentage > 0 ? (
         <CandleStick height={`${bottomStickHeightPercentage}%`} />
@@ -41,6 +47,10 @@ const CandleStick = ({ height }) => {
 };
 
 const CandleBody = ({ height, isBullish }) => {
+  console.log(
+    "🚀 ~ file: candle.js ~ line 49 ~ CandleBody ~ isBullish",
+    isBullish
+  );
   const style = useMemo(
     () => ({
       ...styles.body,
@@ -56,7 +66,7 @@ const CandleBody = ({ height, isBullish }) => {
 const styles = StyleSheet.create({
   candleContainer: {
     height: "100%",
-    width: "10%",
+    width: "40%",
     alignItems: "center",
     justifyContent: "center",
     margin: 10,

@@ -1,14 +1,15 @@
 import { isFunction, isNull, mapValues, some, uniq } from "lodash";
 import { useState } from "react";
+import { BEARISH, BULLISH } from "./candle-types";
 
 export const useCandleShape = (numberOfCandles) => {
   const [activeCandleIndex, setActiveCandleIndex] = useState(0);
   const [candles, setCandles] = useState(
     new Array(numberOfCandles).fill(null).map(() => ({
-      high: "1.0000",
+      high: "2.0000",
       low: "1.0000",
-      open: "1.0000",
-      close: "1.0000",
+      open: "1.2500",
+      close: "1.7500",
     }))
   );
 
@@ -20,13 +21,13 @@ export const useCandleShape = (numberOfCandles) => {
       const isError = some(validCandle, isNull);
 
       // Default to be bullish in error situation
-      const isBullish = !isError ? validCandle.close >= validCandle.open : true;
+      const candleType = !isError ? getCandleType(validCandle) : BULLISH;
 
       return {
         error: isError ? invalidCandleReason(candle) : null,
-        isBullish,
+        candleType,
         ...candle,
-        ...(!isError ? heights(isBullish, validCandle) : null),
+        ...(!isError ? heights(candleType, validCandle) : null),
       };
     });
 
@@ -36,10 +37,7 @@ export const useCandleShape = (numberOfCandles) => {
         ? value(previousCandles[activeCandleIndex][key])
         : value;
       previousCandles[activeCandleIndex][key] = newValue;
-      console.log(
-        "🚀 ~ file: use-candle-shape.js ~ line 35 ~ setCandles ~ previousCandles",
-        previousCandles
-      );
+
       return [...previousCandles]; // new array to allow the state to update
     });
   };
@@ -49,6 +47,7 @@ export const useCandleShape = (numberOfCandles) => {
     candlesShapes,
     activeCandle: {
       index: activeCandleIndex,
+      ...candlesShapes[activeCandleIndex],
       ...candles[activeCandleIndex],
       setHigh: setActiveCandleValueFor("high"),
       setLow: setActiveCandleValueFor("low"),
@@ -70,6 +69,8 @@ const getValidCandle = (candleData) => {
   return validCandleData;
 };
 
+const getCandleType = ({ open, close }) => (close >= open ? BULLISH : BEARISH);
+
 const invalidCandleReason = ({ high, low, open, close }) => {
   if (high < low) return "The 'high' is less than the 'low'";
   if (open > high) return "The 'open' is greater than the 'high'";
@@ -79,13 +80,13 @@ const invalidCandleReason = ({ high, low, open, close }) => {
   throw new Error("No matching invalid candle reason found");
 };
 
-const heights = (isBullish, validCandleData) => {
-  if (uniq(Object.values(validCandleData)).length === 1)
-    return neutralHeights();
+const heights = (candleType, validCandleData) => {
+  const areAllCandleValuesEqual =
+    uniq(Object.values(validCandleData)).length === 1;
 
-  return isBullish
-    ? bullishHeights(validCandleData)
-    : bearishHeights(validCandleData);
+  if (areAllCandleValuesEqual) return neutralHeights();
+  if (candleType === BULLISH) return bullishHeights(validCandleData);
+  if (candleType === BEARISH) return bearishHeights(validCandleData);
 };
 
 const neutralHeights = () => ({
@@ -93,6 +94,7 @@ const neutralHeights = () => ({
   topStickHeightPercentage: 0,
   bottomStickHeightPercentage: 0,
 });
+
 const bullishHeights = ({ high, low, open, close }) => {
   const fullHeight = high - low;
   return {
@@ -132,7 +134,7 @@ const isCandleBodyPriceValid = (high, low, bodyPrice) => {
 
 const bodyHeight = (close, open, fullHeight) => {
   const height = (Math.abs(close - open) / fullHeight) * 100;
-  return height || 0;
+  return Math.max(height || 1, 1);
 };
 
 const stickHeight = (high, bodyTop, fullHeight) => {
