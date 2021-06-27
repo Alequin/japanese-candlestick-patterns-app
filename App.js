@@ -1,14 +1,13 @@
 import Constants from "expo-constants";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Candle } from "./src/candle";
 import { CandleInputs } from "./src/candle-inputs";
+import { CandleView } from "./src/candle-view";
 import { MatchingPattersList } from "./src/matching-patterns-list";
 import { useCandleShape } from "./src/use-candle-shape";
 
 export default function App() {
-  const [numberOfCandles, setNumberOfCandles] = useState(1);
-
+  const [numberOfCandles, setNumberOfCandles] = useState(3);
   const { candlesShapes, activeCandle, error } =
     useCandleShape(numberOfCandles);
 
@@ -16,23 +15,25 @@ export default function App() {
     <View style={styles.page}>
       <View style={styles.container}>
         <View style={styles.candleDetailsContainer}>
-          <View style={{ flex: 3 }}>
+          <View style={{ flex: 2 }}>
             <MatchingPattersList activeCandle={activeCandle} />
           </View>
           <View
             style={{
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
+              flex: 1.5,
             }}
           >
-            {candlesShapes.map((candleShapeDetails, index) => (
-              <Candle
-                key={index}
-                isCandleValid={!error}
-                candleShapeDetails={candleShapeDetails}
-              />
-            ))}
+            <CandleView
+              candlesShapes={candlesShapes}
+              addCandle={() => {
+                const newCount = numberOfCandles + 1;
+                if (newCount <= 3) setNumberOfCandles(newCount);
+              }}
+              removeCandle={() => {
+                const newCount = numberOfCandles - 1;
+                if (newCount >= 1) setNumberOfCandles(newCount);
+              }}
+            />
           </View>
         </View>
         <View style={styles.inputsContainer}>

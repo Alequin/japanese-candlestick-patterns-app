@@ -1,72 +1,111 @@
 import React, { useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { BULLISH } from "./candle-types";
 
 export const Candle = ({
-  isCandleValid,
   candleShapeDetails: {
+    error,
+    isActive,
+    setAsActiveCandle,
     candleType,
+    topSpaceHeightPercentage,
     topStickHeightPercentage,
     bodyHeightPercentage,
     bottomStickHeightPercentage,
+    bottomSpaceHeightPercentage,
   },
 }) => {
-  console.log("🚀 ~ file: candle.js ~ line 14 ~ candleType", candleType);
-  return isCandleValid ? (
-    <View style={styles.candleContainer}>
-      {topStickHeightPercentage > 0 ? (
-        <CandleStick height={`${topStickHeightPercentage}%`} />
-      ) : null}
-      {bodyHeightPercentage > 0 ? (
-        <CandleBody
-          height={`${bodyHeightPercentage}%`}
-          candleType={candleType}
-          isBullish={candleType === BULLISH}
-        />
-      ) : null}
-      {bottomStickHeightPercentage > 0 ? (
-        <CandleStick height={`${bottomStickHeightPercentage}%`} />
-      ) : null}
-    </View>
-  ) : (
-    <View style={styles.candleContainer}>
-      <CandleStick height="10%" />
-      <CandleBody height="1%" isBullish />
-      <CandleStick height="10%" />
-    </View>
+  const isCandleValid = !error;
+
+  return (
+    <TouchableOpacity
+      style={useMemo(
+        () => ({
+          ...styles.candleContainer,
+          opacity: isActive ? 1 : 0.5,
+        }),
+        [isActive]
+      )}
+      onPress={setAsActiveCandle}
+    >
+      {isCandleValid ? (
+        <>
+          {topSpaceHeightPercentage > 0 ? (
+            <Space heightPercentage={topSpaceHeightPercentage} />
+          ) : null}
+          {topStickHeightPercentage > 0 ? (
+            <CandleStick
+              space={topSpaceHeightPercentage}
+              heightPercentage={topStickHeightPercentage}
+            />
+          ) : null}
+          {bodyHeightPercentage > 0 ? (
+            <CandleBody
+              heightPercentage={bodyHeightPercentage}
+              candleType={candleType}
+              isBullish={candleType === BULLISH}
+            />
+          ) : null}
+          {bottomStickHeightPercentage > 0 ? (
+            <CandleStick heightPercentage={bottomStickHeightPercentage} />
+          ) : null}
+          {bottomSpaceHeightPercentage > 0 ? (
+            <Space heightPercentage={bottomSpaceHeightPercentage} />
+          ) : null}
+        </>
+      ) : (
+        <>
+          <CandleStick heightPercentage={10} />
+          <CandleBody heightPercentage={1} isBullish />
+          <CandleStick heightPercentage={10} />
+        </>
+      )}
+    </TouchableOpacity>
   );
 };
 
-const CandleStick = ({ height }) => {
-  const style = useMemo(
-    () => ({ ...styles.stick, height: height || 0 }),
-    [height]
+const CandleStick = ({ heightPercentage }) => {
+  return (
+    <View
+      style={useMemo(
+        () => ({
+          ...styles.stick,
+          height: heightPercentage ? `${heightPercentage}%` : 0,
+        }),
+        [heightPercentage]
+      )}
+    />
   );
-
-  return <View style={style} />;
 };
 
-const CandleBody = ({ height, isBullish }) => {
-  console.log(
-    "🚀 ~ file: candle.js ~ line 49 ~ CandleBody ~ isBullish",
-    isBullish
+const CandleBody = ({ heightPercentage, isBullish }) => {
+  return (
+    <View
+      style={useMemo(
+        () => ({
+          ...styles.body,
+          height: heightPercentage ? `${heightPercentage}%` : 0,
+          backgroundColor: isBullish ? "green" : "red",
+        }),
+        [heightPercentage, isBullish]
+      )}
+    />
   );
-  const style = useMemo(
-    () => ({
-      ...styles.body,
-      height: height || 0,
-      backgroundColor: isBullish ? "green" : "red",
-    }),
-    [height]
-  );
-
-  return <View style={style} />;
 };
+
+const Space = ({ heightPercentage }) => (
+  <View
+    style={useMemo(
+      () => ({ height: heightPercentage ? `${heightPercentage}%` : 0 }),
+      [heightPercentage]
+    )}
+  />
+);
 
 const styles = StyleSheet.create({
   candleContainer: {
     height: "100%",
-    width: "40%",
+    width: "30%",
     alignItems: "center",
     justifyContent: "center",
     margin: 10,
