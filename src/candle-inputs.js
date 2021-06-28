@@ -10,8 +10,17 @@ import {
 import { Icon } from "./icon";
 
 export const CandleInputs = ({
-  error,
-  activeCandle: { high, setHigh, low, setLow, open, setOpen, close, setClose },
+  activeCandle: {
+    error,
+    high,
+    setHigh,
+    low,
+    setLow,
+    open,
+    setOpen,
+    close,
+    setClose,
+  },
 }) => {
   return (
     <View style={styles.container}>
@@ -35,7 +44,7 @@ const Input = ({ title, value, setValue }) => {
         <Icon icon="blankSpace" color="black" size={22} />
         <TextInput
           style={styles.input}
-          value={value}
+          value={value?.toString()}
           onChangeText={(value) => setValue(value)}
           keyboardType="numeric"
         />
@@ -44,35 +53,7 @@ const Input = ({ title, value, setValue }) => {
         </TouchableOpacity>
       </View>
       <View style={styles.inputButtonsContainer}>
-        <HoldableOpacity
-          onHold={(valueToDecreaseBy) => {
-            const number = Number(value);
-            return !isNaN(number)
-              ? setValue((previousValue) =>
-                  round(Number(previousValue) - valueToDecreaseBy, 5).toFixed(5)
-                )
-              : setValue("1");
-          }}
-        >
-          <View style={styles.inputButton}>
-            <Icon icon="minus" color="black" size={25} />
-          </View>
-        </HoldableOpacity>
         <Text>{title}</Text>
-        <HoldableOpacity
-          onHold={(valueToIncreaseBy) => {
-            const number = Number(value);
-            return !isNaN(number)
-              ? setValue((previousValue) =>
-                  round(Number(previousValue) + valueToIncreaseBy, 5).toFixed(5)
-                )
-              : setValue(1);
-          }}
-        >
-          <View style={styles.inputButton}>
-            <Icon icon="plus" color="black" size={25} />
-          </View>
-        </HoldableOpacity>
       </View>
     </View>
   );

@@ -1,25 +1,12 @@
-import { BEARISH, BULLISH, NEUTRAL } from "./candle-types";
-
-const newExamplePattern = (
-  name,
-  candleType,
-  { doesCandleMatchPatten, exampleCandle }
-) => ({
-  name,
-  doesCandleMatchPatten,
-  candleType,
-  exampleCandle: {
-    candleType,
-    ...exampleCandle,
-  },
-});
+import { BEARISH, BULLISH } from "./candle-types";
 
 const isBetween = (value, { smallest, largest }) =>
   value >= smallest && value <= largest;
 
-export const patterns = [
-  newExamplePattern("Spinning Top", NEUTRAL, {
-    doesCandleMatchPatten: ({
+export const singleCandlePatterns = [
+  {
+    name: "Spinning Top",
+    doesCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -41,14 +28,17 @@ export const patterns = [
         isBodyHightCorrect && isTopStickSizeCorrect && isBottomStickSizeCorrect
       );
     },
-    exampleCandle: {
-      bodyHeightPercentage: 20,
-      topStickHeightPercentage: 40,
-      bottomStickHeightPercentage: 40,
-    },
-  }),
-  newExamplePattern("Standard Doji", NEUTRAL, {
-    doesCandleMatchPatten: ({
+    exampleCandles: [
+      {
+        bodyHeightPercentage: 20,
+        topStickHeightPercentage: 40,
+        bottomStickHeightPercentage: 40,
+      },
+    ],
+  },
+  {
+    name: "Standard Doji",
+    doesCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -70,14 +60,17 @@ export const patterns = [
         isBodyHightCorrect && isTopStickSizeCorrect && isBottomStickSizeCorrect
       );
     },
-    exampleCandle: {
-      bodyHeightPercentage: 5,
-      topStickHeightPercentage: 97.5,
-      bottomStickHeightPercentage: 97.5,
-    },
-  }),
-  newExamplePattern("Gravestone Doji", NEUTRAL, {
-    doesCandleMatchPatten: ({
+    exampleCandles: [
+      {
+        bodyHeightPercentage: 5,
+        topStickHeightPercentage: 97.5,
+        bottomStickHeightPercentage: 97.5,
+      },
+    ],
+  },
+  {
+    name: "Gravestone Doji",
+    doesCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -99,14 +92,17 @@ export const patterns = [
         isBodyHightCorrect && isTopStickSizeCorrect && isBottomStickSizeCorrect
       );
     },
-    exampleCandle: {
-      bodyHeightPercentage: 5,
-      topStickHeightPercentage: 95,
-      bottomStickHeightPercentage: 0,
-    },
-  }),
-  newExamplePattern("Dragon Fly Doji", NEUTRAL, {
-    doesCandleMatchPatten: ({
+    exampleCandles: [
+      {
+        bodyHeightPercentage: 5,
+        topStickHeightPercentage: 95,
+        bottomStickHeightPercentage: 0,
+      },
+    ],
+  },
+  {
+    name: "Dragon Fly Doji",
+    doesCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -128,26 +124,32 @@ export const patterns = [
         isBodyHightCorrect && isTopStickSizeCorrect && isBottomStickSizeCorrect
       );
     },
-    exampleCandle: {
-      bodyHeightPercentage: 5,
-      topStickHeightPercentage: 0,
-      bottomStickHeightPercentage: 95,
-    },
-  }),
-  newExamplePattern("Four Price Doji", NEUTRAL, {
-    doesCandleMatchPatten: ({ high, low, open, close }) => {
+    exampleCandles: [
+      {
+        bodyHeightPercentage: 5,
+        topStickHeightPercentage: 0,
+        bottomStickHeightPercentage: 95,
+      },
+    ],
+  },
+  {
+    name: "Four Price Doji",
+    doesCandlesMatchPattern: ({ high, low, open, close }) => {
       return [high, low, open, close].every(
         (value) => Number(value) === Number(high)
       );
     },
-    exampleCandle: {
-      bodyHeightPercentage: 100,
-      topStickHeightPercentage: 0,
-      bottomStickHeightPercentage: 0,
-    },
-  }),
-  newExamplePattern("Hammer" /*Paper umbrella*/, NEUTRAL, {
-    doesCandleMatchPatten: ({
+    exampleCandles: [
+      {
+        bodyHeightPercentage: 100,
+        topStickHeightPercentage: 0,
+        bottomStickHeightPercentage: 0,
+      },
+    ],
+  },
+  {
+    name: "Hammer" /*Paper mbrella*/,
+    doesCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -169,14 +171,17 @@ export const patterns = [
         isBodyHightCorrect && isTopStickSizeCorrect && isBottomStickSizeCorrect
       );
     },
-    exampleCandle: {
-      bodyHeightPercentage: 5,
-      topStickHeightPercentage: 0,
-      bottomStickHeightPercentage: 95,
-    },
-  }),
-  newExamplePattern("Hanging Man" /*Paper umbrella*/, NEUTRAL, {
-    doesCandleMatchPatten: ({
+    exampleCandles: [
+      {
+        bodyHeightPercentage: 5,
+        topStickHeightPercentage: 0,
+        bottomStickHeightPercentage: 95,
+      },
+    ],
+  },
+  {
+    name: "Hanging Man" /*Pper umbrella*/,
+    doesCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -198,14 +203,17 @@ export const patterns = [
         isBodyHightCorrect && isTopStickSizeCorrect && isBottomStickSizeCorrect
       );
     },
-    exampleCandle: {
-      bodyHeightPercentage: 5,
-      topStickHeightPercentage: 0,
-      bottomStickHeightPercentage: 95,
-    },
-  }),
-  newExamplePattern("Inverted Hammer" /*Paper umbrella*/, NEUTRAL, {
-    doesCandleMatchPatten: ({
+    exampleCandles: [
+      {
+        bodyHeightPercentage: 5,
+        topStickHeightPercentage: 0,
+        bottomStickHeightPercentage: 95,
+      },
+    ],
+  },
+  {
+    name: "Inverted Hammer" /*Paper umbrella*/,
+    doesCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -227,14 +235,17 @@ export const patterns = [
         isBodyHightCorrect && isTopStickSizeCorrect && isBottomStickSizeCorrect
       );
     },
-    exampleCandle: {
-      bodyHeightPercentage: 5,
-      topStickHeightPercentage: 0,
-      bottomStickHeightPercentage: 95,
-    },
-  }),
-  newExamplePattern("Shooting Star", NEUTRAL, {
-    doesCandleMatchPatten: ({
+    exampleCandles: [
+      {
+        bodyHeightPercentage: 5,
+        topStickHeightPercentage: 0,
+        bottomStickHeightPercentage: 95,
+      },
+    ],
+  },
+  {
+    name: "Shooting Star",
+    doesCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -256,18 +267,24 @@ export const patterns = [
         isBodyHightCorrect && isTopStickSizeCorrect && isBottomStickSizeCorrect
       );
     },
-    exampleCandle: {
-      bodyHeightPercentage: 5,
-      topStickHeightPercentage: 0,
-      bottomStickHeightPercentage: 95,
-    },
-  }),
-  newExamplePattern("Bullish Belt Hold", BULLISH, {
-    doesCandleMatchPatten: ({
+    exampleCandles: [
+      {
+        bodyHeightPercentage: 5,
+        topStickHeightPercentage: 0,
+        bottomStickHeightPercentage: 95,
+      },
+    ],
+  },
+  {
+    name: "Bullish Belt Hol",
+    doesCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
+      candleType,
     }) => {
+      if (candleType !== BULLISH) return false;
+
       const isBodyHightCorrect = isBetween(bodyHeightPercentage, {
         smallest: 75,
         largest: 95,
@@ -285,18 +302,25 @@ export const patterns = [
         isBodyHightCorrect && isTopStickSizeCorrect && isBottomStickSizeCorrect
       );
     },
-    exampleCandle: {
-      bodyHeightPercentage: 80,
-      topStickHeightPercentage: 20,
-      bottomStickHeightPercentage: 0,
-    },
-  }),
-  newExamplePattern("Bearish Belt Hold", BEARISH, {
-    doesCandleMatchPatten: ({
+    exampleCandles: [
+      {
+        candleType: BULLISH,
+        bodyHeightPercentage: 80,
+        topStickHeightPercentage: 20,
+        bottomStickHeightPercentage: 0,
+      },
+    ],
+  },
+  {
+    name: "Bearish Belt Hol",
+    doesCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
+      candleType,
     }) => {
+      if (candleType !== BEARISH) return false;
+
       const isBodyHightCorrect = isBetween(bodyHeightPercentage, {
         smallest: 75,
         largest: 95,
@@ -314,29 +338,41 @@ export const patterns = [
         isBodyHightCorrect && isTopStickSizeCorrect && isBottomStickSizeCorrect
       );
     },
-    exampleCandle: {
-      bodyHeightPercentage: 80,
-      topStickHeightPercentage: 0,
-      bottomStickHeightPercentage: 20,
+    exampleCandles: [
+      {
+        bodyHeightPercentage: 80,
+        topStickHeightPercentage: 0,
+        bottomStickHeightPercentage: 20,
+      },
+    ],
+  },
+  {
+    name: "Bullish Marubozu",
+    doesCandlesMatchPattern: ({ bodyHeightPercentage, candleType }) => {
+      if (candleType !== BULLISH) return false;
+      return bodyHeightPercentage >= 100;
     },
-  }),
-  newExamplePattern("Bullish Marubozu", BULLISH, {
-    doesCandleMatchPatten: () => false,
-    exampleCandle: {
-      bodyHeightPercentage: 100,
-      topStickHeightPercentage: 0,
-      bottomStickHeightPercentage: 0,
-    },
-  }),
-  newExamplePattern("Bearish Marubozu", BEARISH, {
-    doesCandleMatchPatten: () => false,
     exampleCandle: {
       bodyHeightPercentage: 100,
       topStickHeightPercentage: 0,
       bottomStickHeightPercentage: 0,
     },
-  }),
+  },
+  {
+    name: "Bearish Marubozu",
+    doesCandlesMatchPattern: ({ bodyHeightPercentage, candleType }) => {
+      if (candleType !== BEARISH) return false;
+      return bodyHeightPercentage >= 100;
+    },
+    exampleCandle: {
+      bodyHeightPercentage: 100,
+      topStickHeightPercentage: 0,
+      bottomStickHeightPercentage: 0,
+    },
+  },
 ];
+
+export const doubleCandlePatterns = [];
 
 /*
 

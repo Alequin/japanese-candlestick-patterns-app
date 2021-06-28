@@ -4,19 +4,22 @@ import { StyleSheet, View } from "react-native";
 import { CandleInputs } from "./src/candle-inputs";
 import { CandleView } from "./src/candle-view";
 import { MatchingPattersList } from "./src/matching-patterns-list";
+import { singleCandlePatterns } from "./src/patterns";
 import { useCandleShape } from "./src/use-candle-shape";
 
 export default function App() {
   const [numberOfCandles, setNumberOfCandles] = useState(3);
-  const { candlesShapes, activeCandle, error } =
-    useCandleShape(numberOfCandles);
+  const [activeCandleIndex, setActiveCandleIndex] = useState(0);
+  const candlesShapes = useCandleShape(numberOfCandles);
+
+  const activeCandle = candlesShapes[activeCandleIndex];
 
   return (
     <View style={styles.page}>
       <View style={styles.container}>
         <View style={styles.candleDetailsContainer}>
           <View style={{ flex: 2 }}>
-            <MatchingPattersList activeCandle={activeCandle} />
+            <MatchingPattersList candlesShapes={candlesShapes} />
           </View>
           <View
             style={{
@@ -24,20 +27,28 @@ export default function App() {
             }}
           >
             <CandleView
-              candlesShapes={candlesShapes}
+              candlesShapes={candlesShapes.map((candle) => ({
+                ...candle,
+                isActive: candle.index === activeCandleIndex,
+              }))}
               addCandle={() => {
                 const newCount = numberOfCandles + 1;
                 if (newCount <= 3) setNumberOfCandles(newCount);
               }}
               removeCandle={() => {
                 const newCount = numberOfCandles - 1;
-                if (newCount >= 1) setNumberOfCandles(newCount);
+                if (newCount >= 1) {
+                  setNumberOfCandles(newCount);
+                  if (activeCandleIndex >= newCount)
+                    setActiveCandleIndex(newCount - 1);
+                }
               }}
+              onSelectCandle={setActiveCandleIndex}
             />
           </View>
         </View>
         <View style={styles.inputsContainer}>
-          <CandleInputs error={error} activeCandle={activeCandle} />
+          <CandleInputs activeCandle={activeCandle} />
         </View>
       </View>
     </View>

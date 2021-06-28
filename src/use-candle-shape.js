@@ -20,9 +20,8 @@ const DEFAULT_CANDLES = new Array(3).fill(null).map(() => ({
 }));
 
 export const useCandleShape = (numberOfCandles) => {
-  const [activeCandleIndex, setActiveCandleIndex] = useState(0);
-  const [candles, setCandles] = useState(DEFAULT_CANDLES);
-  const validCandles = candles
+  const [rawCandles, setRawCandles] = useState(DEFAULT_CANDLES);
+  const validCandles = rawCandles
     .slice(0, numberOfCandles)
     .map((candle) =>
       mapValues(candle, (value) => {
@@ -49,49 +48,41 @@ export const useCandleShape = (numberOfCandles) => {
     return validCandle.low;
   }).validCandle.low;
 
-  const candlesShapes = validCandles.map(
-    ({ candle, validCandle, isError }, index) => {
-      // Default to be bullish in error situation
-      const candleType = !isError ? getCandleType(validCandle) : BULLISH;
-
-      return {
-        error: isError ? invalidCandleReason(candle) : null,
-        isActive: index === activeCandleIndex,
-        candleType,
-        setAsActiveCandle: () => setActiveCandleIndex(index),
-        ...candle,
-        ...(!isError
-          ? heights(candleType, validCandle, minPrice, maxPrice)
-          : null),
-      };
-    }
-  );
-
-  const setActiveCandleValueFor = (key) => (value) => {
-    setCandles((previousCandles) => {
+  const setActiveCandleValueFor = (key, index) => (value) => {
+    setRawCandles((previousCandles) => {
       const newCandles = cloneDeep(previousCandles);
 
-      newCandles[activeCandleIndex][key] = isFunction(value)
-        ? value(newCandles[activeCandleIndex][key])
+      newCandles[index][key] = isFunction(value)
+        ? value(newCandles[index][key])
         : value;
 
       return newCandles;
     });
   };
 
-  return {
-    error: candlesShapes[activeCandleIndex].error,
-    candlesShapes,
-    activeCandle: {
-      index: activeCandleIndex,
-      ...candlesShapes[activeCandleIndex],
-      ...candles[activeCandleIndex],
-      setHigh: setActiveCandleValueFor("high"),
-      setLow: setActiveCandleValueFor("low"),
-      setOpen: setActiveCandleValueFor("open"),
-      setClose: setActiveCandleValueFor("close"),
-    },
-  };
+  const candlesShapes = validCandles.map(
+    ({ candle, validCandle, isError }, index) => {
+      const rawCandle = rawCandles[index];
+      // Default to be bullish in error situation
+      const candleType = !isError ? getCandleType(validCandle) : BULLISH;
+
+      return {
+        index,
+        error: isError ? invalidCandleReason(candle) : null,
+        candleType,
+        ...rawCandle,
+        ...(!isError
+          ? heights(candleType, validCandle, minPrice, maxPrice)
+          : null),
+        setHigh: setActiveCandleValueFor("high", index),
+        setLow: setActiveCandleValueFor("low", index),
+        setOpen: setActiveCandleValueFor("open", index),
+        setClose: setActiveCandleValueFor("close", index),
+      };
+    }
+  );
+
+  return candlesShapes;
 };
 
 const getValidCandle = (candleData) => {
@@ -167,10 +158,6 @@ const validHigh = ({ high, low, open, close }) => {
   return isValid ? high : null;
 };
 const validLow = ({ high, low, open, close }) => {
-  console.log(
-    "🚀 ~ file: use-candle-shape.js ~ line 172 ~ validLow ~ low",
-    low
-  );
   const isValid =
     isNumber(low) && [high, open, close].every((value) => value >= low);
   return isValid ? low : null;

@@ -5,8 +5,8 @@ import { BULLISH } from "./candle-types";
 export const Candle = ({
   candleShapeDetails: {
     error,
+    index,
     isActive,
-    setAsActiveCandle,
     candleType,
     topSpaceHeightPercentage,
     topStickHeightPercentage,
@@ -14,6 +14,7 @@ export const Candle = ({
     bottomStickHeightPercentage,
     bottomSpaceHeightPercentage,
   },
+  onSelectCandle,
 }) => {
   const isCandleValid = !error;
 
@@ -26,7 +27,7 @@ export const Candle = ({
         }),
         [isActive]
       )}
-      onPress={setAsActiveCandle}
+      onPress={() => onSelectCandle(index)}
     >
       {isCandleValid ? (
         <>

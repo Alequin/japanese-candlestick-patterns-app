@@ -2,26 +2,39 @@ import { isEmpty } from "lodash";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { NEUTRAL } from "./candle-types";
-import { patterns } from "./patterns";
+import { singleCandlePatterns } from "./patterns";
 
-export const MatchingPattersList = ({ activeCandle }) => {
-  const singleCandlePatterNames = patterns
-    .filter(
-      ({ doesCandleMatchPatten, candleType }) =>
-        doesCandleMatchPatten(activeCandle) &&
-        (candleType === NEUTRAL || activeCandle.candleType === candleType)
-    )
-    .map(({ name }) => name);
-
+export const MatchingPattersList = ({ candlesShapes }) => {
+  const patternNames = getPatternNames(candlesShapes);
   return (
     <View>
-      <Text>Matching Single Candle Patterns</Text>
-      {!isEmpty(singleCandlePatterNames) ? (
-        singleCandlePatterNames.map((name) => <Text key={name}>{name}</Text>)
+      <Text>{title(candlesShapes.length)}</Text>
+      {!isEmpty(patternNames) ? (
+        patternNames.map((name) => <Text key={name}>{name}</Text>)
       ) : (
         <Text>No matching patterns</Text>
       )}
     </View>
+  );
+};
+
+const getPatternNames = (candlesShapes) => {
+  if (candlesShapes.length === 1) {
+    const candleToCheck = candlesShapes[0];
+    return singleCandlePatterns
+      .filter(({ doesCandlesMatchPattern }) =>
+        doesCandlesMatchPattern(candleToCheck)
+      )
+      .map(({ name }) => name);
+  }
+};
+
+const title = (candleCount) => {
+  if (candleCount === 1) return "Single Candle Patterns";
+  if (candleCount === 2) return "Double Candle Patterns";
+  if (candleCount === 3) return "Triple Candle Patterns";
+  throw new Error(
+    "candle count is not valid. No pattern title can be shown: " + candleCount
   );
 };
 

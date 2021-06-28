@@ -2,7 +2,12 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Candle } from "./candle";
 
-export const CandleView = ({ candlesShapes, addCandle, removeCandle }) => {
+export const CandleView = ({
+  candlesShapes,
+  addCandle,
+  removeCandle,
+  onSelectCandle,
+}) => {
   return (
     <>
       <View
@@ -19,6 +24,7 @@ export const CandleView = ({ candlesShapes, addCandle, removeCandle }) => {
           <Candle
             key={`${index}-${candleShapeDetails.isActive}`} // Use is active in key so it updates when state updates
             candleShapeDetails={candleShapeDetails}
+            onSelectCandle={onSelectCandle}
           />
         ))}
       </View>
