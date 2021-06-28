@@ -118,9 +118,13 @@ const heights = (candleType, validCandleData, minPrice, maxPrice) => {
 
   if (areAllCandleValuesEqual) return neutralHeights();
   if (candleType === BULLISH)
-    return bullishHeights(validCandleData, minPrice, maxPrice);
+    return withTotalCandleHeight(
+      bullishHeights(validCandleData, minPrice, maxPrice)
+    );
   if (candleType === BEARISH)
-    return bearishHeights(validCandleData, minPrice, maxPrice);
+    return withTotalCandleHeight(
+      bearishHeights(validCandleData, minPrice, maxPrice)
+    );
 };
 
 const neutralHeights = () => ({
@@ -131,6 +135,7 @@ const neutralHeights = () => ({
 
 const bullishHeights = ({ high, low, open, close }, minPrice, maxPrice) => {
   const fullHeight = maxPrice - minPrice;
+
   return {
     bodyHeightPercentage: bodyHeight(open, close, fullHeight),
     topSpaceHeightPercentage: spaceHeight(maxPrice, high, fullHeight),
@@ -151,6 +156,14 @@ const bearishHeights = ({ high, low, open, close }, minPrice, maxPrice) => {
     bottomSpaceHeightPercentage: spaceHeight(minPrice, low, fullHeight),
   };
 };
+
+const withTotalCandleHeight = (candleHeights) => ({
+  ...candleHeights,
+  totalHeight:
+    candleHeights.topStickHeightPercentage +
+    candleHeights.bodyHeightPercentage +
+    candleHeights.bottomStickHeightPercentage,
+});
 
 const validHigh = ({ high, low, open, close }) => {
   const isValid =

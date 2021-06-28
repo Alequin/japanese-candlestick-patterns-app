@@ -372,7 +372,26 @@ export const singleCandlePatterns = [
   },
 ];
 
-export const doubleCandlePatterns = [];
+export const doubleCandlePatterns = [
+  {
+    name: "Bullish Engulfing",
+    doesCandlesMatchPattern: (candles) => {
+      return (
+        candles[1].candleType === BULLISH && // Main candle is bullish
+        candles[0].candleType == BEARISH && // previous candle is bearish
+        candles[1].totalHeight > candles[0].totalHeight && // Main candles total height is larger than the previous candles
+        candles[1].bodyHeightPercentage > candles[0].bodyHeightPercentage && // Main candles body height is larger than the previous candles
+        candles[1].close > candles[0].open && // Main candles close price is more than previous candles open price
+        candles[1].open <= candles[0].close // Main candles open price is less than or equal to previous candles close price
+      );
+    },
+    exampleCandle: {
+      bodyHeightPercentage: 100,
+      topStickHeightPercentage: 0,
+      bottomStickHeightPercentage: 0,
+    },
+  },
+];
 
 /*
 

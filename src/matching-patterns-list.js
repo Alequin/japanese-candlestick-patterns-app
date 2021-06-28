@@ -2,10 +2,12 @@ import { isEmpty } from "lodash";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { NEUTRAL } from "./candle-types";
-import { singleCandlePatterns } from "./patterns";
+import { doubleCandlePatterns, singleCandlePatterns } from "./patterns";
 
 export const MatchingPattersList = ({ candlesShapes }) => {
-  const patternNames = getPatternNames(candlesShapes);
+  const patternNames = getMatchingPatterns(candlesShapes).map(
+    ({ name }) => name
+  );
   return (
     <View>
       <Text>{title(candlesShapes.length)}</Text>
@@ -18,14 +20,17 @@ export const MatchingPattersList = ({ candlesShapes }) => {
   );
 };
 
-const getPatternNames = (candlesShapes) => {
+const getMatchingPatterns = (candlesShapes) => {
   if (candlesShapes.length === 1) {
     const candleToCheck = candlesShapes[0];
-    return singleCandlePatterns
-      .filter(({ doesCandlesMatchPattern }) =>
-        doesCandlesMatchPattern(candleToCheck)
-      )
-      .map(({ name }) => name);
+    return singleCandlePatterns.filter(({ doesCandlesMatchPattern }) =>
+      doesCandlesMatchPattern(candleToCheck)
+    );
+  }
+  if (candlesShapes.length === 2) {
+    return doubleCandlePatterns.filter(({ doesCandlesMatchPattern }) =>
+      doesCandlesMatchPattern(candlesShapes)
+    );
   }
 };
 
