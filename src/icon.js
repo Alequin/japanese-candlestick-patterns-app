@@ -5,10 +5,10 @@ import { View } from "react-native";
 import { dynamicFontSize } from "./dynamic-font-size";
 import { textShadow } from "./text-shadow-style";
 
-export const Icon = ({ icon, ...otherProps }) => {
-  const IconToRender = ICON_OPTIONS[icon];
+export const Icon = ({ name, ...otherProps }) => {
+  const IconToRender = ICON_OPTIONS[name];
   if (!IconToRender)
-    throw new Error(`Unable to find an icon by the name ${icon}`);
+    throw new Error(`Unable to find an icon by the name ${name}`);
   return <IconToRender {...otherProps} />;
 };
 

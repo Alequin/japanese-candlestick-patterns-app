@@ -37,7 +37,7 @@ const Input = ({ title, value, setValue }) => {
   return (
     <View style={styles.inputContainer}>
       <View style={styles.inputWrapper}>
-        <Icon icon="blankSpace" color="black" size={22} />
+        <Icon name="blankSpace" color="black" size={22} />
         <TextInput
           style={styles.input}
           value={value?.toString()}
@@ -45,7 +45,7 @@ const Input = ({ title, value, setValue }) => {
           keyboardType="numeric"
         />
         <TouchableOpacity onPress={() => setValue("")}>
-          <Icon icon="cross" color="black" size={22} />
+          <Icon name="cross" color="black" size={22} />
         </TouchableOpacity>
       </View>
       <View style={styles.inputButtonsContainer}>
@@ -93,7 +93,7 @@ const Warning = ({ error }) => {
       <View style={styles.warningTitle}>
         <Icon
           style={styles.warningIcon}
-          icon="warningOutline"
+          name="warningOutline"
           color="red"
           size={30}
         />
