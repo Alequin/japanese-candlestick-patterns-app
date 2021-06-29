@@ -4,7 +4,6 @@ import { StyleSheet, View } from "react-native";
 import { CandleInputs } from "./src/candle-inputs";
 import { CandleView } from "./src/candle-view";
 import { MatchingPattersList } from "./src/matching-patterns-list";
-import { singleCandlePatterns } from "./src/patterns";
 import { useCandleShape } from "./src/use-candle-shape";
 
 export default function App() {
@@ -55,11 +54,6 @@ export default function App() {
   );
 }
 
-const toNumber = (value) => {
-  const valueAsNumber = Number(value);
-  return valueAsNumber ? valueAsNumber : 0;
-};
-
 const styles = StyleSheet.create({
   page: {
     paddingTop: Constants.statusBarHeight + 10,
@@ -74,7 +68,6 @@ const styles = StyleSheet.create({
   },
   candleDetailsContainer: {
     height: "60%",
-    width: "100%",
     marginVertical: 15,
     flexDirection: "row",
     justifyContent: "center",

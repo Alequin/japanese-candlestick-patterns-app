@@ -15,7 +15,7 @@ export const CandleView = ({
           width: "100%",
           flex: 1,
           marginBottom: 10,
-          justifyContent: "center",
+          justifyContent: "space-around",
           alignItems: "center",
           flexDirection: "row",
         }}

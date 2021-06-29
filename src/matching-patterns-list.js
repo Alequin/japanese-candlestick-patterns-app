@@ -9,7 +9,14 @@ export const MatchingPattersList = ({ candlesShapes }) => {
   );
   return (
     <View>
-      <Text>{title(candlesShapes.length)}</Text>
+      <Text
+        style={{
+          textAlign: "center",
+          fontWeight: "bold",
+        }}
+      >
+        {title(candlesShapes.length)}
+      </Text>
       {!isEmpty(patternNames) ? (
         patternNames.map((name) => <Text key={name}>{name}</Text>)
       ) : (
@@ -38,15 +45,12 @@ const getMatchingPatterns = (candlesShapes) => {
 };
 
 const title = (candleCount) => {
-  if (candleCount === 1) return "Single Candle Patterns";
-  if (candleCount === 2) return "Double Candle Patterns";
-  if (candleCount === 3) return "Triple Candle Patterns";
+  if (candleCount === 1) return "Single CandleStick Patterns";
+  if (candleCount === 2) return "Double CandleStick Patterns";
+  if (candleCount === 3) return "Triple CandleStick Patterns";
   throw new Error(
     "candle count is not valid. No pattern title can be shown: " + candleCount
   );
 };
-
-const isBetween = (value, { smallest, largest }) =>
-  value >= smallest && value <= largest;
 
 const styles = StyleSheet.create({});

@@ -106,10 +106,9 @@ const Space = ({ heightPercentage }) => (
 const styles = StyleSheet.create({
   candleContainer: {
     height: "100%",
-    width: "30%",
+    width: "25%",
     alignItems: "center",
     justifyContent: "center",
-    margin: 10,
     backgroundColor: "white",
   },
   stick: {
