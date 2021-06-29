@@ -1,5 +1,6 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import {
+  Keyboard,
   StyleSheet,
   Text,
   TextInput,
@@ -34,51 +35,42 @@ export const CandleInputs = ({
 };
 
 const Input = ({ title, value, setValue }) => {
+  const inputRef = useRef();
+
+  useEffect(() => {
+    const keyboardEvent = Keyboard.addListener("keyboardDidHide", () =>
+      inputRef.current.blur()
+    );
+    return () => keyboardEvent.remove();
+  }, [inputRef]);
+
   return (
-    <View style={styles.inputContainer}>
+    <TouchableOpacity
+      style={styles.inputContainer}
+      onPress={() => inputRef?.current?.focus()}
+    >
       <View style={styles.inputWrapper}>
-        <Icon name="blankSpace" color="black" size={22} />
+        <Icon style={{ flex: 2 }} name="blankSpace" size={22} />
         <TextInput
+          ref={inputRef}
           style={styles.input}
           value={value?.toString()}
           onChangeText={(value) => setValue(value)}
           keyboardType="numeric"
         />
-        <TouchableOpacity onPress={() => setValue("")}>
+        <TouchableOpacity
+          style={{ flex: 2, paddingVertical: 5, alignItems: "center" }}
+          onPress={() => setValue("")}
+        >
           <Icon name="cross" color="black" size={22} />
         </TouchableOpacity>
       </View>
-      <View style={styles.inputButtonsContainer}>
-        <Text>{title}</Text>
+      <View style={styles.inputTitle}>
+        <Icon name="blankSpace" size={16} />
+        <Text style={{ marginHorizontal: 5 }}>{title}</Text>
+        <Icon name="edit" size={16} />
       </View>
-    </View>
-  );
-};
-
-const HoldableOpacity = ({ onHold, ...props }) => {
-  const [onHoldInterval, setOnHoldInterval] = useState(null);
-
-  return (
-    <TouchableOpacity
-      {...props}
-      onPressIn={async () => {
-        onHold(0.00001);
-        let loopCount = 0;
-        setOnHoldInterval(
-          setInterval(async () => {
-            loopCount++;
-            if (loopCount > 30) return onHold(0.01155);
-            if (loopCount > 20) return onHold(0.00115);
-            if (loopCount > 10) return onHold(0.00011);
-            onHold(0.00001);
-          }, 100)
-        );
-      }}
-      onPressOut={() => {
-        clearInterval(onHoldInterval);
-        setOnHoldInterval(null);
-      }}
-    />
+    </TouchableOpacity>
   );
 };
 
@@ -90,23 +82,14 @@ const Warning = ({ error }) => {
 
   return (
     <View style={style}>
-      <View style={styles.warningTitle}>
-        <Icon
-          style={styles.warningIcon}
-          name="warningOutline"
-          color="red"
-          size={30}
-        />
-        <Text>Invalid Candle</Text>
-      </View>
-      <Text style={styles.warningText}>{error}</Text>
+      <Icon name="warningOutline" color="red" size={30} />
+      <Text> {`Invalid Candle: ${error}`}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 20,
     height: "100%",
     width: "100%",
     justifyContent: "space-around",
@@ -131,15 +114,16 @@ const styles = StyleSheet.create({
     borderColor: "black",
   },
   input: {
-    flex: 1,
+    flex: 8,
     color: "black",
     textAlign: "center",
   },
-  inputButtonsContainer: {
+  inputTitle: {
     width: "100%",
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "center",
     alignItems: "center",
+    padding: 5,
   },
   inputButton: {
     padding: 2,
@@ -153,14 +137,12 @@ const styles = StyleSheet.create({
   },
   warningContainer: {
     alignItems: "center",
+    flexDirection: "row",
   },
   warningTitle: {
     marginTop: 10,
     flexDirection: "row",
     alignItems: "center",
-  },
-  warningIcon: {
-    marginRight: 5,
   },
   warningText: {
     textAlign: "center",

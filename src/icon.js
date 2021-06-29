@@ -32,6 +32,7 @@ const ICON_OPTIONS = {
   minus: customIcon(Entypo, "minus"),
   warningOutline: customIcon(Ionicons, "warning-outline"),
   cross: customIcon(Entypo, "cross"),
+  edit: customIcon(Entypo, "edit"),
   blankSpace: ({ size, ...otherProps }) => (
     <MaterialIcons
       name="check-box-outline-blank"
