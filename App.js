@@ -67,13 +67,13 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   candleDetailsContainer: {
-    height: "60%",
+    height: "50%",
     marginVertical: 15,
     flexDirection: "row",
     justifyContent: "center",
   },
   inputsContainer: {
-    height: "30%",
-    minHeight: 250,
+    height: "20%",
+    minHeight: 200,
   },
 });
