@@ -101,15 +101,15 @@ const getValidCandle = (candleData) => {
 const getCandleType = ({ open, close }) => (close >= open ? BULLISH : BEARISH);
 
 const invalidCandleReason = ({ high, low, open, close }) => {
-  if (!high) return "Missing price for 'high'";
-  if (!low) return "Missing price for 'low'";
-  if (!open) return "Missing price for 'open'";
-  if (!close) return "Missing price for 'close'";
-  if (high < low) return "The 'high' is less than the 'low'";
-  if (open > high) return "The 'open' is greater than the 'high'";
-  if (open < low) return "The 'open' is less than the 'low'";
-  if (close > high) return "The 'close' is greater than the 'high'";
-  if (close < low) return "The 'close' is less than the 'low'";
+  if (!high) return "Missing high price";
+  if (!low) return "Missing low price";
+  if (!open) return "Missing open price";
+  if (!close) return "Missing close price";
+  if (high < low) return "The high is less than the low";
+  if (open > high) return "The open is greater than the high";
+  if (open < low) return "The open is less than the low";
+  if (close > high) return "The close is greater than the high";
+  if (close < low) return "The close is less than the low";
   throw new Error("No matching invalid candle reason found");
 };
 
