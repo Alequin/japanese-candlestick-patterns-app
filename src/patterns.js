@@ -6,7 +6,7 @@ const isBetween = (value, { smallest, largest }) =>
 export const singleCandlePatterns = [
   {
     name: "Spinning Top",
-    doesCandlesMatchPattern: ({
+    doCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -38,7 +38,7 @@ export const singleCandlePatterns = [
   },
   {
     name: "Standard Doji",
-    doesCandlesMatchPattern: ({
+    doCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -70,7 +70,7 @@ export const singleCandlePatterns = [
   },
   {
     name: "Gravestone Doji",
-    doesCandlesMatchPattern: ({
+    doCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -102,7 +102,7 @@ export const singleCandlePatterns = [
   },
   {
     name: "Dragon Fly Doji",
-    doesCandlesMatchPattern: ({
+    doCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -134,7 +134,7 @@ export const singleCandlePatterns = [
   },
   {
     name: "Four Price Doji",
-    doesCandlesMatchPattern: ({ high, low, open, close }) => {
+    doCandlesMatchPattern: ({ high, low, open, close }) => {
       return [high, low, open, close].every(
         (value) => Number(value) === Number(high)
       );
@@ -149,7 +149,7 @@ export const singleCandlePatterns = [
   },
   {
     name: "Hammer" /*Paper mbrella*/,
-    doesCandlesMatchPattern: ({
+    doCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -181,7 +181,7 @@ export const singleCandlePatterns = [
   },
   {
     name: "Hanging Man" /*Pper umbrella*/,
-    doesCandlesMatchPattern: ({
+    doCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -213,7 +213,7 @@ export const singleCandlePatterns = [
   },
   {
     name: "Inverted Hammer" /*Paper umbrella*/,
-    doesCandlesMatchPattern: ({
+    doCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -245,7 +245,7 @@ export const singleCandlePatterns = [
   },
   {
     name: "Shooting Star",
-    doesCandlesMatchPattern: ({
+    doCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -277,7 +277,7 @@ export const singleCandlePatterns = [
   },
   {
     name: "Bullish Belt Hol",
-    doesCandlesMatchPattern: ({
+    doCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -313,7 +313,7 @@ export const singleCandlePatterns = [
   },
   {
     name: "Bearish Belt Hol",
-    doesCandlesMatchPattern: ({
+    doCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
@@ -348,7 +348,7 @@ export const singleCandlePatterns = [
   },
   {
     name: "Bullish Marubozu",
-    doesCandlesMatchPattern: ({ bodyHeightPercentage, candleType }) => {
+    doCandlesMatchPattern: ({ bodyHeightPercentage, candleType }) => {
       if (candleType !== BULLISH) return false;
       return bodyHeightPercentage >= 100;
     },
@@ -360,7 +360,7 @@ export const singleCandlePatterns = [
   },
   {
     name: "Bearish Marubozu",
-    doesCandlesMatchPattern: ({ bodyHeightPercentage, candleType }) => {
+    doCandlesMatchPattern: ({ bodyHeightPercentage, candleType }) => {
       if (candleType !== BEARISH) return false;
       return bodyHeightPercentage >= 100;
     },
@@ -375,7 +375,7 @@ export const singleCandlePatterns = [
 export const doubleCandlePatterns = [
   {
     name: "Bullish Engulfing",
-    doesCandlesMatchPattern: (candles) => {
+    doCandlesMatchPattern: (candles) => {
       return (
         candles[1].candleType === BULLISH && // Main candle is bullish
         candles[0].candleType == BEARISH && // previous candle is bearish
@@ -383,6 +383,24 @@ export const doubleCandlePatterns = [
         candles[1].bodyHeightPercentage > candles[0].bodyHeightPercentage && // Main candles body height is larger than the previous candles
         candles[1].close > candles[0].open && // Main candles close price is more than previous candles open price
         candles[1].open <= candles[0].close // Main candles open price is less than or equal to previous candles close price
+      );
+    },
+    exampleCandle: {
+      bodyHeightPercentage: 100,
+      topStickHeightPercentage: 0,
+      bottomStickHeightPercentage: 0,
+    },
+  },
+  {
+    name: "Bearish Engulfing",
+    doCandlesMatchPattern: (candles) => {
+      return (
+        candles[1].candleType === BEARISH && // Main candle is bearish
+        candles[0].candleType == BULLISH && // previous candle is bullish
+        candles[1].totalHeight > candles[0].totalHeight && // Main candles total height is larger than the previous candles
+        candles[1].bodyHeightPercentage > candles[0].bodyHeightPercentage && // Main candles body height is larger than the previous candles
+        candles[1].close < candles[0].open && // Main candles close price is less than previous candles open price
+        candles[1].open >= candles[0].close // Main candles open price is greater than or equal to previous candles close price
       );
     },
     exampleCandle: {

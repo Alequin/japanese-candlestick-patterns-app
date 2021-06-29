@@ -1,7 +1,6 @@
 import { isEmpty } from "lodash";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { NEUTRAL } from "./candle-types";
 import { doubleCandlePatterns, singleCandlePatterns } from "./patterns";
 
 export const MatchingPattersList = ({ candlesShapes }) => {
@@ -23,15 +22,19 @@ export const MatchingPattersList = ({ candlesShapes }) => {
 const getMatchingPatterns = (candlesShapes) => {
   if (candlesShapes.length === 1) {
     const candleToCheck = candlesShapes[0];
-    return singleCandlePatterns.filter(({ doesCandlesMatchPattern }) =>
-      doesCandlesMatchPattern(candleToCheck)
+    return singleCandlePatterns.filter(({ doCandlesMatchPattern }) =>
+      doCandlesMatchPattern(candleToCheck)
     );
   }
   if (candlesShapes.length === 2) {
-    return doubleCandlePatterns.filter(({ doesCandlesMatchPattern }) =>
-      doesCandlesMatchPattern(candlesShapes)
+    return doubleCandlePatterns.filter(({ doCandlesMatchPattern }) =>
+      doCandlesMatchPattern(candlesShapes)
     );
   }
+  if (candlesShapes.length === 3) {
+    return [];
+  }
+  throw new Error("Candle length is not valid: " + candlesShapes.length);
 };
 
 const title = (candleCount) => {

@@ -1,4 +1,3 @@
-import { round } from "lodash";
 import React, { useMemo, useState } from "react";
 import {
   StyleSheet,
@@ -12,13 +11,10 @@ import { Icon } from "./icon";
 export const CandleInputs = ({
   activeCandle: {
     error,
-    high,
+    rawCandle: { high, low, open, close },
     setHigh,
-    low,
     setLow,
-    open,
     setOpen,
-    close,
     setClose,
   },
 }) => {

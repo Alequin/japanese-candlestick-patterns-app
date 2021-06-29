@@ -70,7 +70,8 @@ export const useCandleShape = (numberOfCandles) => {
         index,
         error: isError ? invalidCandleReason(candle) : null,
         candleType,
-        ...rawCandle,
+        rawCandle,
+        ...validCandle,
         ...(!isError
           ? heights(candleType, validCandle, minPrice, maxPrice)
           : null),
