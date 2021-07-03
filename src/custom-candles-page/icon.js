@@ -1,4 +1,10 @@
-import { Entypo, Ionicons, MaterialIcons } from "@expo/vector-icons";
+import {
+  Entypo,
+  Feather,
+  FontAwesome,
+  Ionicons,
+  MaterialIcons,
+} from "@expo/vector-icons";
 import camelCase from "lodash/camelCase";
 import React from "react";
 import { View } from "react-native";
@@ -13,10 +19,13 @@ export const Icon = ({ name, ...otherProps }) => {
 };
 
 const customIcon =
-  (IconSourceElement, iconName) =>
+  (IconSourceElement, iconName, { testIdOverride } = {}) =>
   ({ size, color, style, ...otherProps }) =>
     (
-      <TestIdElement testID={`${camelCase(iconName)}Icon`} style={style}>
+      <TestIdElement
+        testID={testIdOverride || `${camelCase(iconName)}Icon`}
+        style={style}
+      >
         <IconSourceElement
           name={iconName}
           size={dynamicFontSize(size)}
@@ -33,6 +42,10 @@ const ICON_OPTIONS = {
   warningOutline: customIcon(Ionicons, "warning-outline"),
   cross: customIcon(Entypo, "cross"),
   edit: customIcon(Entypo, "edit"),
+  book: customIcon(FontAwesome, "book"),
+  underlineEdit: customIcon(Feather, "edit", {
+    testIdOverride: "underlineEditIcon",
+  }),
   blankSpace: ({ size, ...otherProps }) => (
     <MaterialIcons
       name="check-box-outline-blank"
@@ -43,5 +56,7 @@ const ICON_OPTIONS = {
     </MaterialIcons>
   ),
 };
+
+<Feather name="edit" size={24} color="black" />;
 
 const TestIdElement = (props) => <View {...props} />;
