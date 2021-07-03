@@ -5,7 +5,7 @@
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
-import { Icon } from "../custom-candles-page/icon";
+import { Icon } from "../icon";
 import { AllCandlePatternsTab, CustomPatternTab } from "./tabs";
 
 const BottomTab = createBottomTabNavigator();

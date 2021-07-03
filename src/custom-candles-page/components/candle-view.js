@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Candle } from "./candle";
+import { Candle } from "../../candle";
 
 export const CandleView = ({
   candlesShapes,

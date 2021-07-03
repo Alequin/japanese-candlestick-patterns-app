@@ -1,7 +1,7 @@
 import { isEmpty } from "lodash";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { doubleCandlePatterns, singleCandlePatterns } from "./patterns";
+import { doubleCandlePatterns, singleCandlePatterns } from "../../patterns";
 
 export const MatchingPattersList = ({ candlesShapes }) => {
   const patternNames = getMatchingPatterns(candlesShapes).map(

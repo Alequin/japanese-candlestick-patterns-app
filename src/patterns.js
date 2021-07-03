@@ -148,7 +148,7 @@ export const singleCandlePatterns = [
     ],
   },
   {
-    name: "Hammer" /*Paper mbrella*/,
+    name: "Hammer" /*Paper umbrella*/,
     doCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
@@ -180,7 +180,7 @@ export const singleCandlePatterns = [
     ],
   },
   {
-    name: "Hanging Man" /*Pper umbrella*/,
+    name: "Hanging Man" /*Paper umbrella*/,
     doCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
@@ -385,11 +385,13 @@ export const doubleCandlePatterns = [
         candles[1].open <= candles[0].close // Main candles open price is less than or equal to previous candles close price
       );
     },
-    exampleCandle: {
-      bodyHeightPercentage: 100,
-      topStickHeightPercentage: 0,
-      bottomStickHeightPercentage: 0,
-    },
+    exampleCandles: [
+      {
+        bodyHeightPercentage: 100,
+        topStickHeightPercentage: 0,
+        bottomStickHeightPercentage: 0,
+      },
+    ],
   },
   {
     name: "Bearish Engulfing",
@@ -403,11 +405,13 @@ export const doubleCandlePatterns = [
         candles[1].open >= candles[0].close // Main candles open price is greater than or equal to previous candles close price
       );
     },
-    exampleCandle: {
-      bodyHeightPercentage: 100,
-      topStickHeightPercentage: 0,
-      bottomStickHeightPercentage: 0,
-    },
+    exampleCandles: [
+      {
+        bodyHeightPercentage: 100,
+        topStickHeightPercentage: 0,
+        bottomStickHeightPercentage: 0,
+      },
+    ],
   },
 ];
 

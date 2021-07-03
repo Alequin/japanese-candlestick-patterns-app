@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
-import { Text } from "react-native";
+import { AllPatternsPage } from "../all-patterns-page/all-patterns-page";
 import { CustomCandlesPage } from "../custom-candles-page/custom-candles-page";
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -24,13 +24,9 @@ export const AllCandlePatternsTab = () => {
     <TabTwoStack.Navigator>
       <TabTwoStack.Screen
         name="All Candle Patterns"
-        component={Foobar}
+        component={AllPatternsPage}
         options={{ headerShown: false }}
       />
     </TabTwoStack.Navigator>
   );
-};
-
-const Foobar = () => {
-  return <Text>Hello</Text>;
 };

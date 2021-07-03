@@ -1,10 +1,9 @@
-import Constants from "expo-constants";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { CandleInputs } from "./candle-inputs";
-import { CandleView } from "./candle-view";
-import { MatchingPattersList } from "./matching-patterns-list";
-import { useCandleShape } from "./use-candle-shape";
+import { CandleView } from "./components/candle-view";
+import { CandleInputs } from "./components/candle-inputs";
+import { MatchingPattersList } from "./components/matching-patterns-list";
+import { useCandleShape } from "../use-candle-shape";
 
 export const CustomCandlesPage = () => {
   const [numberOfCandles, setNumberOfCandles] = useState(3);

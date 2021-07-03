@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { Icon } from "./icon";
+import { Icon } from "../../icon";
 
 export const CandleInputs = ({
   activeCandle: {
