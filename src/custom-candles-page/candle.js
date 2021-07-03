@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
     width: "25%",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "white",
   },
   stick: {
     borderWidth: 1,
