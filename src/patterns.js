@@ -38,6 +38,21 @@ export const singleCandlePatterns = [
         bottomSpaceHeightPercentage: 0,
       },
     ],
+    sections: [
+      {
+        title: "What does this pattern tell you?",
+        content: [
+          "The Spinning Top indicates indecision and uncertainty in the market.",
+          "It may signal the market is about to reverse from the current " +
+            "trend or a period of consolidation is about the start.",
+        ],
+      },
+      {
+        title: "Pattern Description",
+        content: ["one", "two", "three"],
+        asList: true,
+      },
+    ],
   },
   {
     name: "Standard Doji",

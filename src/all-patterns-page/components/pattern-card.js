@@ -3,13 +3,14 @@ import { Text, View } from "react-native";
 import { Candle } from "../../candle";
 import { Button } from "../../shared-components/button";
 
-export const PatternCard = ({ name, exampleCandles }) => {
+export const PatternCard = ({ name, exampleCandles, onPress }) => {
   return (
     <Button
       style={{
         alignItems: "center",
         padding: 10,
       }}
+      onPress={onPress}
     >
       <View
         style={{
