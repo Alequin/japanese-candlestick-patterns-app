@@ -1,12 +1,10 @@
 import React, { useMemo } from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { BULLISH } from "./candle-types";
 
 export const Candle = ({
   candleShapeDetails: {
     error,
-    index,
-    isActive,
     candleType,
     topSpaceHeightPercentage,
     topStickHeightPercentage,
@@ -14,21 +12,11 @@ export const Candle = ({
     bottomStickHeightPercentage,
     bottomSpaceHeightPercentage,
   },
-  onSelectCandle,
 }) => {
   const isCandleValid = !error;
 
   return (
-    <TouchableOpacity
-      style={useMemo(
-        () => ({
-          ...styles.candleContainer,
-          opacity: isActive ? 1 : 0.5,
-        }),
-        [isActive]
-      )}
-      onPress={() => onSelectCandle(index)}
-    >
+    <View style={styles.candleContainer}>
       {isCandleValid ? (
         <>
           {topSpaceHeightPercentage > 0 ? (
@@ -61,7 +49,7 @@ export const Candle = ({
           <CandleStick heightPercentage={10} />
         </>
       )}
-    </TouchableOpacity>
+    </View>
   );
 };
 
@@ -106,7 +94,7 @@ const Space = ({ heightPercentage }) => (
 const styles = StyleSheet.create({
   candleContainer: {
     height: "100%",
-    width: "25%",
+    width: "100%",
     alignItems: "center",
     justifyContent: "center",
   },

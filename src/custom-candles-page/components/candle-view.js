@@ -1,6 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useMemo } from "react";
+import { TouchableOpacity, View } from "react-native";
 import { Candle } from "../../candle";
+import { Button, ButtonText } from "../../shared-components/button";
 
 export const CandleView = ({
   candlesShapes,
@@ -21,37 +23,25 @@ export const CandleView = ({
         }}
       >
         {candlesShapes.map((candleShapeDetails, index) => (
-          <Candle
-            key={`${index}-${candleShapeDetails.isActive}`} // Use is active in key so it updates when state updates
-            candleShapeDetails={candleShapeDetails}
-            onSelectCandle={onSelectCandle}
-          />
+          <TouchableOpacity
+            key={`${index}-${candleShapeDetails.isActive}`} // Use isActive in key so it updates when state updates
+            style={{
+              opacity: candleShapeDetails.isActive ? 1 : 0.5,
+              width: "25%",
+            }}
+            onPress={() => onSelectCandle(candleShapeDetails.index)}
+          >
+            <Candle candleShapeDetails={candleShapeDetails} />
+          </TouchableOpacity>
         ))}
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={addCandle}>
-        <Text style={styles.buttonText}>Add Candle</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={removeCandle}>
-        <Text style={styles.buttonText}>Remove Candle</Text>
-      </TouchableOpacity>
+      <Button style={{ padding: 5, margin: 5 }} onPress={addCandle}>
+        <ButtonText>Add Candle</ButtonText>
+      </Button>
+      <Button style={{ padding: 5, margin: 5 }} onPress={removeCandle}>
+        <ButtonText>Remove Candle</ButtonText>
+      </Button>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  button: {
-    padding: 5,
-    borderRadius: 30,
-    borderColor: "gray",
-    borderWidth: 1,
-    margin: 5,
-    flexDirection: "row",
-    backgroundColor: "white",
-    elevation: 2,
-  },
-  buttonText: {
-    width: "100%",
-    textAlign: "center",
-  },
-});

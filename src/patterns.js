@@ -30,9 +30,12 @@ export const singleCandlePatterns = [
     },
     exampleCandles: [
       {
+        candleType: BULLISH,
+        topSpaceHeightPercentage: 0,
         bodyHeightPercentage: 20,
         topStickHeightPercentage: 40,
         bottomStickHeightPercentage: 40,
+        bottomSpaceHeightPercentage: 0,
       },
     ],
   },
@@ -62,9 +65,12 @@ export const singleCandlePatterns = [
     },
     exampleCandles: [
       {
+        candleType: BULLISH,
+        topSpaceHeightPercentage: 0,
         bodyHeightPercentage: 5,
-        topStickHeightPercentage: 97.5,
-        bottomStickHeightPercentage: 97.5,
+        topStickHeightPercentage: 47.5,
+        bottomStickHeightPercentage: 47.5,
+        bottomSpaceHeightPercentage: 0,
       },
     ],
   },
@@ -94,9 +100,12 @@ export const singleCandlePatterns = [
     },
     exampleCandles: [
       {
+        candleType: BULLISH,
+        topSpaceHeightPercentage: 0,
         bodyHeightPercentage: 5,
         topStickHeightPercentage: 95,
         bottomStickHeightPercentage: 0,
+        bottomSpaceHeightPercentage: 0,
       },
     ],
   },
@@ -126,9 +135,12 @@ export const singleCandlePatterns = [
     },
     exampleCandles: [
       {
+        candleType: BULLISH,
+        topSpaceHeightPercentage: 0,
         bodyHeightPercentage: 5,
         topStickHeightPercentage: 0,
         bottomStickHeightPercentage: 95,
+        bottomSpaceHeightPercentage: 0,
       },
     ],
   },
@@ -141,9 +153,12 @@ export const singleCandlePatterns = [
     },
     exampleCandles: [
       {
+        candleType: BULLISH,
+        topSpaceHeightPercentage: 0,
         bodyHeightPercentage: 100,
         topStickHeightPercentage: 0,
         bottomStickHeightPercentage: 0,
+        bottomSpaceHeightPercentage: 0,
       },
     ],
   },
@@ -173,9 +188,12 @@ export const singleCandlePatterns = [
     },
     exampleCandles: [
       {
+        candleType: BULLISH,
+        topSpaceHeightPercentage: 0,
         bodyHeightPercentage: 5,
         topStickHeightPercentage: 0,
         bottomStickHeightPercentage: 95,
+        bottomSpaceHeightPercentage: 0,
       },
     ],
   },
@@ -205,9 +223,12 @@ export const singleCandlePatterns = [
     },
     exampleCandles: [
       {
+        candleType: BULLISH,
+        topSpaceHeightPercentage: 0,
         bodyHeightPercentage: 5,
         topStickHeightPercentage: 0,
         bottomStickHeightPercentage: 95,
+        bottomSpaceHeightPercentage: 0,
       },
     ],
   },
@@ -237,9 +258,12 @@ export const singleCandlePatterns = [
     },
     exampleCandles: [
       {
+        candleType: BULLISH,
+        topSpaceHeightPercentage: 0,
         bodyHeightPercentage: 5,
         topStickHeightPercentage: 0,
         bottomStickHeightPercentage: 95,
+        bottomSpaceHeightPercentage: 0,
       },
     ],
   },
@@ -269,14 +293,17 @@ export const singleCandlePatterns = [
     },
     exampleCandles: [
       {
+        candleType: BULLISH,
+        topSpaceHeightPercentage: 0,
         bodyHeightPercentage: 5,
         topStickHeightPercentage: 0,
         bottomStickHeightPercentage: 95,
+        bottomSpaceHeightPercentage: 0,
       },
     ],
   },
   {
-    name: "Bullish Belt Hol",
+    name: "Bullish belt Hold",
     doCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
@@ -305,14 +332,16 @@ export const singleCandlePatterns = [
     exampleCandles: [
       {
         candleType: BULLISH,
+        topSpaceHeightPercentage: 0,
         bodyHeightPercentage: 80,
         topStickHeightPercentage: 20,
         bottomStickHeightPercentage: 0,
+        bottomSpaceHeightPercentage: 0,
       },
     ],
   },
   {
-    name: "Bearish Belt Hol",
+    name: "Bearish belt Hold",
     doCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
@@ -340,9 +369,12 @@ export const singleCandlePatterns = [
     },
     exampleCandles: [
       {
+        candleType: BEARISH,
+        topSpaceHeightPercentage: 0,
         bodyHeightPercentage: 80,
         topStickHeightPercentage: 0,
         bottomStickHeightPercentage: 20,
+        bottomSpaceHeightPercentage: 0,
       },
     ],
   },
@@ -352,11 +384,16 @@ export const singleCandlePatterns = [
       if (candleType !== BULLISH) return false;
       return bodyHeightPercentage >= 100;
     },
-    exampleCandle: {
-      bodyHeightPercentage: 100,
-      topStickHeightPercentage: 0,
-      bottomStickHeightPercentage: 0,
-    },
+    exampleCandles: [
+      {
+        candleType: BULLISH,
+        topSpaceHeightPercentage: 0,
+        bodyHeightPercentage: 100,
+        topStickHeightPercentage: 0,
+        bottomStickHeightPercentage: 0,
+        bottomSpaceHeightPercentage: 0,
+      },
+    ],
   },
   {
     name: "Bearish Marubozu",
@@ -364,11 +401,16 @@ export const singleCandlePatterns = [
       if (candleType !== BEARISH) return false;
       return bodyHeightPercentage >= 100;
     },
-    exampleCandle: {
-      bodyHeightPercentage: 100,
-      topStickHeightPercentage: 0,
-      bottomStickHeightPercentage: 0,
-    },
+    exampleCandles: [
+      {
+        candleType: BEARISH,
+        topSpaceHeightPercentage: 0,
+        bodyHeightPercentage: 100,
+        topStickHeightPercentage: 0,
+        bottomStickHeightPercentage: 0,
+        bottomSpaceHeightPercentage: 0,
+      },
+    ],
   },
 ];
 
@@ -387,9 +429,20 @@ export const doubleCandlePatterns = [
     },
     exampleCandles: [
       {
-        bodyHeightPercentage: 100,
-        topStickHeightPercentage: 0,
-        bottomStickHeightPercentage: 0,
+        candleType: BEARISH,
+        topSpaceHeightPercentage: 20,
+        topStickHeightPercentage: 10,
+        bodyHeightPercentage: 30,
+        bottomStickHeightPercentage: 20,
+        bottomSpaceHeightPercentage: 20,
+      },
+      {
+        candleType: BULLISH,
+        topSpaceHeightPercentage: 15,
+        topStickHeightPercentage: 10,
+        bodyHeightPercentage: 50,
+        bottomStickHeightPercentage: 10,
+        bottomSpaceHeightPercentage: 15,
       },
     ],
   },
@@ -407,14 +460,26 @@ export const doubleCandlePatterns = [
     },
     exampleCandles: [
       {
-        bodyHeightPercentage: 100,
-        topStickHeightPercentage: 0,
-        bottomStickHeightPercentage: 0,
+        candleType: BULLISH,
+        topSpaceHeightPercentage: 20,
+        topStickHeightPercentage: 10,
+        bodyHeightPercentage: 30,
+        bottomStickHeightPercentage: 20,
+        bottomSpaceHeightPercentage: 20,
+      },
+      {
+        candleType: BEARISH,
+        topSpaceHeightPercentage: 15,
+        topStickHeightPercentage: 10,
+        bodyHeightPercentage: 50,
+        bottomStickHeightPercentage: 10,
+        bottomSpaceHeightPercentage: 15,
       },
     ],
   },
 ];
 
+export const allPatterns = [...singleCandlePatterns, ...doubleCandlePatterns];
 /*
 
 Morning star

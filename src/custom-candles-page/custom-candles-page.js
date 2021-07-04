@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { CandleView } from "./components/candle-view";
 import { CandleInputs } from "./components/candle-inputs";
 import { MatchingPattersList } from "./components/matching-patterns-list";
 import { useCandleShape } from "../use-candle-shape";
 
-export const CustomCandlesPage = () => {
+export const CustomCandlesPage = ({ navigation }) => {
   const [numberOfCandles, setNumberOfCandles] = useState(3);
   const [activeCandleIndex, setActiveCandleIndex] = useState(0);
   const candlesShapes = useCandleShape(numberOfCandles);
