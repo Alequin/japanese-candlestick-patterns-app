@@ -1,25 +1,17 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { Candle } from "../candle";
-import { Icon } from "../icon";
 
 export const PatternOverview = ({
-  pattern: { name, exampleCandles, sections },
+  pattern: { name, exampleCandles, content },
 }) => {
   return (
-    <View style={{ alignItems: "center", paddingHorizontal: 20 }}>
+    <View
+      style={{ height: "100%", alignItems: "center", paddingHorizontal: 20 }}
+    >
       <Title>{name}</Title>
       <ExampleCandlesView exampleCandles={exampleCandles} />
-      {sections.map(({ title, content, asList }) => (
-        <View key={title} style={{ width: "100%" }}>
-          <TextSection
-            key={title}
-            title={title}
-            content={content}
-            asList={asList}
-          />
-        </View>
-      ))}
+      <ScrollView style={{ width: "100%", padding: 3 }}>{content}</ScrollView>
     </View>
   );
 };
@@ -38,7 +30,7 @@ const Title = (props) => (
 const ExampleCandlesView = ({ exampleCandles }) => (
   <View
     style={{
-      height: 200,
+      height: 150,
       marginVertical: 20,
       width: "100%",
       alignItems: "center",
@@ -51,31 +43,3 @@ const ExampleCandlesView = ({ exampleCandles }) => (
     ))}
   </View>
 );
-
-const TextSection = ({ title, content, asList }) => {
-  return (
-    <>
-      <Text
-        style={{
-          fontSize: 19,
-          fontWeight: "bold",
-          marginBottom: 3,
-        }}
-      >
-        {title}
-      </Text>
-      {content.map((text) => (
-        <Text
-          key={text}
-          style={{
-            fontSize: 17,
-            marginBottom: !asList ? 10 : 0,
-            marginLeft: asList ? 10 : 0,
-          }}
-        >
-          {asList ? `\u2022 ${text}` : text}
-        </Text>
-      ))}
-    </>
-  );
-};

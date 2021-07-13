@@ -1,7 +1,17 @@
+import React from "react";
+import { Text } from "react-native";
 import { BEARISH, BULLISH } from "./candle-types";
+import {
+  BulletPoint,
+  TextSection,
+  Title,
+} from "./shared-components/pattern-content-components";
 
 const isBetween = (value, { smallest, largest }) =>
   value >= smallest && value <= largest;
+
+const PATTERN_MEANING_SECTION_TITLE = "What does this pattern tell you?";
+const PATTERN_DESCRIPTION_SECTION_TITLE = "How to identify the pattern";
 
 export const singleCandlePatterns = [
   {
@@ -38,21 +48,29 @@ export const singleCandlePatterns = [
         bottomSpaceHeightPercentage: 0,
       },
     ],
-    sections: [
-      {
-        title: "What does this pattern tell you?",
-        content: [
-          "The Spinning Top indicates indecision and uncertainty in the market.",
-          "It may signal the market is about to reverse from the current " +
-            "trend or a period of consolidation is about the start.",
-        ],
-      },
-      {
-        title: "Pattern Description",
-        content: ["one", "two", "three"],
-        asList: true,
-      },
-    ],
+    content: (
+      <>
+        <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
+        <TextSection>
+          The Spinning Top indicates indecision and uncertainty in the market.
+          It may signal the market is about to reverse from the current trend or
+          a period of consolidation is about the start.
+        </TextSection>
+        <TextSection>
+          If a Spinning Top candle forms, it is recommended to look for
+          confirmation from other forms of analysis before trading.
+        </TextSection>
+        <Title>{PATTERN_DESCRIPTION_SECTION_TITLE}</Title>
+        <BulletPoint>
+          The candle has a short body centred between long upper and lower
+          shadows.
+        </BulletPoint>
+        <BulletPoint>
+          The candle body will be centred between long upper and lower shadows
+        </BulletPoint>
+        <BulletPoint>The candle can be either bullish or bearish</BulletPoint>
+      </>
+    ),
   },
   {
     name: "Standard Doji",
