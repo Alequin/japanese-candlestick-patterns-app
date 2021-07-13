@@ -4,7 +4,7 @@ import { PatternOverview } from "./pattern-overview";
 import { PatternsList } from "./patterns-list";
 
 export const AllPatternsPage = ({ route }) => {
-  const [patternToView, setPatternToView] = useState(allPatterns[0]);
+  const [patternToView, setPatternToView] = useState(allPatterns[3]);
 
   return patternToView ? (
     <PatternOverview pattern={patternToView} />

@@ -61,10 +61,7 @@ export const singleCandlePatterns = [
           confirmation from other forms of analysis before trading.
         </TextSection>
         <Title>{PATTERN_DESCRIPTION_SECTION_TITLE}</Title>
-        <BulletPoint>
-          The candle has a short body centred between long upper and lower
-          shadows.
-        </BulletPoint>
+        <BulletPoint>The candle has a short body.</BulletPoint>
         <BulletPoint>
           The candle body will be centred between long upper and lower shadows
         </BulletPoint>
@@ -106,6 +103,29 @@ export const singleCandlePatterns = [
         bottomSpaceHeightPercentage: 0,
       },
     ],
+    content: (
+      <>
+        <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
+        <TextSection>
+          The Doji indicates indecision and uncertainty in the market. It may
+          signal the market is about to reverse from the current trend.
+        </TextSection>
+        <TextSection>
+          If seen in a period of consolidation, it can signal a potential
+          breakout.
+        </TextSection>
+
+        <Title>{PATTERN_DESCRIPTION_SECTION_TITLE}</Title>
+        <BulletPoint>
+          The candle has a very short body, with almost equal open and close
+          prices
+        </BulletPoint>
+        <BulletPoint>
+          The candle body will be centred between long upper and lower shadows
+        </BulletPoint>
+        <BulletPoint>The candle can be either bullish or bearish</BulletPoint>
+      </>
+    ),
   },
   {
     name: "Gravestone Doji",
@@ -141,6 +161,33 @@ export const singleCandlePatterns = [
         bottomSpaceHeightPercentage: 0,
       },
     ],
+    content: (
+      <>
+        <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
+        <TextSection>
+          The Gravestone Doji signals a bearish reversal and is seen usually at
+          the end of an uptrend. The longer the upper shadow, the stronger the
+          pattern.
+        </TextSection>
+        <TextSection>
+          The top of the upper shadow may also identify resistance points where
+          the bulls lost momentum.
+        </TextSection>
+        <Title>{PATTERN_DESCRIPTION_SECTION_TITLE}</Title>
+        <BulletPoint>
+          The candle has a very short body, with almost equal open, close and
+          low prices
+        </BulletPoint>
+        <BulletPoint>
+          The candle body will be very close to the low price with little to no
+          lower shadow visible
+        </BulletPoint>
+        <BulletPoint>
+          The candles upper shadow should be long. The longer, the better
+        </BulletPoint>
+        <BulletPoint>The candle can be either bullish or bearish</BulletPoint>
+      </>
+    ),
   },
   {
     name: "Dragon Fly Doji",
@@ -176,6 +223,33 @@ export const singleCandlePatterns = [
         bottomSpaceHeightPercentage: 0,
       },
     ],
+    content: (
+      <>
+        <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
+        <TextSection>
+          The Dragonfly Doji signals a bullish reversal and is seen usually at
+          the end of an downtrend. The longer the lower shadow, the stronger the
+          pattern.
+        </TextSection>
+        <TextSection>
+          The bottom of the lower shadow may also identify resistance points
+          where the bears lost momentum.
+        </TextSection>
+        <Title>{PATTERN_DESCRIPTION_SECTION_TITLE}</Title>
+        <BulletPoint>
+          The candle has a very short body, with almost equal open, close and
+          high prices
+        </BulletPoint>
+        <BulletPoint>
+          The candle body will be very close to the high price with little to no
+          lower shadow visible
+        </BulletPoint>
+        <BulletPoint>
+          The candles lower shadow should be long. The longer, the better
+        </BulletPoint>
+        <BulletPoint>The candle can be either bullish or bearish</BulletPoint>
+      </>
+    ),
   },
   {
     name: "Four Price Doji",
