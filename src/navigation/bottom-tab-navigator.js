@@ -15,20 +15,20 @@ export const BottomTabNavigator = () => {
   return (
     <BottomTab.Navigator>
       <BottomTab.Screen
-        name="Pattern Identifier"
-        component={CustomCandlesPage}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon iconName="underlineEdit" color={color} size={20} />
-          ),
-        }}
-      />
-      <BottomTab.Screen
         name="All Candle Patterns"
         component={AllPatternsPage}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon iconName="book" color={color} size={20} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Pattern Identifier"
+        component={CustomCandlesPage}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon iconName="underlineEdit" color={color} size={20} />
           ),
         }}
       />

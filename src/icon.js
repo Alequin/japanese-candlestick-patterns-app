@@ -46,6 +46,7 @@ const ICON_OPTIONS = {
   underlineEdit: customIcon(Feather, "edit", {
     testIdOverride: "underlineEditIcon",
   }),
+  arrowBack: customIcon(Ionicons, "arrow-back"),
   blankSpace: ({ size, ...otherProps }) => (
     <MaterialIcons
       name="check-box-outline-blank"
