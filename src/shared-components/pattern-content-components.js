@@ -30,7 +30,6 @@ export const TextSection = ({ children }) => (
 export const BulletPoint = ({ children }) => (
   <Text
     style={{
-      width: "100%",
       fontSize: 18,
       marginBottom: 7,
       marginLeft: 10,

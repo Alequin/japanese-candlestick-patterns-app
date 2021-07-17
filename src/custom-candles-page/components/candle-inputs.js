@@ -50,7 +50,7 @@ const Input = ({ title, value, setValue }) => {
       onPress={() => inputRef?.current?.focus()}
     >
       <View style={styles.inputWrapper}>
-        <Icon style={{ flex: 2 }} name="blankSpace" size={22} />
+        <View style={{ width: "16%" }} />
         <TextInput
           ref={inputRef}
           style={styles.input}
@@ -59,7 +59,7 @@ const Input = ({ title, value, setValue }) => {
           keyboardType="numeric"
         />
         <TouchableOpacity
-          style={{ flex: 2, paddingVertical: 5, alignItems: "center" }}
+          style={{ width: "16%", paddingVertical: 5, alignItems: "center" }}
           onPress={() => setValue("")}
         >
           <Icon name="cross" color="black" size={22} />
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
   },
   input: {
-    flex: 8,
+    width: "66%",
     color: "black",
     textAlign: "center",
   },

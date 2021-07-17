@@ -1,31 +1,35 @@
+import { assign } from "lodash";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { useMemo } from "react/cjs/react.development";
 
 export const Button = ({ children, style = {}, ...buttonProps }) => {
-  const buttonStyle = useMemo(() => ({ ...styles.button, ...style }));
-
   return (
-    <TouchableOpacity style={buttonStyle} {...buttonProps}>
+    <TouchableOpacity style={useButtonStyle(style)} {...buttonProps}>
       {children}
     </TouchableOpacity>
   );
 };
 
 export const ButtonText = (props) => (
-  <Text style={styles.buttonText} {...props} />
+  <Text
+    style={{
+      width: "100%",
+      textAlign: "center",
+    }}
+    {...props}
+  />
 );
 
-const styles = StyleSheet.create({
-  button: {
-    borderRadius: 20,
-    borderColor: "gray",
-    borderWidth: 1,
-    backgroundColor: "white",
-    elevation: 2,
-  },
-  buttonText: {
-    width: "100%",
-    textAlign: "center",
-  },
-});
+const useButtonStyle = (additionalStyles) =>
+  useMemo(
+    () => ({
+      borderRadius: 20,
+      borderColor: "gray",
+      borderWidth: 1,
+      backgroundColor: "white",
+      elevation: 2,
+      ...additionalStyles,
+    }),
+    [additionalStyles]
+  );

@@ -7,11 +7,13 @@ export const PatternOverview = ({
 }) => {
   return (
     <View
-      style={{ height: "100%", alignItems: "center", paddingHorizontal: 20 }}
+      style={{ height: "100%", alignItems: "center", paddingHorizontal: 5 }}
     >
       <Title>{name}</Title>
       <ExampleCandlesView exampleCandles={exampleCandles} />
-      <ScrollView style={{ width: "100%", padding: 3 }}>{content}</ScrollView>
+      <ScrollView style={{ width: "100%", paddingHorizontal: 15 }}>
+        {content}
+      </ScrollView>
     </View>
   );
 };
@@ -37,7 +39,7 @@ const ExampleCandlesView = ({ exampleCandles }) => (
     }}
   >
     {exampleCandles.map((candleDetails, index) => (
-      <View key={index} style={{ width: 30, margin: 2 }}>
+      <View key={index} style={{ width: 30, margin: 2, height: "100%" }}>
         <Candle candleShapeDetails={candleDetails} />
       </View>
     ))}

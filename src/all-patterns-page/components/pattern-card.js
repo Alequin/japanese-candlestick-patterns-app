@@ -14,6 +14,7 @@ export const PatternCard = ({ name, exampleCandles, onPress }) => {
     >
       <View
         style={{
+          width: "100%",
           height: 75,
           flexDirection: "row",
           justifyContent: "center",
@@ -21,7 +22,15 @@ export const PatternCard = ({ name, exampleCandles, onPress }) => {
         }}
       >
         {exampleCandles.map((candleDetails, index) => (
-          <View key={index} style={{ width: "25%", maxWidth: 30, margin: 2 }}>
+          <View
+            key={index}
+            style={{
+              height: "100%",
+              width: "25%",
+              maxWidth: 30,
+              margin: 2,
+            }}
+          >
             <Candle candleShapeDetails={candleDetails} />
           </View>
         ))}

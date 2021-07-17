@@ -15,13 +15,8 @@ const App = () => {
     <SafeAreaProvider>
       <StatusBar />
       <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            header: () => <StatusBarPlaceholder />,
-          }}
-        >
-          <Stack.Screen name="Root" component={BottomTabNavigator} />
-        </Stack.Navigator>
+        <StatusBarPlaceholder />
+        <BottomTabNavigator />
       </NavigationContainer>
       <AdBanner />
     </SafeAreaProvider>

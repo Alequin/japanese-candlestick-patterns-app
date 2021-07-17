@@ -28,6 +28,7 @@ export const CandleView = ({
             style={{
               opacity: candleShapeDetails.isActive ? 1 : 0.5,
               width: "25%",
+              height: "100%",
             }}
             onPress={() => onSelectCandle(candleShapeDetails.index)}
           >

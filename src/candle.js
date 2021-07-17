@@ -58,7 +58,9 @@ const CandleStick = ({ heightPercentage }) => {
     <View
       style={useMemo(
         () => ({
-          ...styles.stick,
+          borderWidth: 1,
+          borderColor: "black",
+          height: "25%",
           height: heightPercentage ? `${heightPercentage}%` : 0,
         }),
         [heightPercentage]
@@ -72,7 +74,8 @@ const CandleBody = ({ heightPercentage, isBullish }) => {
     <View
       style={useMemo(
         () => ({
-          ...styles.body,
+          width: "100%",
+          height: "50%",
           height: heightPercentage ? `${heightPercentage}%` : 0,
           backgroundColor: isBullish ? "green" : "red",
         }),
@@ -97,14 +100,5 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-  },
-  stick: {
-    borderWidth: 1,
-    borderColor: "black",
-    height: "25%",
-  },
-  body: {
-    width: "100%",
-    height: "50%",
   },
 });

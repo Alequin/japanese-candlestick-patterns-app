@@ -17,7 +17,7 @@ export const CustomCandlesPage = ({ navigation }) => {
       <View style={styles.page}>
         <View style={styles.container}>
           <View style={styles.candleDetailsContainer}>
-            <View style={{ flex: 2 }}>
+            <View style={{ height: "70%" }}>
               <MatchingPattersList candlesShapes={candlesShapes} />
             </View>
             <View
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   inputsContainer: {
-    flex: 1,
+    height: "30%",
     minHeight: 100,
   },
 });
