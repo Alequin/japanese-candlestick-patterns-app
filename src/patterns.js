@@ -1,5 +1,4 @@
 import React from "react";
-import { Text } from "react-native";
 import { BEARISH, BULLISH } from "./candle-types";
 import {
   BulletPoint,
@@ -262,22 +261,41 @@ export const singleCandlePatterns = [
       {
         candleType: BULLISH,
         topSpaceHeightPercentage: 0,
-        bodyHeightPercentage: 100,
+        bodyHeightPercentage: 5,
         topStickHeightPercentage: 0,
         bottomStickHeightPercentage: 0,
         bottomSpaceHeightPercentage: 0,
       },
     ],
+    content: (
+      <>
+        <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
+        <TextSection>
+          The Four-price Doji indicates a lack of interest from both buyers and
+          sellers, meaning there is very little volatility in the market. It may
+          signal an opportunity to close any open positions.
+        </TextSection>
+        <Title>{PATTERN_DESCRIPTION_SECTION_TITLE}</Title>
+        <BulletPoint>
+          The candles open, close, high and low values will be equal or close to
+          equal
+        </BulletPoint>
+        <BulletPoint>
+          There will be very little or no upper and lower shadows
+        </BulletPoint>
+        <BulletPoint>The candle can be either bullish or bearish</BulletPoint>
+      </>
+    ),
   },
   {
-    name: "Hammer" /*Paper umbrella*/,
+    name: "Hammer",
     doCandlesMatchPattern: ({
       topStickHeightPercentage,
       bottomStickHeightPercentage,
       bodyHeightPercentage,
     }) => {
       const isBodyHightCorrect = isBetween(bodyHeightPercentage, {
-        smallest: 5,
+        smallest: 10,
         largest: 34,
       });
       const isTopStickSizeCorrect = isBetween(topStickHeightPercentage, {
@@ -297,12 +315,44 @@ export const singleCandlePatterns = [
       {
         candleType: BULLISH,
         topSpaceHeightPercentage: 0,
-        bodyHeightPercentage: 5,
-        topStickHeightPercentage: 0,
-        bottomStickHeightPercentage: 95,
+        bodyHeightPercentage: 20,
+        topStickHeightPercentage: 2,
+        bottomStickHeightPercentage: 78,
         bottomSpaceHeightPercentage: 0,
       },
     ],
+    content: (
+      <>
+        <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
+        <TextSection>
+          The Hammer signals a potential bullish reversal after a recent
+          downtrend. The low price may also be used to identify points of
+          resistance.
+        </TextSection>
+        <TextSection>
+          The pattern is strongest when the candle is bullish, and the close
+          price is similar to the high. The pattern is still valid if the candle
+          is bearish, just less reliable.
+        </TextSection>
+        <Title>{PATTERN_DESCRIPTION_SECTION_TITLE}</Title>
+        <BulletPoint>The candle will appear after a downtrend</BulletPoint>
+
+        <BulletPoint>
+          The following candle will preferably show the price increasing, which
+          confirms the pattern
+        </BulletPoint>
+        <BulletPoint>
+          The candle should preferably be bullish, though a bearish candle is
+          still valid
+        </BulletPoint>
+        <BulletPoint>The candle has a small body</BulletPoint>
+        <BulletPoint>The candle has little to know upper shadow</BulletPoint>
+        <BulletPoint>
+          The candle has a long lower shadow that is at least twice the size of
+          the body
+        </BulletPoint>
+      </>
+    ),
   },
   {
     name: "Hanging Man" /*Paper umbrella*/,
@@ -312,7 +362,7 @@ export const singleCandlePatterns = [
       bodyHeightPercentage,
     }) => {
       const isBodyHightCorrect = isBetween(bodyHeightPercentage, {
-        smallest: 5,
+        smallest: 10,
         largest: 34,
       });
       const isTopStickSizeCorrect = isBetween(topStickHeightPercentage, {
@@ -330,14 +380,45 @@ export const singleCandlePatterns = [
     },
     exampleCandles: [
       {
-        candleType: BULLISH,
+        candleType: BEARISH,
         topSpaceHeightPercentage: 0,
-        bodyHeightPercentage: 5,
-        topStickHeightPercentage: 0,
-        bottomStickHeightPercentage: 95,
+        bodyHeightPercentage: 20,
+        topStickHeightPercentage: 2,
+        bottomStickHeightPercentage: 78,
         bottomSpaceHeightPercentage: 0,
       },
     ],
+    content: (
+      <>
+        <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
+        <TextSection>
+          The Hanging Man signals a potential bearish reversal after a recent
+          uptrend. The long lower shadow indicates more traders are opposing the
+          current trend and are selling.
+        </TextSection>
+        <TextSection>
+          The pattern is strongest when the candle is bearish. The pattern is
+          still valid if the candle is bullish, just less reliable.
+        </TextSection>
+        <Title>{PATTERN_DESCRIPTION_SECTION_TITLE}</Title>
+        <BulletPoint>The candle will appear after a uptrend</BulletPoint>
+
+        <BulletPoint>
+          The following candle will preferably show the price decreasing, which
+          confirms the pattern
+        </BulletPoint>
+        <BulletPoint>The candle has a small body</BulletPoint>
+        <BulletPoint>The candle has little to know upper shadow</BulletPoint>
+        <BulletPoint>
+          The candle has a long lower shadow that is at least twice the size of
+          the body
+        </BulletPoint>
+        <BulletPoint>
+          The candle should preferably be bearish, though a bullish candle is
+          still valid
+        </BulletPoint>
+      </>
+    ),
   },
   {
     name: "Inverted Hammer" /*Paper umbrella*/,
@@ -347,7 +428,7 @@ export const singleCandlePatterns = [
       bodyHeightPercentage,
     }) => {
       const isBodyHightCorrect = isBetween(bodyHeightPercentage, {
-        smallest: 5,
+        smallest: 10,
         largest: 34,
       });
       const isTopStickSizeCorrect = isBetween(topStickHeightPercentage, {
@@ -367,12 +448,42 @@ export const singleCandlePatterns = [
       {
         candleType: BULLISH,
         topSpaceHeightPercentage: 0,
-        bodyHeightPercentage: 5,
-        topStickHeightPercentage: 0,
-        bottomStickHeightPercentage: 95,
+        bodyHeightPercentage: 20,
+        topStickHeightPercentage: 78,
+        bottomStickHeightPercentage: 2,
         bottomSpaceHeightPercentage: 0,
       },
     ],
+    content: (
+      <>
+        <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
+        <TextSection>
+          The Inverted Hammer signals a potential bullish reversal after a
+          recent downtrend.
+        </TextSection>
+        <TextSection>
+          The pattern is strongest when the candle is bullish. The pattern is
+          still valid if the candle is bearish, just less reliable.
+        </TextSection>
+        <Title>{PATTERN_DESCRIPTION_SECTION_TITLE}</Title>
+        <BulletPoint>The candle will appear after a downtrend</BulletPoint>
+
+        <BulletPoint>
+          The following candle will preferably show the price increasing, which
+          confirms the pattern
+        </BulletPoint>
+        <BulletPoint>The candle has a small body</BulletPoint>
+        <BulletPoint>The candle has little to know lower shadow</BulletPoint>
+        <BulletPoint>
+          The candle has a long upper shadow that is at least twice the size of
+          the body
+        </BulletPoint>
+        <BulletPoint>
+          The candle should preferably be bullish, though a bearish candle is
+          still valid
+        </BulletPoint>
+      </>
+    ),
   },
   {
     name: "Shooting Star",
@@ -402,12 +513,41 @@ export const singleCandlePatterns = [
       {
         candleType: BULLISH,
         topSpaceHeightPercentage: 0,
-        bodyHeightPercentage: 5,
-        topStickHeightPercentage: 0,
-        bottomStickHeightPercentage: 95,
+        bodyHeightPercentage: 20,
+        topStickHeightPercentage: 78,
+        bottomStickHeightPercentage: 2,
         bottomSpaceHeightPercentage: 0,
       },
     ],
+    content: (
+      <>
+        <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
+        <TextSection>
+          The Shooting Star signals a potential bearish reversal after a recent
+          uptrend.
+        </TextSection>
+        <TextSection>
+          The pattern is strongest when the candle is bearish. The pattern is
+          still valid if the candle is bullish, just less reliable.
+        </TextSection>
+        <Title>{PATTERN_DESCRIPTION_SECTION_TITLE}</Title>
+        <BulletPoint>The candle will appear after a uptrend</BulletPoint>
+        <BulletPoint>
+          The following candle will preferably show the price decreasing, which
+          confirms the pattern
+        </BulletPoint>
+        <BulletPoint>The candle has a small body</BulletPoint>
+        <BulletPoint>The candle has little to know lower shadow</BulletPoint>
+        <BulletPoint>
+          The candle has a long upper shadow that is at least twice the size of
+          the body
+        </BulletPoint>
+        <BulletPoint>
+          The candle should preferably be bearish, though a bullish candle is
+          still valid
+        </BulletPoint>
+      </>
+    ),
   },
   {
     name: "Bullish belt Hold",
@@ -446,6 +586,29 @@ export const singleCandlePatterns = [
         bottomSpaceHeightPercentage: 0,
       },
     ],
+    content: (
+      <>
+        <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
+        <TextSection>
+          The Bullish belt Hold signals a potential bullish reversal after a
+          recent downtrend.
+        </TextSection>
+        <TextSection>
+          The pattern is not always reliable but should be considered stronger
+          if it forms near a support level
+        </TextSection>
+        <Title>{PATTERN_DESCRIPTION_SECTION_TITLE}</Title>
+        <BulletPoint>The candle has no lower shadow</BulletPoint>
+        <BulletPoint>The candle has a large body</BulletPoint>
+        <BulletPoint>
+          The larger the candle the more reliable the pattern
+        </BulletPoint>
+        <BulletPoint>The candle has small upper shadow</BulletPoint>
+        <BulletPoint>
+          The following candle should be bullish to confirm the pattern
+        </BulletPoint>
+      </>
+    ),
   },
   {
     name: "Bearish belt Hold",
@@ -484,6 +647,29 @@ export const singleCandlePatterns = [
         bottomSpaceHeightPercentage: 0,
       },
     ],
+    content: (
+      <>
+        <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
+        <TextSection>
+          The Bearish belt Hold signals a potential bearish reversal after a
+          recent uptrend.
+        </TextSection>
+        <TextSection>
+          The pattern is not always reliable but should be considered stronger
+          if it forms near a resistance level
+        </TextSection>
+        <Title>{PATTERN_DESCRIPTION_SECTION_TITLE}</Title>
+        <BulletPoint>The candle has no upper shadow</BulletPoint>
+        <BulletPoint>The candle has a large body</BulletPoint>
+        <BulletPoint>
+          The larger the candle the more reliable the pattern
+        </BulletPoint>
+        <BulletPoint>The candle has small lower shadow</BulletPoint>
+        <BulletPoint>
+          The following candle should be bearish to confirm the pattern
+        </BulletPoint>
+      </>
+    ),
   },
   {
     name: "Bullish Marubozu",
@@ -501,6 +687,21 @@ export const singleCandlePatterns = [
         bottomSpaceHeightPercentage: 0,
       },
     ],
+    content: (
+      <>
+        <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
+        <TextSection>
+          The Bullish Marubozu signals further bullish sentiment regardless of
+          the trend prior to the candle.
+        </TextSection>
+        <Title>{PATTERN_DESCRIPTION_SECTION_TITLE}</Title>
+        <BulletPoint>The candle has no shadows</BulletPoint>
+        <BulletPoint>The candles body takes up the entire candle</BulletPoint>
+        <BulletPoint>
+          The larger the candle the more reliable the pattern
+        </BulletPoint>
+      </>
+    ),
   },
   {
     name: "Bearish Marubozu",
@@ -518,6 +719,21 @@ export const singleCandlePatterns = [
         bottomSpaceHeightPercentage: 0,
       },
     ],
+    content: (
+      <>
+        <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
+        <TextSection>
+          The Bearish Marubozu signals further bearish sentiment regardless of
+          the trend prior to the candle.
+        </TextSection>
+        <Title>{PATTERN_DESCRIPTION_SECTION_TITLE}</Title>
+        <BulletPoint>The candle has no shadows</BulletPoint>
+        <BulletPoint>The candles body takes up the entire candle</BulletPoint>
+        <BulletPoint>
+          The larger the candle the more reliable the pattern
+        </BulletPoint>
+      </>
+    ),
   },
 ];
 
