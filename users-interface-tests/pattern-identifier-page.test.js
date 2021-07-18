@@ -201,6 +201,31 @@ describe("Pattern Identifier Page", () => {
     );
   });
 
+  it("Does not allow candles to be removed when there is only 1", async () => {
+    const screen = await asyncRender(<App />);
+
+    await openPatternIdentifierPage(screen);
+
+    const patternIdentifierPage = screen.getByTestId("patternIdentifierPage");
+
+    // 1. Starts with one Candle
+    expect(within(patternIdentifierPage).getAllByTestId("candle")).toHaveLength(
+      1
+    );
+
+    // 2. Attempt to remove a candle
+    const buttons = within(patternIdentifierPage).getAllByRole("button");
+    const removeCandleButton = buttons.find((button) =>
+      within(button).queryByText("Remove Candle")
+    );
+    await asyncPressEvent(removeCandleButton);
+
+    // 3. Confirm there is still only one candle
+    expect(within(patternIdentifierPage).getAllByTestId("candle")).toHaveLength(
+      1
+    );
+  });
+
   it("Allows candles to be removed once they have been added", async () => {
     const screen = await asyncRender(<App />);
 
@@ -530,6 +555,23 @@ describe("Pattern Identifier Page", () => {
     expect(
       screen.getByText(/Invalid Candle: The close is less than the low/)
     ).toBeTruthy();
+  });
+
+  it("Shows an error icon in place of the candle when there is a issue", async () => {
+    const screen = await asyncRender(<App />);
+
+    await openPatternIdentifierPage(screen);
+
+    // 1. Update the input value to create an issue
+    await updateCandleInputValue(screen, "High", "");
+
+    // 2. Confirm the candle has been removed
+    const candleView = screen.getByTestId("candleView");
+
+    expect(within(candleView).queryAllByTestId("candle")).toHaveLength(0);
+
+    // 3. Confirm the icon has taken the candles place
+    expect(within(candleView).getByTestId("warningOutlineIcon")).toBeTruthy();
   });
 });
 

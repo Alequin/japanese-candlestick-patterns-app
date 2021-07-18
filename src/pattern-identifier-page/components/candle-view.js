@@ -2,6 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { AccessibleTouchableOpacity } from "../../components/accessible-touchable-opacity";
 import { Candle } from "../../components/candle";
+import { Icon } from "../../components/icon";
 import { Button, ButtonText } from "../../shared-components/button";
 
 export const CandleView = ({
@@ -15,6 +16,7 @@ export const CandleView = ({
   return (
     <>
       <View
+        testID="candleView"
         style={{
           width: "100%",
           flex: 1,
@@ -32,10 +34,16 @@ export const CandleView = ({
               opacity: candleShapeDetails.isActive ? 1 : 0.5,
               width: "25%",
               height: "100%",
+              justifyContent: "center",
+              alignItems: "center",
             }}
             onPress={() => onSelectCandle(candleShapeDetails.index)}
           >
-            <Candle candleShapeDetails={candleShapeDetails} />
+            {candleShapeDetails.error ? (
+              <Icon name="warningOutline" color="red" size={30} />
+            ) : (
+              <Candle candleShapeDetails={candleShapeDetails} />
+            )}
           </AccessibleTouchableOpacity>
         ))}
       </View>
