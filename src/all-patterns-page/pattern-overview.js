@@ -51,7 +51,9 @@ const ExampleCandlesView = ({ exampleCandles }) => (
       height: 150,
       marginVertical: 20,
       width: "100%",
+      justifyContent: "center",
       alignItems: "center",
+      flexDirection: "row",
     }}
   >
     {exampleCandles.map((candleDetails, index) => (
