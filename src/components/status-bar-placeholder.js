@@ -2,7 +2,7 @@ import constants from "expo-constants";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { background } from "./colours";
+import { background } from "../colours";
 
 export const StatusBarPlaceholder = () => (
   <>

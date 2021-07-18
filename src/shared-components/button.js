@@ -1,13 +1,14 @@
 import React from "react";
 import { Text } from "react-native";
 import { useMemo } from "react/cjs/react.development";
-import { AccessibleTouchableOpacity } from "../accessible-touchable-opacity";
+import { AccessibleTouchableOpacity } from "../components/accessible-touchable-opacity";
 
-export const Button = ({ children, style = {}, ...buttonProps }) => {
+export const Button = ({ children, style = {}, disabled, ...buttonProps }) => {
   return (
     <AccessibleTouchableOpacity
       accessibilityRole="button"
-      style={useButtonStyle(style)}
+      style={useButtonStyle(style, disabled)}
+      disabled={disabled}
       {...buttonProps}
     >
       {children}
@@ -25,9 +26,10 @@ export const ButtonText = (props) => (
   />
 );
 
-const useButtonStyle = (additionalStyles) =>
+const useButtonStyle = (additionalStyles, disabled) =>
   useMemo(
     () => ({
+      opacity: disabled ? 0.5 : 1,
       borderRadius: 20,
       borderColor: "gray",
       borderWidth: 1,

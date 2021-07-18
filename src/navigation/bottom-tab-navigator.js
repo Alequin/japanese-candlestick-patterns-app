@@ -7,7 +7,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
 import { AllPatternsPage } from "../all-patterns-page/all-patterns-page";
 import { PatternIdentifierPage } from "../pattern-identifier-page/pattern-identifier-page";
-import { Icon } from "../icon";
+import { Icon } from "../components/icon";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -24,7 +24,7 @@ export const BottomTabNavigator = () => {
         component={AllPatternsPage}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon iconName="book" color={color} size={20} />
+            <Icon name="book" color={color} size={30} />
           ),
         }}
       />
@@ -33,14 +33,10 @@ export const BottomTabNavigator = () => {
         component={PatternIdentifierPage}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon iconName="underlineEdit" color={color} size={20} />
+            <Icon name="underlineEdit" color={color} size={30} />
           ),
         }}
       />
     </BottomTab.Navigator>
   );
-};
-
-const TabBarIcon = ({ iconName, color }) => {
-  return <Icon name={iconName} color={color} size={30} />;
 };

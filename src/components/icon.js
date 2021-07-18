@@ -8,8 +8,8 @@ import {
 import camelCase from "lodash/camelCase";
 import React from "react";
 import { View } from "react-native";
-import { dynamicFontSize } from "./dynamic-font-size";
-import { textShadow } from "./text-shadow-style";
+import { dynamicFontSize } from "../dynamic-font-size";
+import { textShadow } from "../text-shadow-style";
 
 export const Icon = ({ name, ...otherProps }) => {
   const IconToRender = ICON_OPTIONS[name];

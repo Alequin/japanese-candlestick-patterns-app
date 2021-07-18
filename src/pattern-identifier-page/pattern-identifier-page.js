@@ -14,7 +14,7 @@ export const PatternIdentifierPage = ({ navigation }) => {
   const activeCandle = candlesShapes[activeCandleIndex];
 
   return (
-    <View style={{ height: "100%" }}>
+    <View testID="patternIdentifierPage" style={{ height: "100%" }}>
       <View style={styles.page}>
         <View style={styles.container}>
           <View style={styles.candleDetailsContainer}>
@@ -41,17 +41,12 @@ export const PatternIdentifierPage = ({ navigation }) => {
                   ...candle,
                   isActive: candle.index === activeCandleIndex,
                 }))}
-                addCandle={() => {
-                  const newCount = numberOfCandles + 1;
-                  if (newCount <= 3) setNumberOfCandles(newCount);
-                }}
+                addCandle={() => setNumberOfCandles(numberOfCandles + 1)}
                 removeCandle={() => {
                   const newCount = numberOfCandles - 1;
-                  if (newCount >= 1) {
-                    setNumberOfCandles(newCount);
-                    if (activeCandleIndex >= newCount)
-                      setActiveCandleIndex(newCount - 1);
-                  }
+                  setNumberOfCandles(newCount);
+                  if (activeCandleIndex >= newCount)
+                    setActiveCandleIndex(newCount - 1);
                 }}
                 onSelectCandle={setActiveCandleIndex}
               />

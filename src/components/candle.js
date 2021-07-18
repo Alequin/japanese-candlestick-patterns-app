@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { StyleSheet, View } from "react-native";
-import { BULLISH } from "./candle-types";
+import { BULLISH } from "../candle-types";
 
 export const Candle = ({
   candleShapeDetails: {

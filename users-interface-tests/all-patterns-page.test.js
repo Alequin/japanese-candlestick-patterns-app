@@ -2,14 +2,14 @@ jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
 
 import { within } from "@testing-library/react-native";
 import React from "react";
-import { App } from "./App";
+import { App } from "../App";
 import {
   allPatterns,
   doubleCandlePatterns,
   singleCandlePatterns,
   tripleCandlePatterns,
-} from "./src/patterns";
-import { asyncPressEvent, asyncRender } from "./src/test-utils";
+} from "../src/patterns";
+import { asyncPressEvent, asyncRender } from "../src/test-utils";
 
 describe("All Patterns Page", () => {
   describe("pattern list page", () => {
@@ -138,49 +138,28 @@ describe("All Patterns Page", () => {
     });
 
     //TODO unskip when triple candle patterns are added
-    describe.skip("Triple pattern overviews shows three candle in their example", () => {
-      it.each(tripleCandlePatterns.map(({ name }) => name))(
-        "When the pattern name is %s",
-        async (patternName) => {
-          const { getByTestId } = await asyncRender(<App />);
-
-          const patternListPage = getByTestId("patternListPage");
-          const allButtons = within(patternListPage).getAllByRole("button");
-
-          const patternButton = allButtons.find((button) =>
-            within(button).queryByText(patternName)
-          );
-
-          // 1. Press the patterns button
-          await asyncPressEvent(patternButton);
-
-          // 2. Confirm the example candle count is correct
-          const patternOverviewPage = getByTestId("patternOverviewPage");
-          expect(
-            within(patternOverviewPage).getAllByTestId("candle")
-          ).toHaveLength(3);
-        }
-      );
-    });
+    describe("Triple pattern overviews shows three candle in their example", () => {});
 
     it("Allows the user to return to the pattern list page from the pattern overview page", async () => {
-        const { getByTestId } = await asyncRender(<App />);
+      const { getByTestId } = await asyncRender(<App />);
 
-        const patternListPage = getByTestId("patternListPage");
-        const allButtons = within(patternListPage).getAllByRole("button");
+      const patternListPage = getByTestId("patternListPage");
+      const allButtons = within(patternListPage).getAllByRole("button");
 
-        const patternButton = allButtons.find((button) =>
-          within(button).queryByText("Spinning Top")
-        );
+      const patternButton = allButtons.find((button) =>
+        within(button).queryByText("Spinning Top")
+      );
 
-        // 1. Press the pattern button
-        await asyncPressEvent(patternButton);
+      // 1. Press the pattern button
+      await asyncPressEvent(patternButton);
 
-        // 2. Confirm the pattern overview page is visible
-        const patternOverviewPage = getByTestId("patternOverviewPage");
+      // 2. Confirm the pattern overview page is visible
+      const patternOverviewPage = getByTestId("patternOverviewPage");
 
-        // 3. Press the back button
-        const backButton = within(patternOverviewPage).queryByRole("button").find((button) => within(button).queryByText("Back to all patterns"))
-    })
+      // 3. Press the back button
+      const backButton = within(patternOverviewPage)
+        .queryByRole("button")
+        .find((button) => within(button).queryByText("Back to all patterns"));
+    });
   });
 });

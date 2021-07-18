@@ -5,3 +5,6 @@ export const asyncRender = async (component) =>
 
 export const asyncPressEvent = async (button) =>
   act(async () => fireEvent.press(button));
+
+export const asyncChangeInputText = async (input, newText) =>
+  act(async () => fireEvent.changeText(input, newText));

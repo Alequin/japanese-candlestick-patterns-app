@@ -1,8 +1,9 @@
 import React from "react";
 import { ScrollView, Text, View } from "react-native";
-import { AccessibleTouchableOpacity } from "../accessible-touchable-opacity";
-import { Candle } from "../candle";
-import { Icon } from "../icon";
+import { AccessibleTouchableOpacity } from "../components/accessible-touchable-opacity";
+import { Candle } from "../components/candle";
+import { Icon } from "../components/icon";
+import { Header } from "../components/header";
 import { useOnPressBackButton } from "../use-on-press-back-button";
 
 export const PatternOverview = ({
@@ -27,7 +28,15 @@ export const PatternOverview = ({
         <Icon name="arrowBack" size={30} />
         <Text style={{ marginLeft: 3 }}>Back to all patterns</Text>
       </AccessibleTouchableOpacity>
-      <Title>{name}</Title>
+      <Header
+        style={{
+          textAlign: "center",
+          fontWeight: "bold",
+          fontSize: 26,
+        }}
+      >
+        {name}
+      </Header>
       <ExampleCandlesView exampleCandles={exampleCandles} />
       <ScrollView style={{ width: "100%", paddingHorizontal: 15 }}>
         {content}
@@ -35,18 +44,6 @@ export const PatternOverview = ({
     </View>
   );
 };
-
-const Title = (props) => (
-  <Text
-    accessibilityRole="header"
-    style={{
-      textAlign: "center",
-      fontWeight: "bold",
-      fontSize: 26,
-    }}
-    {...props}
-  />
-);
 
 const ExampleCandlesView = ({ exampleCandles }) => (
   <View

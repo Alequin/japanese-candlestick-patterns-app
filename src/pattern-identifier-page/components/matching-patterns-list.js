@@ -1,6 +1,7 @@
 import { isEmpty } from "lodash";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { Header } from "../../components/header";
 import { doubleCandlePatterns, singleCandlePatterns } from "../../patterns";
 import { Button, ButtonText } from "../../shared-components/button";
 
@@ -14,7 +15,7 @@ export const MatchingPattersList = ({
 
   return (
     <View>
-      <Text
+      <Header
         style={{
           textAlign: "center",
           fontWeight: "bold",
@@ -22,7 +23,7 @@ export const MatchingPattersList = ({
         }}
       >
         {title(candlesShapes.length)}
-      </Text>
+      </Header>
       {!isEmpty(patternNames) ? (
         patternNames.map((name) => (
           <Button

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Text, View } from "react-native";
-import { Candle } from "../../candle";
+import { Candle } from "../../components/candle";
 import { Button } from "../../shared-components/button";
 
 export const PatternCard = ({ name, exampleCandles, onPress }) => {

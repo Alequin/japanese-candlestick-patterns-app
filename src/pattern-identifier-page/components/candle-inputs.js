@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import { Keyboard, StyleSheet, Text, TextInput, View } from "react-native";
-import { AccessibleTouchableOpacity } from "../../accessible-touchable-opacity";
-import { Icon } from "../../icon";
+import { AccessibleTouchableOpacity } from "../../components/accessible-touchable-opacity";
+import { Icon } from "../../components/icon";
 
 export const CandleInputs = ({
   activeCandle: {
@@ -14,7 +14,7 @@ export const CandleInputs = ({
   },
 }) => {
   return (
-    <View style={styles.container}>
+    <View testID="candleInputs" style={styles.container}>
       <View style={styles.inputRow}>
         <Input title="High" value={high} setValue={setHigh} />
         <Input title="Open" value={open} setValue={setOpen} />
@@ -46,6 +46,7 @@ const Input = ({ title, value, setValue }) => {
       <View style={styles.inputWrapper}>
         <View style={{ width: "16%" }} />
         <TextInput
+          testID="candleValueInput"
           ref={inputRef}
           style={styles.input}
           value={value?.toString()}
@@ -70,7 +71,11 @@ const Input = ({ title, value, setValue }) => {
 
 const Warning = ({ error }) => {
   const style = useMemo(
-    () => ({ ...styles.warningContainer, opacity: error ? 1 : 0 }),
+    () => ({
+      alignItems: "center",
+      flexDirection: "row",
+      opacity: error ? 1 : 0,
+    }),
     [error]
   );
 
@@ -128,10 +133,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     elevation: 2,
   },
-  warningContainer: {
-    alignItems: "center",
-    flexDirection: "row",
-  },
+
   warningTitle: {
     marginTop: 10,
     flexDirection: "row",

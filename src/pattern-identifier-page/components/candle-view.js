@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
-import { AccessibleTouchableOpacity } from "../../accessible-touchable-opacity";
-import { Candle } from "../../candle";
+import { AccessibleTouchableOpacity } from "../../components/accessible-touchable-opacity";
+import { Candle } from "../../components/candle";
 import { Button, ButtonText } from "../../shared-components/button";
 
 export const CandleView = ({
@@ -10,6 +10,8 @@ export const CandleView = ({
   removeCandle,
   onSelectCandle,
 }) => {
+  const numberOfCandles = candlesShapes.length;
+
   return (
     <>
       <View
@@ -24,6 +26,7 @@ export const CandleView = ({
       >
         {candlesShapes.map((candleShapeDetails, index) => (
           <AccessibleTouchableOpacity
+            testID={`candleButton-${index}`}
             key={`${index}-${candleShapeDetails.isActive}`} // Use isActive in key so it updates when state updates
             style={{
               opacity: candleShapeDetails.isActive ? 1 : 0.5,
@@ -37,10 +40,18 @@ export const CandleView = ({
         ))}
       </View>
 
-      <Button style={{ padding: 5, margin: 5 }} onPress={addCandle}>
+      <Button
+        style={{ padding: 5, margin: 5 }}
+        disabled={numberOfCandles >= 3}
+        onPress={addCandle}
+      >
         <ButtonText>Add Candle</ButtonText>
       </Button>
-      <Button style={{ padding: 5, margin: 5 }} onPress={removeCandle}>
+      <Button
+        style={{ padding: 5, margin: 5 }}
+        disabled={numberOfCandles <= 1}
+        onPress={removeCandle}
+      >
         <ButtonText>Remove Candle</ButtonText>
       </Button>
     </>
