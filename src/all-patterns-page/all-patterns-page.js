@@ -1,11 +1,21 @@
-import React, { useState } from "react";
-import { allPatterns } from "../patterns";
-import { useOnPressBackButton } from "../use-on-press-back-button";
+import React, { useEffect, useRef, useState } from "react";
 import { PatternOverview } from "./pattern-overview";
 import { PatternsList } from "./patterns-list";
 
 export const AllPatternsPage = ({ route }) => {
   const [patternToView, setPatternToView] = useState(null);
+
+  const listRef = useRef();
+  const [patternListOffset, setPatternListOffset] = useState(0);
+
+  useEffect(() => {
+    if (!patternToView && patternListOffset !== 0) {
+      listRef?.current?.scrollToOffset({
+        offset: patternListOffset,
+        animated: false,
+      });
+    }
+  }, [patternToView]);
 
   return patternToView ? (
     <PatternOverview
@@ -13,6 +23,12 @@ export const AllPatternsPage = ({ route }) => {
       onPressBack={() => setPatternToView(null)}
     />
   ) : (
-    <PatternsList onSelectPattern={setPatternToView} />
+    <PatternsList
+      onSelectPattern={setPatternToView}
+      listRef={listRef}
+      onScroll={(event) =>
+        setPatternListOffset(event.nativeEvent.contentOffset.y)
+      }
+    />
   );
 };

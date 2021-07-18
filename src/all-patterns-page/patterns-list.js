@@ -3,12 +3,14 @@ import { FlatList, StyleSheet, View } from "react-native";
 import { allPatterns } from "../patterns";
 import { PatternCard } from "./components/pattern-card";
 
-export const PatternsList = ({ onSelectPattern }) => {
+export const PatternsList = ({ onSelectPattern, onScroll, listRef }) => {
   const listColumns = columnCount();
 
   return (
     <FlatList
+      ref={listRef}
       style={{ paddingHorizontal: 10 }}
+      onScroll={onScroll}
       data={useMemo(() => patternsToRenderInList(listColumns), [listColumns])}
       numColumns={listColumns}
       renderItem={({ item: pattern }, index) =>
