@@ -1,10 +1,14 @@
 import constants from "expo-constants";
+import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { background } from "./colours";
 
 export const StatusBarPlaceholder = () => (
-  <View style={styles.statusBarPlaceholder} />
+  <>
+    <StatusBar />
+    <View style={styles.statusBarPlaceholder} />
+  </>
 );
 
 const styles = StyleSheet.create({

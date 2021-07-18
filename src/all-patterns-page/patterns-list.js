@@ -8,6 +8,7 @@ export const PatternsList = ({ onSelectPattern, onScroll, listRef }) => {
 
   return (
     <FlatList
+      testID="patternListPage"
       ref={listRef}
       style={{ paddingHorizontal: 10 }}
       onScroll={onScroll}

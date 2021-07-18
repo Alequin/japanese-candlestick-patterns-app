@@ -1,6 +1,6 @@
 import React from "react";
-import { useMemo } from "react";
-import { TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
+import { AccessibleTouchableOpacity } from "../../accessible-touchable-opacity";
 import { Candle } from "../../candle";
 import { Button, ButtonText } from "../../shared-components/button";
 
@@ -23,7 +23,7 @@ export const CandleView = ({
         }}
       >
         {candlesShapes.map((candleShapeDetails, index) => (
-          <TouchableOpacity
+          <AccessibleTouchableOpacity
             key={`${index}-${candleShapeDetails.isActive}`} // Use isActive in key so it updates when state updates
             style={{
               opacity: candleShapeDetails.isActive ? 1 : 0.5,
@@ -33,7 +33,7 @@ export const CandleView = ({
             onPress={() => onSelectCandle(candleShapeDetails.index)}
           >
             <Candle candleShapeDetails={candleShapeDetails} />
-          </TouchableOpacity>
+          </AccessibleTouchableOpacity>
         ))}
       </View>
 

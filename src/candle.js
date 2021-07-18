@@ -16,7 +16,7 @@ export const Candle = ({
   const isCandleValid = !error;
 
   return (
-    <View style={styles.candleContainer}>
+    <View testID="candle" style={styles.candleContainer}>
       {isCandleValid ? (
         <>
           {topSpaceHeightPercentage > 0 ? (

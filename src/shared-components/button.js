@@ -1,13 +1,17 @@
-import { assign } from "lodash";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Text } from "react-native";
 import { useMemo } from "react/cjs/react.development";
+import { AccessibleTouchableOpacity } from "../accessible-touchable-opacity";
 
 export const Button = ({ children, style = {}, ...buttonProps }) => {
   return (
-    <TouchableOpacity style={useButtonStyle(style)} {...buttonProps}>
+    <AccessibleTouchableOpacity
+      accessibilityRole="button"
+      style={useButtonStyle(style)}
+      {...buttonProps}
+    >
       {children}
-    </TouchableOpacity>
+    </AccessibleTouchableOpacity>
   );
 };
 

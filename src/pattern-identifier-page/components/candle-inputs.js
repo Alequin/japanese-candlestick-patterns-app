@@ -1,12 +1,6 @@
 import React, { useEffect, useMemo, useRef } from "react";
-import {
-  Keyboard,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Keyboard, StyleSheet, Text, TextInput, View } from "react-native";
+import { AccessibleTouchableOpacity } from "../../accessible-touchable-opacity";
 import { Icon } from "../../icon";
 
 export const CandleInputs = ({
@@ -45,7 +39,7 @@ const Input = ({ title, value, setValue }) => {
   }, [inputRef]);
 
   return (
-    <TouchableOpacity
+    <AccessibleTouchableOpacity
       style={styles.inputContainer}
       onPress={() => inputRef?.current?.focus()}
     >
@@ -58,19 +52,19 @@ const Input = ({ title, value, setValue }) => {
           onChangeText={(value) => setValue(value)}
           keyboardType="numeric"
         />
-        <TouchableOpacity
+        <AccessibleTouchableOpacity
           style={{ width: "16%", paddingVertical: 5, alignItems: "center" }}
           onPress={() => setValue("")}
         >
           <Icon name="cross" color="black" size={22} />
-        </TouchableOpacity>
+        </AccessibleTouchableOpacity>
       </View>
       <View style={styles.inputTitle}>
         <Icon name="blankSpace" size={16} />
         <Text style={{ marginHorizontal: 5 }}>{title}</Text>
         <Icon name="edit" size={16} />
       </View>
-    </TouchableOpacity>
+    </AccessibleTouchableOpacity>
   );
 };
 

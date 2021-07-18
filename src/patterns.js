@@ -1,4 +1,5 @@
 import React from "react";
+import { View } from "react-native";
 import { BEARISH, BULLISH } from "./candle-types";
 import {
   BulletPoint,
@@ -48,7 +49,7 @@ export const singleCandlePatterns = [
       },
     ],
     content: (
-      <>
+      <View testID="Spinning Top content">
         <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
         <TextSection>
           The Spinning Top indicates indecision and uncertainty in the market.
@@ -65,7 +66,7 @@ export const singleCandlePatterns = [
           The candle body will be centred between long upper and lower shadows
         </BulletPoint>
         <BulletPoint>The candle can be either bullish or bearish</BulletPoint>
-      </>
+      </View>
     ),
   },
   {
@@ -103,7 +104,7 @@ export const singleCandlePatterns = [
       },
     ],
     content: (
-      <>
+      <View testID="Standard Doji content">
         <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
         <TextSection>
           The Doji indicates indecision and uncertainty in the market. It may
@@ -123,7 +124,7 @@ export const singleCandlePatterns = [
           The candle body will be centred between long upper and lower shadows
         </BulletPoint>
         <BulletPoint>The candle can be either bullish or bearish</BulletPoint>
-      </>
+      </View>
     ),
   },
   {
@@ -161,7 +162,7 @@ export const singleCandlePatterns = [
       },
     ],
     content: (
-      <>
+      <View testID="Gravestone Doji content">
         <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
         <TextSection>
           The Gravestone Doji signals a bearish reversal and is seen usually at
@@ -185,7 +186,7 @@ export const singleCandlePatterns = [
           The candles upper shadow is long. The longer, the better
         </BulletPoint>
         <BulletPoint>The candle can be either bullish or bearish</BulletPoint>
-      </>
+      </View>
     ),
   },
   {
@@ -223,7 +224,7 @@ export const singleCandlePatterns = [
       },
     ],
     content: (
-      <>
+      <View testID="Dragon Fly Doji content">
         <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
         <TextSection>
           The Dragonfly Doji signals a bullish reversal and is seen usually at
@@ -247,7 +248,7 @@ export const singleCandlePatterns = [
           The candles lower shadow is long. The longer, the better
         </BulletPoint>
         <BulletPoint>The candle can be either bullish or bearish</BulletPoint>
-      </>
+      </View>
     ),
   },
   {
@@ -268,7 +269,7 @@ export const singleCandlePatterns = [
       },
     ],
     content: (
-      <>
+      <View testID="Four Price Doji content">
         <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
         <TextSection>
           The Four-price Doji indicates a lack of interest from both buyers and
@@ -284,7 +285,7 @@ export const singleCandlePatterns = [
           There will be very little or no upper and lower shadows
         </BulletPoint>
         <BulletPoint>The candle can be either bullish or bearish</BulletPoint>
-      </>
+      </View>
     ),
   },
   {
@@ -322,7 +323,7 @@ export const singleCandlePatterns = [
       },
     ],
     content: (
-      <>
+      <View testID="Hammer content">
         <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
         <TextSection>
           The Hammer signals a potential bullish reversal after a recent
@@ -350,7 +351,7 @@ export const singleCandlePatterns = [
           The candle has a long lower shadow that is at least twice the size of
           the body
         </BulletPoint>
-      </>
+      </View>
     ),
   },
   {
@@ -388,7 +389,7 @@ export const singleCandlePatterns = [
       },
     ],
     content: (
-      <>
+      <View testID="Inverted Hammer content">
         <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
         <TextSection>
           The Inverted Hammer signals a potential bullish reversal after a
@@ -415,7 +416,7 @@ export const singleCandlePatterns = [
           The candle should preferably be bullish, though a bearish candle is
           still valid
         </BulletPoint>
-      </>
+      </View>
     ),
   },
   {
@@ -453,7 +454,7 @@ export const singleCandlePatterns = [
       },
     ],
     content: (
-      <>
+      <View testID="Hanging Man content">
         <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
         <TextSection>
           The Hanging Man signals a potential bearish reversal after a recent
@@ -481,7 +482,7 @@ export const singleCandlePatterns = [
           The candle should preferably be bearish, though a bullish candle is
           still valid
         </BulletPoint>
-      </>
+      </View>
     ),
   },
   {
@@ -519,7 +520,7 @@ export const singleCandlePatterns = [
       },
     ],
     content: (
-      <>
+      <View testID="Shooting Star content">
         <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
         <TextSection>
           The Shooting Star signals a potential bearish reversal after a recent
@@ -545,7 +546,7 @@ export const singleCandlePatterns = [
           The candle should preferably be bearish, though a bullish candle is
           still valid
         </BulletPoint>
-      </>
+      </View>
     ),
   },
   {
@@ -586,7 +587,7 @@ export const singleCandlePatterns = [
       },
     ],
     content: (
-      <>
+      <View testID="Bullish belt Hold content">
         <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
         <TextSection>
           The Bullish belt Hold signals a potential bullish reversal after a
@@ -606,7 +607,7 @@ export const singleCandlePatterns = [
         <BulletPoint>
           The following candle should be bullish to confirm the pattern
         </BulletPoint>
-      </>
+      </View>
     ),
   },
   {
@@ -647,7 +648,7 @@ export const singleCandlePatterns = [
       },
     ],
     content: (
-      <>
+      <View testID="Bearish belt Hold content">
         <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
         <TextSection>
           The Bearish belt Hold signals a potential bearish reversal after a
@@ -667,7 +668,7 @@ export const singleCandlePatterns = [
         <BulletPoint>
           The following candle should be bearish to confirm the pattern
         </BulletPoint>
-      </>
+      </View>
     ),
   },
   {
@@ -687,7 +688,7 @@ export const singleCandlePatterns = [
       },
     ],
     content: (
-      <>
+      <View testID="Bullish Marubozu content">
         <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
         <TextSection>
           The Bullish Marubozu signals further bullish sentiment regardless of
@@ -699,7 +700,7 @@ export const singleCandlePatterns = [
         <BulletPoint>
           The larger the candle, the more reliable the pattern
         </BulletPoint>
-      </>
+      </View>
     ),
   },
   {
@@ -719,7 +720,7 @@ export const singleCandlePatterns = [
       },
     ],
     content: (
-      <>
+      <View testID="Bearish Marubozu content">
         <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
         <TextSection>
           The Bearish Marubozu signals further bearish sentiment regardless of
@@ -731,7 +732,7 @@ export const singleCandlePatterns = [
         <BulletPoint>
           The larger the candle, the more reliable the pattern
         </BulletPoint>
-      </>
+      </View>
     ),
   },
 ];
@@ -768,7 +769,7 @@ export const doubleCandlePatterns = [
       },
     ],
     content: (
-      <>
+      <View testID="Bullish Engulfing content">
         <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
         <TextSection>
           The Bullish Engulfing pattern signals a reversal after a recent
@@ -792,7 +793,7 @@ export const doubleCandlePatterns = [
         <BulletPoint>
           The bullish candles close is greater than the bearish candles open
         </BulletPoint>
-      </>
+      </View>
     ),
   },
   {
@@ -826,7 +827,7 @@ export const doubleCandlePatterns = [
       },
     ],
     content: (
-      <>
+      <View testID="Bearish Engulfing content">
         <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
         <TextSection>
           The Bearish Engulfing pattern signals a reversal after a recent
@@ -850,12 +851,18 @@ export const doubleCandlePatterns = [
         <BulletPoint>
           The bearish candles close is less than the bullish candles open
         </BulletPoint>
-      </>
+      </View>
     ),
   },
 ];
 
-export const allPatterns = [...singleCandlePatterns, ...doubleCandlePatterns];
+export const tripleCandlePatterns = [];
+
+export const allPatterns = [
+  ...singleCandlePatterns,
+  ...doubleCandlePatterns,
+  ...tripleCandlePatterns,
+];
 /*
 
 Morning star
