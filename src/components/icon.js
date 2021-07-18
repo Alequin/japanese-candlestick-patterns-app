@@ -47,6 +47,7 @@ const ICON_OPTIONS = {
     testIdOverride: "underlineEditIcon",
   }),
   arrowBack: customIcon(Ionicons, "arrow-back"),
+  questionCircle: customIcon(FontAwesome, "question-circle"),
   blankSpace: ({ size, ...otherProps }) => (
     <MaterialIcons
       name="check-box-outline-blank"

@@ -3,7 +3,7 @@ jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
 import { within } from "@testing-library/react-native";
 import React from "react";
 import { App } from "../App";
-import { PAGES } from "../src/navigation/bottom-tab-navigator";
+import { PAGES } from "../src/navigation/pages";
 import {
   asyncChangeInputText,
   asyncPressEvent,
@@ -48,9 +48,11 @@ describe("Pattern Identifier Page", () => {
     const patternIdentifierPage = screen.getByTestId("patternIdentifierPage");
 
     expect(
-      within(patternIdentifierPage).getByRole("header", {
-        name: "Single CandleStick Patterns",
-      })
+      within(patternIdentifierPage)
+        .getAllByRole("header")
+        .find(
+          (header) => header.props.children === "Single CandleStick Patterns"
+        )
     ).toBeTruthy();
 
     expect(
@@ -101,12 +103,29 @@ describe("Pattern Identifier Page", () => {
     expect(closeInput.props.value).toBe("1.7500");
   });
 
-  it("Shows the pattern identifier page when the tab button is pressed", async () => {
+  it("Shows the help modal when the help icon is pressed", async () => {
     const screen = await asyncRender(<App />);
 
     await openPatternIdentifierPage(screen);
 
-    expect(screen.getByTestId("patternIdentifierPage")).toBeTruthy();
+    const buttons = within(
+      screen.getByTestId("patternIdentifierPage")
+    ).getAllByRole("button");
+
+    // 1. Press the help button
+    const helpButton = buttons.find((button) =>
+      within(button).queryByTestId("questionCircleIcon")
+    );
+    await asyncPressEvent(helpButton);
+
+    // 2. Confirm the help modal is open
+    expect(
+      screen
+        .getAllByRole("header")
+        .find(
+          (header) => header.props.children === "Using the Pattern Identifier"
+        )
+    ).toBeTruthy();
   });
 
   it("Allows the user to use 2 candles with the pattern identifier", async () => {
@@ -135,9 +154,11 @@ describe("Pattern Identifier Page", () => {
 
     // 4. Confirm the title of the matching patterns section is correct
     expect(
-      within(patternIdentifierPage).getByRole("header", {
-        name: "Double CandleStick Patterns",
-      })
+      within(patternIdentifierPage)
+        .getAllByRole("header")
+        .find(
+          (header) => header.props.children === "Double CandleStick Patterns"
+        )
     ).toBeTruthy();
   });
 
@@ -168,9 +189,11 @@ describe("Pattern Identifier Page", () => {
 
     // 4. Confirm the title of the matching patterns section is correct
     expect(
-      within(patternIdentifierPage).getByRole("header", {
-        name: "Triple CandleStick Patterns",
-      })
+      within(patternIdentifierPage)
+        .getAllByRole("header")
+        .find(
+          (header) => header.props.children === "Triple CandleStick Patterns"
+        )
     ).toBeTruthy();
   });
 
@@ -353,12 +376,6 @@ describe("Pattern Identifier Page", () => {
 
     // 1. Confirm there are no matching patterns initially
     expect(
-      within(patternIdentifierPage).getByRole("header", {
-        name: "Single CandleStick Patterns",
-      })
-    ).toBeTruthy();
-
-    expect(
       within(patternIdentifierPage).getByText("No matching patterns")
     ).toBeTruthy();
 
@@ -376,9 +393,9 @@ describe("Pattern Identifier Page", () => {
     const patternOverviewPage = screen.getByTestId("patternOverviewPage");
 
     expect(
-      within(patternOverviewPage).getByRole("header", {
-        name: "Spinning Top",
-      })
+      within(patternOverviewPage)
+        .getAllByRole("header")
+        .find((header) => header.props.children === "Spinning Top")
     ).toBeTruthy();
   });
 
@@ -390,12 +407,6 @@ describe("Pattern Identifier Page", () => {
     const patternIdentifierPage = screen.getByTestId("patternIdentifierPage");
 
     // 1. Confirm there are no matching patterns initially
-    expect(
-      within(patternIdentifierPage).getByRole("header", {
-        name: "Single CandleStick Patterns",
-      })
-    ).toBeTruthy();
-
     expect(
       within(patternIdentifierPage).getByText("No matching patterns")
     ).toBeTruthy();
@@ -435,9 +446,9 @@ describe("Pattern Identifier Page", () => {
     const patternOverviewPage = screen.getByTestId("patternOverviewPage");
 
     expect(
-      within(patternOverviewPage).getByRole("header", {
-        name: "Bullish Engulfing",
-      })
+      within(patternOverviewPage)
+        .getAllByRole("header")
+        .find((header) => header.props.children === "Bullish Engulfing")
     ).toBeTruthy();
   });
 

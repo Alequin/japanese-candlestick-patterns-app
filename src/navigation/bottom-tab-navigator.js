@@ -8,13 +8,9 @@ import * as React from "react";
 import { AllPatternsPage } from "../all-patterns-page/all-patterns-page";
 import { PatternIdentifierPage } from "../pattern-identifier-page/pattern-identifier-page";
 import { Icon } from "../components/icon";
+import { PAGES } from "./pages";
 
 const BottomTab = createBottomTabNavigator();
-
-export const PAGES = {
-  allCandlesPatterns: "All Candle Patterns",
-  patternIdentifier: "Pattern Identifier",
-};
 
 export const BottomTabNavigator = () => {
   return (
