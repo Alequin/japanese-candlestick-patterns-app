@@ -6,16 +6,21 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
 import { AllPatternsPage } from "../all-patterns-page/all-patterns-page";
-import { CustomCandlesPage } from "../custom-candles-page/custom-candles-page";
+import { PatternIdentifierPage } from "../pattern-identifier-page/pattern-identifier-page";
 import { Icon } from "../icon";
 
 const BottomTab = createBottomTabNavigator();
+
+export const PAGES = {
+  allCandlesPatterns: "All Candle Patterns",
+  patternIdentifier: "Pattern Identifier",
+};
 
 export const BottomTabNavigator = () => {
   return (
     <BottomTab.Navigator>
       <BottomTab.Screen
-        name="All Candle Patterns"
+        name={PAGES.allCandlesPatterns}
         component={AllPatternsPage}
         options={{
           tabBarIcon: ({ color }) => (
@@ -24,8 +29,8 @@ export const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="Pattern Identifier"
-        component={CustomCandlesPage}
+        name={PAGES.patternIdentifier}
+        component={PatternIdentifierPage}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon iconName="underlineEdit" color={color} size={20} />

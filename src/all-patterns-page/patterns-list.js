@@ -19,7 +19,7 @@ export const PatternsList = ({ onSelectPattern, onScroll, listRef }) => {
             <PatternCard
               name={pattern.name}
               exampleCandles={pattern.exampleCandles}
-              onPress={() => onSelectPattern(pattern)}
+              onPress={() => onSelectPattern(pattern.name)}
             />
           </View>
         ) : (

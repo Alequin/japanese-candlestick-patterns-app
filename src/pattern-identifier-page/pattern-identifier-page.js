@@ -4,9 +4,10 @@ import { CandleView } from "./components/candle-view";
 import { CandleInputs } from "./components/candle-inputs";
 import { MatchingPattersList } from "./components/matching-patterns-list";
 import { useCandleShape } from "../use-candle-shape";
+import { PAGES } from "../navigation/bottom-tab-navigator";
 
-export const CustomCandlesPage = ({ navigation }) => {
-  const [numberOfCandles, setNumberOfCandles] = useState(3);
+export const PatternIdentifierPage = ({ navigation }) => {
+  const [numberOfCandles, setNumberOfCandles] = useState(1);
   const [activeCandleIndex, setActiveCandleIndex] = useState(0);
   const candlesShapes = useCandleShape(numberOfCandles);
 
@@ -18,7 +19,17 @@ export const CustomCandlesPage = ({ navigation }) => {
         <View style={styles.container}>
           <View style={styles.candleDetailsContainer}>
             <View style={{ height: "70%" }}>
-              <MatchingPattersList candlesShapes={candlesShapes} />
+              <MatchingPattersList
+                candlesShapes={candlesShapes}
+                onSelectMatchingPattern={(name) =>
+                  navigation.navigate({
+                    name: PAGES.allCandlesPatterns,
+                    params: {
+                      patternName: name,
+                    },
+                  })
+                }
+              />
             </View>
             <View
               style={{

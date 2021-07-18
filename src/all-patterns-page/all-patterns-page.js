@@ -1,21 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { allPatterns } from "../patterns";
 import { PatternOverview } from "./pattern-overview";
 import { PatternsList } from "./patterns-list";
 
-export const AllPatternsPage = ({ route }) => {
-  const [patternToView, setPatternToView] = useState(null);
+export const AllPatternsPage = () => {
+  const { patternToView, setPatternToView } = usePatternToView();
 
   const listRef = useRef();
-  const [patternListOffset, setPatternListOffset] = useState(0);
-
-  useEffect(() => {
-    if (!patternToView && patternListOffset !== 0) {
-      listRef?.current?.scrollToOffset({
-        offset: patternListOffset,
-        animated: false,
-      });
-    }
-  }, [patternToView]);
+  const setPatternListOffset = useSetListOffsetToLastKnownValue(
+    listRef,
+    useCallback(() => !patternToView, [patternToView])
+  );
 
   return patternToView ? (
     <PatternOverview
@@ -31,4 +33,41 @@ export const AllPatternsPage = ({ route }) => {
       }
     />
   );
+};
+
+const usePatternToView = () => {
+  const patternName = useRoute()?.params?.patternName;
+  const navigation = useNavigation();
+
+  return {
+    patternToView: useMemo(() => findPatternByName(patternName), [patternName]),
+    setPatternToView: useCallback(
+      (newPatternName) =>
+        navigation.setParams({
+          patternName: newPatternName,
+        }),
+      [navigation]
+    ),
+  };
+};
+
+const findPatternByName = (patternName) =>
+  allPatterns.find(({ name }) => name === patternName);
+
+const useSetListOffsetToLastKnownValue = (
+  listRef,
+  shouldSetToLastKnownOffset
+) => {
+  const [patternListOffset, setPatternListOffset] = useState(0);
+
+  useEffect(() => {
+    if (shouldSetToLastKnownOffset() && patternListOffset !== 0) {
+      listRef?.current?.scrollToOffset({
+        offset: patternListOffset,
+        animated: false,
+      });
+    }
+  }, [shouldSetToLastKnownOffset]);
+
+  return setPatternListOffset;
 };

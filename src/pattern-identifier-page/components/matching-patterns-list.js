@@ -2,25 +2,39 @@ import { isEmpty } from "lodash";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { doubleCandlePatterns, singleCandlePatterns } from "../../patterns";
+import { Button, ButtonText } from "../../shared-components/button";
 
-export const MatchingPattersList = ({ candlesShapes }) => {
+export const MatchingPattersList = ({
+  candlesShapes,
+  onSelectMatchingPattern,
+}) => {
   const patternNames = getMatchingPatterns(candlesShapes).map(
     ({ name }) => name
   );
+
   return (
     <View>
       <Text
         style={{
           textAlign: "center",
           fontWeight: "bold",
+          marginBottom: 10,
         }}
       >
         {title(candlesShapes.length)}
       </Text>
       {!isEmpty(patternNames) ? (
-        patternNames.map((name) => <Text key={name}>{name}</Text>)
+        patternNames.map((name) => (
+          <Button
+            key={name}
+            style={{ padding: 5, margin: 5, textAlign: "center" }}
+            onPress={() => onSelectMatchingPattern(name)}
+          >
+            <ButtonText>{name}</ButtonText>
+          </Button>
+        ))
       ) : (
-        <Text>No matching patterns</Text>
+        <Text style={{ textAlign: "center" }}>No matching patterns</Text>
       )}
     </View>
   );
