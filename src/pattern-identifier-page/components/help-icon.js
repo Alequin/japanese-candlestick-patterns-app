@@ -65,6 +65,7 @@ const ModalText = ({ children }) => (
 const helpIconStyles = StyleSheet.create({
   helpButton: {
     padding: 5,
+    margin: 5,
     height: "5%",
     alignItems: "flex-end",
     justifyContent: "center",

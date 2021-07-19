@@ -16,7 +16,7 @@ export const Identifier = ({
   const navigation = useNavigation();
   return (
     <>
-      <View>
+      <View style={styles.matchingPatternsContainer}>
         <MatchingPattersList
           candlesShapes={candlesShapes}
           onSelectMatchingPattern={(name) =>
@@ -31,7 +31,6 @@ export const Identifier = ({
       </View>
       <View style={styles.candleViewContainer}>
         <HelpIcon />
-
         <CandleView
           candlesShapes={candlesShapes.map((candle) => ({
             ...candle,
@@ -47,7 +46,9 @@ export const Identifier = ({
 };
 
 const styles = StyleSheet.create({
+  matchingPatternsContainer: { flex: 1.25 },
   candleViewContainer: {
-    flex: 1.5,
+    flex: 1,
+    maxWidth: 300,
   },
 });

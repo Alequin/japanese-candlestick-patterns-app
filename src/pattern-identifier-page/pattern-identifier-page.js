@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     flex: 5,
     marginVertical: 15,
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-between",
   },
   inputsContainer: {
     height: "30%",

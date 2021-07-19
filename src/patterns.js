@@ -36,7 +36,7 @@ const candleStickInformation = {
     },
   ],
   content: (
-    <View testID="Candlesstick content">
+    <View testID="Candlesticks content">
       <Title>What are candlesticks</Title>
       <TextSection>
         Candlesticks are used to represent price movements in a particular
