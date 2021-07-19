@@ -1,8 +1,8 @@
-jest.mock("../../patterns", () => ({
+jest.mock("../../patterns/patterns", () => ({
   allPatterns: [1, 2, 3, 4, 5],
 }));
 
-import { allPatterns } from "../../patterns";
+import { allPatterns } from "../../patterns/patterns";
 import { patternsToRenderInList } from "./patterns-to-render-in-list";
 
 describe("patterns to render in list", () => {

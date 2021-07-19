@@ -8,7 +8,7 @@ import {
   doubleCandlePatterns,
   singleCandlePatterns,
   tripleCandlePatterns,
-} from "../src/patterns";
+} from "../src/patterns/patterns";
 import { asyncPressEvent, asyncRender } from "../src/test-utils";
 
 describe("All Patterns Page", () => {

@@ -1,0 +1,1002 @@
+[
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 6,
+      "topStickHeightPercentage": 9,
+      "bottomStickHeightPercentage": 81,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 3,
+      "topStickHeightPercentage": 10,
+      "bottomStickHeightPercentage": 84,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 8,
+      "topStickHeightPercentage": 6,
+      "bottomStickHeightPercentage": 75,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 8,
+      "topStickHeightPercentage": 4,
+      "bottomStickHeightPercentage": 86,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 6,
+      "topStickHeightPercentage": 1,
+      "bottomStickHeightPercentage": 91,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 6,
+      "topStickHeightPercentage": 14,
+      "bottomStickHeightPercentage": 78,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 1,
+      "topStickHeightPercentage": 9,
+      "bottomStickHeightPercentage": 85,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 9,
+      "topStickHeightPercentage": 2,
+      "bottomStickHeightPercentage": 77,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 4,
+      "topStickHeightPercentage": 5,
+      "bottomStickHeightPercentage": 87,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 1,
+      "topStickHeightPercentage": 10,
+      "bottomStickHeightPercentage": 81,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 1,
+      "topStickHeightPercentage": 0,
+      "bottomStickHeightPercentage": 76,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 2,
+      "topStickHeightPercentage": 5,
+      "bottomStickHeightPercentage": 85,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 6,
+      "topStickHeightPercentage": 1,
+      "bottomStickHeightPercentage": 76,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 2,
+      "topStickHeightPercentage": 1,
+      "bottomStickHeightPercentage": 88,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 4,
+      "topStickHeightPercentage": 14,
+      "bottomStickHeightPercentage": 79,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 9,
+      "topStickHeightPercentage": 8,
+      "bottomStickHeightPercentage": 82,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 6,
+      "topStickHeightPercentage": 9,
+      "bottomStickHeightPercentage": 76,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 7,
+      "topStickHeightPercentage": 3,
+      "bottomStickHeightPercentage": 87,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 0,
+      "topStickHeightPercentage": 16,
+      "bottomStickHeightPercentage": 80,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 6,
+      "topStickHeightPercentage": 11,
+      "bottomStickHeightPercentage": 81,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 5,
+      "topStickHeightPercentage": 8,
+      "bottomStickHeightPercentage": 85,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 0,
+      "topStickHeightPercentage": 0,
+      "bottomStickHeightPercentage": 81,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 5,
+      "topStickHeightPercentage": 8,
+      "bottomStickHeightPercentage": 75,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 4,
+      "topStickHeightPercentage": 9,
+      "bottomStickHeightPercentage": 79,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 3,
+      "topStickHeightPercentage": 9,
+      "bottomStickHeightPercentage": 88,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 7,
+      "topStickHeightPercentage": 7,
+      "bottomStickHeightPercentage": 78,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 4,
+      "topStickHeightPercentage": 17,
+      "bottomStickHeightPercentage": 76,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 9,
+      "topStickHeightPercentage": 1,
+      "bottomStickHeightPercentage": 86,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 9,
+      "topStickHeightPercentage": 2,
+      "bottomStickHeightPercentage": 85,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 7,
+      "topStickHeightPercentage": 2,
+      "bottomStickHeightPercentage": 75,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 2,
+      "topStickHeightPercentage": 2,
+      "bottomStickHeightPercentage": 81,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 9,
+      "topStickHeightPercentage": 2,
+      "bottomStickHeightPercentage": 89,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 5,
+      "topStickHeightPercentage": 0,
+      "bottomStickHeightPercentage": 92,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 6,
+      "topStickHeightPercentage": 15,
+      "bottomStickHeightPercentage": 76,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 0,
+      "topStickHeightPercentage": 8,
+      "bottomStickHeightPercentage": 79,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 0,
+      "topStickHeightPercentage": 13,
+      "bottomStickHeightPercentage": 81,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 0,
+      "topStickHeightPercentage": 9,
+      "bottomStickHeightPercentage": 82,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 2,
+      "topStickHeightPercentage": 4,
+      "bottomStickHeightPercentage": 89,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 3,
+      "topStickHeightPercentage": 2,
+      "bottomStickHeightPercentage": 81,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 0,
+      "topStickHeightPercentage": 1,
+      "bottomStickHeightPercentage": 81,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 6,
+      "topStickHeightPercentage": 1,
+      "bottomStickHeightPercentage": 90,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 10,
+      "topStickHeightPercentage": 2,
+      "bottomStickHeightPercentage": 75,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 0,
+      "topStickHeightPercentage": 7,
+      "bottomStickHeightPercentage": 77,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 9,
+      "topStickHeightPercentage": 7,
+      "bottomStickHeightPercentage": 75,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 0,
+      "topStickHeightPercentage": 17,
+      "bottomStickHeightPercentage": 81,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 8,
+      "topStickHeightPercentage": 6,
+      "bottomStickHeightPercentage": 86,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 7,
+      "topStickHeightPercentage": 14,
+      "bottomStickHeightPercentage": 75,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 1,
+      "topStickHeightPercentage": 14,
+      "bottomStickHeightPercentage": 76,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 3,
+      "topStickHeightPercentage": 1,
+      "bottomStickHeightPercentage": 95,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 3,
+      "topStickHeightPercentage": 8,
+      "bottomStickHeightPercentage": 87,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 7,
+      "topStickHeightPercentage": 1,
+      "bottomStickHeightPercentage": 82,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 8,
+      "topStickHeightPercentage": 9,
+      "bottomStickHeightPercentage": 76,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 1,
+      "topStickHeightPercentage": 12,
+      "bottomStickHeightPercentage": 76,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 3,
+      "topStickHeightPercentage": 8,
+      "bottomStickHeightPercentage": 76,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 7,
+      "topStickHeightPercentage": 1,
+      "bottomStickHeightPercentage": 91,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 7,
+      "topStickHeightPercentage": 2,
+      "bottomStickHeightPercentage": 80,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 8,
+      "topStickHeightPercentage": 0,
+      "bottomStickHeightPercentage": 80,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 2,
+      "topStickHeightPercentage": 7,
+      "bottomStickHeightPercentage": 80,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 5,
+      "topStickHeightPercentage": 11,
+      "bottomStickHeightPercentage": 80,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 1,
+      "topStickHeightPercentage": 10,
+      "bottomStickHeightPercentage": 86,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 3,
+      "topStickHeightPercentage": 10,
+      "bottomStickHeightPercentage": 87,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 1,
+      "topStickHeightPercentage": 7,
+      "bottomStickHeightPercentage": 92,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 3,
+      "topStickHeightPercentage": 3,
+      "bottomStickHeightPercentage": 83,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 5,
+      "topStickHeightPercentage": 5,
+      "bottomStickHeightPercentage": 76,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 3,
+      "topStickHeightPercentage": 15,
+      "bottomStickHeightPercentage": 80,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 5,
+      "topStickHeightPercentage": 1,
+      "bottomStickHeightPercentage": 82,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 9,
+      "topStickHeightPercentage": 6,
+      "bottomStickHeightPercentage": 83,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 0,
+      "topStickHeightPercentage": 0,
+      "bottomStickHeightPercentage": 85,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 7,
+      "topStickHeightPercentage": 10,
+      "bottomStickHeightPercentage": 80,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 9,
+      "topStickHeightPercentage": 3,
+      "bottomStickHeightPercentage": 79,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 4,
+      "topStickHeightPercentage": 9,
+      "bottomStickHeightPercentage": 81,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 2,
+      "topStickHeightPercentage": 20,
+      "bottomStickHeightPercentage": 77,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 6,
+      "topStickHeightPercentage": 0,
+      "bottomStickHeightPercentage": 86,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 7,
+      "topStickHeightPercentage": 3,
+      "bottomStickHeightPercentage": 87,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 2,
+      "topStickHeightPercentage": 17,
+      "bottomStickHeightPercentage": 79,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 3,
+      "topStickHeightPercentage": 4,
+      "bottomStickHeightPercentage": 77,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 4,
+      "topStickHeightPercentage": 10,
+      "bottomStickHeightPercentage": 85,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 5,
+      "topStickHeightPercentage": 12,
+      "bottomStickHeightPercentage": 76,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 2,
+      "topStickHeightPercentage": 13,
+      "bottomStickHeightPercentage": 77,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 7,
+      "topStickHeightPercentage": 0,
+      "bottomStickHeightPercentage": 84,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 10,
+      "topStickHeightPercentage": 3,
+      "bottomStickHeightPercentage": 78,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 8,
+      "topStickHeightPercentage": 9,
+      "bottomStickHeightPercentage": 77,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 9,
+      "topStickHeightPercentage": 8,
+      "bottomStickHeightPercentage": 83,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 5,
+      "topStickHeightPercentage": 0,
+      "bottomStickHeightPercentage": 76,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 0,
+      "topStickHeightPercentage": 8,
+      "bottomStickHeightPercentage": 92,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 1,
+      "topStickHeightPercentage": 14,
+      "bottomStickHeightPercentage": 76,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 2,
+      "topStickHeightPercentage": 5,
+      "bottomStickHeightPercentage": 87,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 10,
+      "topStickHeightPercentage": 1,
+      "bottomStickHeightPercentage": 77,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 7,
+      "topStickHeightPercentage": 6,
+      "bottomStickHeightPercentage": 78,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 10,
+      "topStickHeightPercentage": 11,
+      "bottomStickHeightPercentage": 79,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 6,
+      "topStickHeightPercentage": 10,
+      "bottomStickHeightPercentage": 78,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 3,
+      "topStickHeightPercentage": 3,
+      "bottomStickHeightPercentage": 94,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 2,
+      "topStickHeightPercentage": 4,
+      "bottomStickHeightPercentage": 78,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 10,
+      "topStickHeightPercentage": 1,
+      "bottomStickHeightPercentage": 84,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 4,
+      "topStickHeightPercentage": 16,
+      "bottomStickHeightPercentage": 79,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 9,
+      "topStickHeightPercentage": 14,
+      "bottomStickHeightPercentage": 75,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bearish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 0,
+      "topStickHeightPercentage": 0,
+      "bottomStickHeightPercentage": 87,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 5,
+      "topStickHeightPercentage": 11,
+      "bottomStickHeightPercentage": 77,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 6,
+      "topStickHeightPercentage": 1,
+      "bottomStickHeightPercentage": 76,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ],
+  [
+    {
+      "candleType": "Bullish",
+      "topSpaceHeightPercentage": 0,
+      "bodyHeightPercentage": 10,
+      "topStickHeightPercentage": 9,
+      "bottomStickHeightPercentage": 81,
+      "bottomSpaceHeightPercentage": 0
+    }
+  ]
+]

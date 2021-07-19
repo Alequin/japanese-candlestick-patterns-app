@@ -47,8 +47,8 @@ const patternContentOptions = {
       </TextSection>
     </View>
   ),
-  ["Candlesstick Patterns"]: (
-    <View testID="Candlesstick Patterns content">
+  ["Candlestick Patterns"]: (
+    <View testID="Candlestick Patterns content">
       <Title>What are candlestick patterns?</Title>
       <TextSection>
         Candlesticks are used to represent price movements in a particular

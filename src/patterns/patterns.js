@@ -1,4 +1,4 @@
-const { BEARISH, BULLISH } = require("./candle-types");
+const { BEARISH, BULLISH } = require("../candle-types");
 
 const isBetween = (value, { smallest, largest }) =>
   value >= smallest && value <= largest;
@@ -27,7 +27,7 @@ const candleStickInformation = {
 };
 
 const candlestickPatternInformation = {
-  name: "Candlesstick Patterns",
+  name: "Candlestick Patterns",
   doCandlesMatchPattern: () => false,
   exampleCandles: [
     {
@@ -208,9 +208,26 @@ const singleCandlePatterns = [
   },
   {
     name: "Four Price Doji",
-    doCandlesMatchPattern: ([{ high, low, open, close }]) => {
-      return [high, low, open, close].every(
+    doCandlesMatchPattern: ([
+      {
+        high,
+        low,
+        open,
+        close,
+        topStickHeightPercentage,
+        bottomStickHeightPercentage,
+        bodyHeightPercentage,
+      },
+    ]) => {
+      const areAllPricesEqual = [high, low, open, close].every(
         (value) => Number(value) === Number(high)
+      );
+
+      return (
+        areAllPricesEqual ||
+        (bodyHeightPercentage <= 5 &&
+          topStickHeightPercentage === 0 &&
+          bottomStickHeightPercentage === 0)
       );
     },
     exampleCandles: [
@@ -494,7 +511,7 @@ const doubleCandlePatterns = [
     doCandlesMatchPattern: (candles) => {
       return (
         candles[1].candleType === BULLISH && // Main candle is bullish
-        candles[0].candleType == BEARISH && // previous candle is bearish
+        candles[0].candleType === BEARISH && // previous candle is bearish
         candles[1].totalHeight > candles[0].totalHeight && // Main candles total height is larger than the previous candles
         candles[1].bodyHeightPercentage > candles[0].bodyHeightPercentage && // Main candles body height is larger than the previous candles
         candles[1].close > candles[0].open && // Main candles close price is more than previous candles open price

@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { allPatterns } from "../patterns";
+import { allPatterns } from "../patterns/patterns";
 import { PatternOverview } from "./pattern-overview";
 import { PatternsList } from "./patterns-list";
 

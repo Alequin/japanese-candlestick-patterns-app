@@ -1,4 +1,4 @@
-import { allPatterns } from "../../patterns";
+import { allPatterns } from "../../patterns/patterns";
 
 export const patternsToRenderInList = (listColumns) => {
   if (listColumns === 1) return allPatterns;
