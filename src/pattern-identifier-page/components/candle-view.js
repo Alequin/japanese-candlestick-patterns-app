@@ -1,5 +1,5 @@
-import React from "react";
-import { View } from "react-native";
+import React, { useMemo } from "react";
+import { StyleSheet, View } from "react-native";
 import { AccessibleTouchableOpacity } from "../../components/accessible-touchable-opacity";
 import { Candle } from "../../components/candle";
 import { Icon } from "../../components/icon";
@@ -15,48 +15,26 @@ export const CandleView = ({
 
   return (
     <>
-      <View
-        testID="candleView"
-        style={{
-          width: "100%",
-          flex: 1,
-          marginBottom: 10,
-          justifyContent: "space-around",
-          alignItems: "center",
-          flexDirection: "row",
-        }}
-      >
+      <View testID="candleView" style={styles.candlesContainer}>
         {candlesShapes.map((candleShapeDetails, index) => (
-          <AccessibleTouchableOpacity
-            testID={`candleButton-${index}`}
+          <SingleCandle
             key={`${index}-${candleShapeDetails.isActive}`} // Use isActive in key so it updates when state updates
-            style={{
-              opacity: candleShapeDetails.isActive ? 1 : 0.5,
-              width: "25%",
-              height: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            onPress={() => onSelectCandle(candleShapeDetails.index)}
-          >
-            {candleShapeDetails.error ? (
-              <Icon name="warningOutline" color="red" size={30} />
-            ) : (
-              <Candle candleShapeDetails={candleShapeDetails} />
-            )}
-          </AccessibleTouchableOpacity>
+            testID={`candleButton-${index}`}
+            candleShapeDetails={candleShapeDetails}
+            onSelectCandle={onSelectCandle}
+          />
         ))}
       </View>
 
       <Button
-        style={{ padding: 5, margin: 5 }}
+        style={styles.changeCandleCountButton}
         disabled={numberOfCandles >= 3}
         onPress={addCandle}
       >
         <ButtonText>Add Candle</ButtonText>
       </Button>
       <Button
-        style={{ padding: 5, margin: 5 }}
+        style={styles.changeCandleCountButton}
         disabled={numberOfCandles <= 1}
         onPress={removeCandle}
       >
@@ -65,3 +43,41 @@ export const CandleView = ({
     </>
   );
 };
+
+const SingleCandle = ({ candleShapeDetails, testID, onSelectCandle }) => (
+  <AccessibleTouchableOpacity
+    testID={testID}
+    style={useMemo(
+      () => [
+        styles.candleButton,
+        { opacity: candleShapeDetails.isActive ? 1 : 0.5 },
+      ],
+      [candleShapeDetails.isActive]
+    )}
+    onPress={() => onSelectCandle(candleShapeDetails.index)}
+  >
+    {candleShapeDetails.error ? (
+      <Icon name="warningOutline" color="red" size={30} />
+    ) : (
+      <Candle candleShapeDetails={candleShapeDetails} />
+    )}
+  </AccessibleTouchableOpacity>
+);
+
+const styles = StyleSheet.create({
+  candlesContainer: {
+    width: "100%",
+    flex: 1,
+    marginBottom: 10,
+    justifyContent: "space-around",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  candleButton: {
+    width: "25%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  changeCandleCountButton: { padding: 5, margin: 5 },
+});

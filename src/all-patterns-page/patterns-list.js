@@ -10,7 +10,7 @@ export const PatternsList = ({ onSelectPattern, onScroll, listRef }) => {
     <FlatList
       testID="patternListPage"
       ref={listRef}
-      style={{ paddingHorizontal: 10 }}
+      style={styles.list}
       onScroll={onScroll}
       data={useMemo(() => patternsToRenderInList(listColumns), [listColumns])}
       numColumns={listColumns}
@@ -34,6 +34,7 @@ export const PatternsList = ({ onSelectPattern, onScroll, listRef }) => {
 
 const patternsToRenderInList = (listColumns) => {
   const blankSpaceCount = allPatterns.length % listColumns === 0;
+
   return [
     ...allPatterns,
     ...new Array(blankSpaceCount).fill({ isBlankItem: true }),
@@ -44,6 +45,7 @@ const patternsToRenderInList = (listColumns) => {
 const columnCount = () => 2;
 
 const styles = StyleSheet.create({
+  list: { paddingHorizontal: 10 },
   patternCardWrapper: {
     flex: 1,
     margin: 5,

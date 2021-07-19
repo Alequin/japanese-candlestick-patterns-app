@@ -15,27 +15,19 @@ export const MatchingPattersList = ({
 
   return (
     <View>
-      <Header
-        style={{
-          textAlign: "center",
-          fontWeight: "bold",
-          marginBottom: 10,
-        }}
-      >
-        {title(candlesShapes.length)}
-      </Header>
+      <Header style={styles.header}>{title(candlesShapes.length)}</Header>
       {!isEmpty(patternNames) ? (
         patternNames.map((name) => (
           <Button
             key={name}
-            style={{ padding: 5, margin: 5, textAlign: "center" }}
+            style={styles.patternNameButtons}
             onPress={() => onSelectMatchingPattern(name)}
           >
             <ButtonText>{name}</ButtonText>
           </Button>
         ))
       ) : (
-        <Text style={{ textAlign: "center" }}>No matching patterns</Text>
+        <Text style={styles.noMatchText}>No matching patterns</Text>
       )}
     </View>
   );
@@ -68,4 +60,12 @@ const title = (candleCount) => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  header: {
+    textAlign: "center",
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  patternNameButtons: { padding: 5, margin: 5, textAlign: "center" },
+  noMatchText: { textAlign: "center" },
+});

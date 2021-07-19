@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { PAGES } from "../../navigation/pages";
 import { CandleView } from "./candle-view";
 import { HelpIcon } from "./help-icon";
@@ -29,11 +29,7 @@ export const Identifier = ({
           }
         />
       </View>
-      <View
-        style={{
-          flex: 1.5,
-        }}
-      >
+      <View style={styles.candleViewContainer}>
         <HelpIcon />
 
         <CandleView
@@ -49,3 +45,9 @@ export const Identifier = ({
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  candleViewContainer: {
+    flex: 1.5,
+  },
+});

@@ -12,26 +12,24 @@ export const PatternIdentifierPage = () => {
   const activeCandle = candlesShapes[activeCandleIndex];
 
   return (
-    <View testID="patternIdentifierPage" style={{ height: "100%" }}>
-      <View style={styles.page}>
-        <View style={styles.container}>
-          <View style={styles.candleDetailsContainer}>
-            <Identifier
-              candlesShapes={candlesShapes}
-              activeCandleIndex={activeCandleIndex}
-              onSelectCandle={(newIndex) => setActiveCandleIndex(newIndex)}
-              addCandle={() => setNumberOfCandles(numberOfCandles + 1)}
-              removeCandle={() => {
-                const newCount = numberOfCandles - 1;
-                setNumberOfCandles(newCount);
-                if (activeCandleIndex >= newCount)
-                  setActiveCandleIndex(newCount - 1);
-              }}
-            />
-          </View>
-          <View style={styles.inputsContainer}>
-            <CandleInputs activeCandle={activeCandle} />
-          </View>
+    <View testID="patternIdentifierPage" style={styles.page}>
+      <View style={styles.container}>
+        <View style={styles.candleDetailsContainer}>
+          <Identifier
+            candlesShapes={candlesShapes}
+            activeCandleIndex={activeCandleIndex}
+            onSelectCandle={(newIndex) => setActiveCandleIndex(newIndex)}
+            addCandle={() => setNumberOfCandles(numberOfCandles + 1)}
+            removeCandle={() => {
+              const newCount = numberOfCandles - 1;
+              setNumberOfCandles(newCount);
+              if (activeCandleIndex >= newCount)
+                setActiveCandleIndex(newCount - 1);
+            }}
+          />
+        </View>
+        <View style={styles.inputsContainer}>
+          <CandleInputs activeCandle={activeCandle} />
         </View>
       </View>
     </View>
@@ -40,7 +38,7 @@ export const PatternIdentifierPage = () => {
 
 const styles = StyleSheet.create({
   page: {
-    flex: 1,
+    height: "100%",
     width: "100%",
     justifyContent: "center",
     alignItems: "center",

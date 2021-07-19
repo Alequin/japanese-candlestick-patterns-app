@@ -4,7 +4,6 @@ import { BULLISH } from "../candle-types";
 
 export const Candle = ({
   candleShapeDetails: {
-    error,
     candleType,
     topSpaceHeightPercentage,
     topStickHeightPercentage,
@@ -12,78 +11,59 @@ export const Candle = ({
     bottomStickHeightPercentage,
     bottomSpaceHeightPercentage,
   },
-}) => {
-  const isCandleValid = !error;
+}) => (
+  <View testID="candle" style={styles.candleContainer}>
+    {topSpaceHeightPercentage > 0 ? (
+      <Space heightPercentage={topSpaceHeightPercentage} />
+    ) : null}
+    {topStickHeightPercentage > 0 ? (
+      <CandleStick
+        space={topSpaceHeightPercentage}
+        heightPercentage={topStickHeightPercentage}
+      />
+    ) : null}
+    {bodyHeightPercentage > 0 ? (
+      <CandleBody
+        heightPercentage={bodyHeightPercentage}
+        candleType={candleType}
+        isBullish={candleType === BULLISH}
+      />
+    ) : null}
+    {bottomStickHeightPercentage > 0 ? (
+      <CandleStick heightPercentage={bottomStickHeightPercentage} />
+    ) : null}
+    {bottomSpaceHeightPercentage > 0 ? (
+      <Space heightPercentage={bottomSpaceHeightPercentage} />
+    ) : null}
+  </View>
+);
 
-  return (
-    <View testID="candle" style={styles.candleContainer}>
-      {isCandleValid ? (
-        <>
-          {topSpaceHeightPercentage > 0 ? (
-            <Space heightPercentage={topSpaceHeightPercentage} />
-          ) : null}
-          {topStickHeightPercentage > 0 ? (
-            <CandleStick
-              space={topSpaceHeightPercentage}
-              heightPercentage={topStickHeightPercentage}
-            />
-          ) : null}
-          {bodyHeightPercentage > 0 ? (
-            <CandleBody
-              heightPercentage={bodyHeightPercentage}
-              candleType={candleType}
-              isBullish={candleType === BULLISH}
-            />
-          ) : null}
-          {bottomStickHeightPercentage > 0 ? (
-            <CandleStick heightPercentage={bottomStickHeightPercentage} />
-          ) : null}
-          {bottomSpaceHeightPercentage > 0 ? (
-            <Space heightPercentage={bottomSpaceHeightPercentage} />
-          ) : null}
-        </>
-      ) : (
-        <>
-          <CandleStick heightPercentage={10} />
-          <CandleBody heightPercentage={1} isBullish />
-          <CandleStick heightPercentage={10} />
-        </>
-      )}
-    </View>
-  );
-};
+const CandleStick = ({ heightPercentage }) => (
+  <View
+    style={useMemo(
+      () => [
+        styles.candleStick,
+        { height: heightPercentage ? `${heightPercentage}%` : 0 },
+      ],
+      [heightPercentage]
+    )}
+  />
+);
 
-const CandleStick = ({ heightPercentage }) => {
-  return (
-    <View
-      style={useMemo(
-        () => ({
-          borderWidth: 1,
-          borderColor: "black",
-          height: "25%",
-          height: heightPercentage ? `${heightPercentage}%` : 0,
-        }),
-        [heightPercentage]
-      )}
-    />
-  );
-};
-
-const CandleBody = ({ heightPercentage, isBullish }) => {
-  return (
-    <View
-      style={useMemo(
-        () => ({
-          width: "100%",
-          height: "50%",
+const CandleBody = ({ heightPercentage, isBullish }) => (
+  <View
+    style={useMemo(
+      () => [
+        styles.candleBody,
+        {
           height: heightPercentage ? `${heightPercentage}%` : 0,
           backgroundColor: isBullish ? "green" : "red",
-        }),
-        [heightPercentage, isBullish]
-      )}
-    />
-  );
-};
+        },
+      ],
+      [heightPercentage, isBullish]
+    )}
+  />
+);
 
 const Space = ({ heightPercentage }) => (
   <View
@@ -100,5 +80,14 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
+  },
+  candleStick: {
+    borderWidth: 1,
+    borderColor: "black",
+    height: "25%",
+  },
+  candleBody: {
+    width: "100%",
+    height: "50%",
   },
 });

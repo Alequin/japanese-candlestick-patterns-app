@@ -1,17 +1,10 @@
 import { AdMobBanner } from "expo-ads-admob";
 import React from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export const AdBanner = () => {
   return (
-    <View
-      style={{
-        alignItems: "center",
-        backgroundColor: "black",
-        width: "100%",
-        marginTop: 10,
-      }}
-    >
+    <View style={styles.container}>
       <AdMobBanner
         bannerSize="banner"
         adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
@@ -20,3 +13,12 @@ export const AdBanner = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    backgroundColor: "black",
+    width: "100%",
+    marginTop: 10,
+  },
+});

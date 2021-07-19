@@ -44,7 +44,7 @@ const Input = ({ title, value, setValue }) => {
       onPress={() => inputRef?.current?.focus()}
     >
       <View style={styles.inputWrapper}>
-        <View style={{ width: "16%" }} />
+        <View style={styles.inputBorder} />
         <TextInput
           testID="candleValueInput"
           ref={inputRef}
@@ -54,7 +54,7 @@ const Input = ({ title, value, setValue }) => {
           keyboardType="numeric"
         />
         <AccessibleTouchableOpacity
-          style={{ width: "16%", paddingVertical: 5, alignItems: "center" }}
+          style={useMemo(() => [styles.clearButton, styles.inputBorder], [])}
           onPress={() => setValue("")}
         >
           <Icon name="cross" color="black" size={22} />
@@ -62,7 +62,7 @@ const Input = ({ title, value, setValue }) => {
       </View>
       <View style={styles.inputTitle}>
         <Icon name="blankSpace" size={16} />
-        <Text style={{ marginHorizontal: 5 }}>{title}</Text>
+        <Text style={styles.title}>{title}</Text>
         <Icon name="edit" size={16} />
       </View>
     </AccessibleTouchableOpacity>
@@ -133,7 +133,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     elevation: 2,
   },
-
   warningTitle: {
     marginTop: 10,
     flexDirection: "row",
@@ -142,4 +141,7 @@ const styles = StyleSheet.create({
   warningText: {
     textAlign: "center",
   },
+  title: { marginHorizontal: 5 },
+  clearButton: { paddingVertical: 5, alignItems: "center" },
+  inputBorder: { width: "16%" },
 });

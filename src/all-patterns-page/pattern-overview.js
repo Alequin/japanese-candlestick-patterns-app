@@ -1,9 +1,9 @@
 import React from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { AccessibleTouchableOpacity } from "../components/accessible-touchable-opacity";
 import { Candle } from "../components/candle";
-import { Icon } from "../components/icon";
 import { Header } from "../components/header";
+import { Icon } from "../components/icon";
 import { useOnPressBackButton } from "../use-on-press-back-button";
 
 export const PatternOverview = ({
@@ -17,28 +17,19 @@ export const PatternOverview = ({
   }, [onPressBack]);
 
   return (
-    <View
-      testID="patternOverviewPage"
-      style={{ height: "100%", alignItems: "center", paddingHorizontal: 5 }}
-    >
+    <View testID="patternOverviewPage" style={patternOverviewStyles.container}>
       <AccessibleTouchableOpacity
-        style={{ width: "100%", flexDirection: "row", alignItems: "center" }}
+        style={patternOverviewStyles.backArrowContainer}
         onPress={onPressBack}
       >
         <Icon name="arrowBack" size={30} />
-        <Text style={{ marginLeft: 3 }}>Back to all patterns</Text>
+        <Text style={patternOverviewStyles.backArrowText}>
+          Back to all patterns
+        </Text>
       </AccessibleTouchableOpacity>
-      <Header
-        style={{
-          textAlign: "center",
-          fontWeight: "bold",
-          fontSize: 26,
-        }}
-      >
-        {name}
-      </Header>
+      <Header style={patternOverviewStyles.header}>{name}</Header>
       <ExampleCandlesView exampleCandles={exampleCandles} />
-      <ScrollView style={{ width: "100%", paddingHorizontal: 15 }}>
+      <ScrollView style={patternOverviewStyles.contentContainer}>
         {content}
       </ScrollView>
     </View>
@@ -46,20 +37,39 @@ export const PatternOverview = ({
 };
 
 const ExampleCandlesView = ({ exampleCandles }) => (
-  <View
-    style={{
-      height: 150,
-      marginVertical: 20,
-      width: "100%",
-      justifyContent: "center",
-      alignItems: "center",
-      flexDirection: "row",
-    }}
-  >
+  <View style={exampleCandlesStyles.container}>
     {exampleCandles.map((candleDetails, index) => (
-      <View key={index} style={{ width: 30, margin: 2, height: "100%" }}>
+      <View key={index} style={exampleCandlesStyles.candleContainer}>
         <Candle candleShapeDetails={candleDetails} />
       </View>
     ))}
   </View>
 );
+
+const patternOverviewStyles = StyleSheet.create({
+  container: { height: "100%", alignItems: "center", paddingHorizontal: 5 },
+  backArrowContainer: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  backArrowText: { marginLeft: 3 },
+  header: {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 26,
+  },
+  contentContainer: { width: "100%", paddingHorizontal: 15 },
+});
+
+const exampleCandlesStyles = StyleSheet.create({
+  container: {
+    height: 150,
+    marginVertical: 20,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  candleContainer: { width: 30, margin: 2, height: "100%" },
+});

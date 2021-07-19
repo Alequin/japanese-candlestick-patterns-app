@@ -9,6 +9,7 @@ import { AllPatternsPage } from "../all-patterns-page/all-patterns-page";
 import { PatternIdentifierPage } from "../pattern-identifier-page/pattern-identifier-page";
 import { Icon } from "../components/icon";
 import { PAGES } from "./pages";
+import { darkGray } from "../colours";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -19,17 +20,15 @@ export const BottomTabNavigator = () => {
         name={PAGES.allCandlesPatterns}
         component={AllPatternsPage}
         options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="book" color={color} size={30} />
-          ),
+          tabBarIcon: () => <Icon name="book" color={darkGray} size={30} />,
         }}
       />
       <BottomTab.Screen
         name={PAGES.patternIdentifier}
         component={PatternIdentifierPage}
         options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="underlineEdit" color={color} size={30} />
+          tabBarIcon: () => (
+            <Icon name="underlineEdit" color={darkGray} size={30} />
           ),
         }}
       />
