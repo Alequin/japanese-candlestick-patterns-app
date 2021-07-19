@@ -1,4 +1,4 @@
-import {
+const {
   cloneDeep,
   isFunction,
   isNull,
@@ -8,23 +8,10 @@ import {
   minBy,
   some,
   uniq,
-} from "lodash";
-import { useState } from "react";
-import { BEARISH, BULLISH } from "./candle-types";
+} = require("lodash");
+const { BEARISH, BULLISH } = require("./candle-types");
 
-const DEFAULT_CANDLES = new Array(3).fill(null).map(() => ({
-  high: "2.0000",
-  low: "1.0000",
-  open: "1.2500",
-  close: "1.7500",
-}));
-
-export const useCandleShape = (numberOfCandles) => {
-  const [rawCandles, setRawCandles] = useState(DEFAULT_CANDLES);
-  return findCandleShapeDetails(rawCandles, numberOfCandles);
-};
-
-const findCandleShapeDetails = (rawCandles, numberOfCandles) => {
+module.exports.findCandleShapeDetails = (rawCandles, numberOfCandles) => {
   const validCandles = rawCandles
     .slice(0, numberOfCandles)
     .map((candle) =>

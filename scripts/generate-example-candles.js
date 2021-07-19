@@ -6,6 +6,7 @@ const {
   singleCandlePatterns,
   doubleCandlePatterns,
 } = require("../src/patterns/patterns");
+const { findCandleShapeDetails } = require("../src/find-candle-shape-details");
 
 const TOTAL_EXAMPLES = 100;
 const INCLUDE_SPACE = true;
@@ -15,25 +16,16 @@ const run = (targetPattern, candleCount) => {
 
   const examples = [];
   while (examples.length < TOTAL_EXAMPLES) {
-    const candlesToTest = new Array(candleCount).fill(null).map(newCandle);
-
-    const candleSizes = candlesToTest.map((candle) =>
-      sum(Object.values(candle))
+    console.log(examples.length);
+    const candlesToTest = findCandleShapeDetails(
+      newCandles(candleCount),
+      candleCount
     );
 
-    if (candleSizes.some((candleSize) => candleSize > 100)) continue;
+    if (candlesToTest.some(({ error }) => !!error)) continue;
 
-    const candlesWithAdditionalDetails = candlesToTest.map((candle) => ({
-      ...candle,
-      candleType: random(1, 2) === 1 ? BULLISH : BEARISH,
-      totalHeight: random(0, 100),
-      close: random(0, 100),
-      open: random(0, 100),
-    }));
-
-    if (pattern.doCandlesMatchPattern(candlesWithAdditionalDetails)) {
-      examples.push(candlesWithAdditionalDetails);
-    }
+    if (pattern.doCandlesMatchPattern(candlesToTest))
+      examples.push(candlesToTest);
   }
 
   fs.writeFileSync(
@@ -44,27 +36,27 @@ const run = (targetPattern, candleCount) => {
   );
 };
 
-const newCandle = () => {
-  let total = 0;
-  const bodyHeightPercentage = random(0, 100);
-  total += bodyHeightPercentage;
-  const topStickHeightPercentage = random(0, 100 - total);
-  total += topStickHeightPercentage;
-  const bottomStickHeightPercentage = random(0, 100 - total);
-  total += bottomStickHeightPercentage;
-  const topSpaceHeightPercentage = INCLUDE_SPACE ? random(0, 100 - total) : 0;
-  total += topSpaceHeightPercentage;
-  const bottomSpaceHeightPercentage = INCLUDE_SPACE
-    ? random(0, 100 - total)
-    : 0;
+const newCandles = (candleCount) => {
+  const candles = [];
+  for (const index in new Array(candleCount).fill(null)) {
+    const previousCandle = candles[Number(index) - 1];
+    candles.push(newCandle(previousCandle?.close));
+  }
+  return candles;
+};
+
+const newCandle = (previousClose) => {
+  const open = previousClose ? previousClose : random(low, high);
+  const high = random(open, 100);
+  const low = random(0, open);
+  const close = random(low, high);
 
   return {
-    bodyHeightPercentage,
-    topStickHeightPercentage,
-    bottomStickHeightPercentage,
-    topSpaceHeightPercentage,
-    bottomSpaceHeightPercentage,
+    high,
+    low,
+    open,
+    close,
   };
 };
 
-doubleCandlePatterns.forEach(({ name }) => run(name, 2));
+run("Piercing Line", 2);
