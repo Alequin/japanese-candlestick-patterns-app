@@ -1,4 +1,4 @@
-import { BEARISH, BULLISH } from "./candle-types";
+const { BEARISH, BULLISH } = require("./candle-types");
 
 const isBetween = (value, { smallest, largest }) =>
   value >= smallest && value <= largest;
@@ -57,16 +57,18 @@ const candlestickPatternInformation = {
   ],
 };
 
-export const singleCandlePatterns = [
+const singleCandlePatterns = [
   {
     name: "Spinning Top",
-    doCandlesMatchPattern: ({
-      topStickHeightPercentage,
-      bottomStickHeightPercentage,
-      bodyHeightPercentage,
-    }) => {
+    doCandlesMatchPattern: ([
+      {
+        topStickHeightPercentage,
+        bottomStickHeightPercentage,
+        bodyHeightPercentage,
+      },
+    ]) => {
       const isBodyHightCorrect = isBetween(bodyHeightPercentage, {
-        smallest: 5,
+        smallest: 10,
         largest: 34,
       });
       const isTopStickSizeCorrect = isBetween(topStickHeightPercentage, {
@@ -95,14 +97,16 @@ export const singleCandlePatterns = [
   },
   {
     name: "Standard Doji",
-    doCandlesMatchPattern: ({
-      topStickHeightPercentage,
-      bottomStickHeightPercentage,
-      bodyHeightPercentage,
-    }) => {
+    doCandlesMatchPattern: ([
+      {
+        topStickHeightPercentage,
+        bottomStickHeightPercentage,
+        bodyHeightPercentage,
+      },
+    ]) => {
       const isBodyHightCorrect = isBetween(bodyHeightPercentage, {
         smallest: 0,
-        largest: 5,
+        largest: 10,
       });
       const isTopStickSizeCorrect = isBetween(topStickHeightPercentage, {
         smallest: 25,
@@ -130,14 +134,16 @@ export const singleCandlePatterns = [
   },
   {
     name: "Gravestone Doji",
-    doCandlesMatchPattern: ({
-      topStickHeightPercentage,
-      bottomStickHeightPercentage,
-      bodyHeightPercentage,
-    }) => {
+    doCandlesMatchPattern: ([
+      {
+        topStickHeightPercentage,
+        bottomStickHeightPercentage,
+        bodyHeightPercentage,
+      },
+    ]) => {
       const isBodyHightCorrect = isBetween(bodyHeightPercentage, {
         smallest: 0,
-        largest: 5,
+        largest: 10,
       });
       const isTopStickSizeCorrect = isBetween(topStickHeightPercentage, {
         smallest: 75,
@@ -165,14 +171,16 @@ export const singleCandlePatterns = [
   },
   {
     name: "Dragon Fly Doji",
-    doCandlesMatchPattern: ({
-      topStickHeightPercentage,
-      bottomStickHeightPercentage,
-      bodyHeightPercentage,
-    }) => {
+    doCandlesMatchPattern: ([
+      {
+        topStickHeightPercentage,
+        bottomStickHeightPercentage,
+        bodyHeightPercentage,
+      },
+    ]) => {
       const isBodyHightCorrect = isBetween(bodyHeightPercentage, {
         smallest: 0,
-        largest: 5,
+        largest: 10,
       });
       const isTopStickSizeCorrect = isBetween(topStickHeightPercentage, {
         smallest: 0,
@@ -200,7 +208,7 @@ export const singleCandlePatterns = [
   },
   {
     name: "Four Price Doji",
-    doCandlesMatchPattern: ({ high, low, open, close }) => {
+    doCandlesMatchPattern: ([{ high, low, open, close }]) => {
       return [high, low, open, close].every(
         (value) => Number(value) === Number(high)
       );
@@ -218,11 +226,13 @@ export const singleCandlePatterns = [
   },
   {
     name: "Hammer",
-    doCandlesMatchPattern: ({
-      topStickHeightPercentage,
-      bottomStickHeightPercentage,
-      bodyHeightPercentage,
-    }) => {
+    doCandlesMatchPattern: ([
+      {
+        topStickHeightPercentage,
+        bottomStickHeightPercentage,
+        bodyHeightPercentage,
+      },
+    ]) => {
       const isBodyHightCorrect = isBetween(bodyHeightPercentage, {
         smallest: 10,
         largest: 34,
@@ -253,11 +263,13 @@ export const singleCandlePatterns = [
   },
   {
     name: "Inverted Hammer" /*Paper umbrella*/,
-    doCandlesMatchPattern: ({
-      topStickHeightPercentage,
-      bottomStickHeightPercentage,
-      bodyHeightPercentage,
-    }) => {
+    doCandlesMatchPattern: ([
+      {
+        topStickHeightPercentage,
+        bottomStickHeightPercentage,
+        bodyHeightPercentage,
+      },
+    ]) => {
       const isBodyHightCorrect = isBetween(bodyHeightPercentage, {
         smallest: 10,
         largest: 34,
@@ -288,11 +300,13 @@ export const singleCandlePatterns = [
   },
   {
     name: "Hanging Man" /*Paper umbrella*/,
-    doCandlesMatchPattern: ({
-      topStickHeightPercentage,
-      bottomStickHeightPercentage,
-      bodyHeightPercentage,
-    }) => {
+    doCandlesMatchPattern: ([
+      {
+        topStickHeightPercentage,
+        bottomStickHeightPercentage,
+        bodyHeightPercentage,
+      },
+    ]) => {
       const isBodyHightCorrect = isBetween(bodyHeightPercentage, {
         smallest: 10,
         largest: 34,
@@ -323,13 +337,15 @@ export const singleCandlePatterns = [
   },
   {
     name: "Shooting Star",
-    doCandlesMatchPattern: ({
-      topStickHeightPercentage,
-      bottomStickHeightPercentage,
-      bodyHeightPercentage,
-    }) => {
+    doCandlesMatchPattern: ([
+      {
+        topStickHeightPercentage,
+        bottomStickHeightPercentage,
+        bodyHeightPercentage,
+      },
+    ]) => {
       const isBodyHightCorrect = isBetween(bodyHeightPercentage, {
-        smallest: 5,
+        smallest: 10,
         largest: 34,
       });
       const isTopStickSizeCorrect = isBetween(topStickHeightPercentage, {
@@ -358,12 +374,14 @@ export const singleCandlePatterns = [
   },
   {
     name: "Bullish belt Hold",
-    doCandlesMatchPattern: ({
-      topStickHeightPercentage,
-      bottomStickHeightPercentage,
-      bodyHeightPercentage,
-      candleType,
-    }) => {
+    doCandlesMatchPattern: ([
+      {
+        topStickHeightPercentage,
+        bottomStickHeightPercentage,
+        bodyHeightPercentage,
+        candleType,
+      },
+    ]) => {
       if (candleType !== BULLISH) return false;
 
       const isBodyHightCorrect = isBetween(bodyHeightPercentage, {
@@ -376,7 +394,7 @@ export const singleCandlePatterns = [
       });
       const isBottomStickSizeCorrect = isBetween(bottomStickHeightPercentage, {
         smallest: 0,
-        largest: 0,
+        largest: 5,
       });
 
       return (
@@ -396,12 +414,14 @@ export const singleCandlePatterns = [
   },
   {
     name: "Bearish belt Hold",
-    doCandlesMatchPattern: ({
-      topStickHeightPercentage,
-      bottomStickHeightPercentage,
-      bodyHeightPercentage,
-      candleType,
-    }) => {
+    doCandlesMatchPattern: ([
+      {
+        topStickHeightPercentage,
+        bottomStickHeightPercentage,
+        bodyHeightPercentage,
+        candleType,
+      },
+    ]) => {
       if (candleType !== BEARISH) return false;
 
       const isBodyHightCorrect = isBetween(bodyHeightPercentage, {
@@ -410,7 +430,7 @@ export const singleCandlePatterns = [
       });
       const isTopStickSizeCorrect = isBetween(topStickHeightPercentage, {
         smallest: 0,
-        largest: 0,
+        largest: 5,
       });
       const isBottomStickSizeCorrect = isBetween(bottomStickHeightPercentage, {
         smallest: 5,
@@ -434,7 +454,7 @@ export const singleCandlePatterns = [
   },
   {
     name: "Bullish Marubozu",
-    doCandlesMatchPattern: ({ bodyHeightPercentage, candleType }) => {
+    doCandlesMatchPattern: ([{ bodyHeightPercentage, candleType }]) => {
       if (candleType !== BULLISH) return false;
       return bodyHeightPercentage >= 100;
     },
@@ -451,7 +471,7 @@ export const singleCandlePatterns = [
   },
   {
     name: "Bearish Marubozu",
-    doCandlesMatchPattern: ({ bodyHeightPercentage, candleType }) => {
+    doCandlesMatchPattern: ([{ bodyHeightPercentage, candleType }]) => {
       if (candleType !== BEARISH) return false;
       return bodyHeightPercentage >= 100;
     },
@@ -468,7 +488,7 @@ export const singleCandlePatterns = [
   },
 ];
 
-export const doubleCandlePatterns = [
+const doubleCandlePatterns = [
   {
     name: "Bullish Engulfing",
     doCandlesMatchPattern: (candles) => {
@@ -533,9 +553,12 @@ export const doubleCandlePatterns = [
   },
 ];
 
-export const tripleCandlePatterns = [];
+const tripleCandlePatterns = [];
 
-export const allPatterns = [
+module.exports.singleCandlePatterns = singleCandlePatterns;
+module.exports.doubleCandlePatterns = doubleCandlePatterns;
+module.exports.tripleCandlePatterns = tripleCandlePatterns;
+module.exports.allPatterns = [
   candleStickInformation,
   candlestickPatternInformation,
   ...singleCandlePatterns,

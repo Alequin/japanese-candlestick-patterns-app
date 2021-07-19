@@ -1,8 +1,18 @@
 jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
+jest.mock("../src/dimensions", () => ({
+  windowHeight: jest.fn(),
+  windowWidth: jest.fn().mockReturnValue(1000),
+}));
+jest.mock("react-native/Libraries/Components/Keyboard/Keyboard", () => ({
+  addListener: jest.fn(),
+  removeListener: jest.fn(),
+}));
 
-import { within } from "@testing-library/react-native";
+import { within, act } from "@testing-library/react-native";
 import React from "react";
+import { Keyboard } from "react-native";
 import { App } from "../App";
+import { windowHeight } from "../src/dimensions";
 import { PAGES } from "../src/navigation/pages";
 import {
   asyncChangeInputText,
@@ -11,6 +21,14 @@ import {
 } from "../src/test-utils";
 
 describe("Pattern Identifier Page", () => {
+  beforeEach(() => {
+    windowHeight.mockReturnValue(1000);
+    Keyboard.addListener.mockImplementation(() => ({
+      remove: jest.fn(),
+    }));
+  });
+  afterEach(() => jest.clearAllMocks());
+
   it("Shows the pattern identifier page when the tab button is pressed", async () => {
     const screen = await asyncRender(<App />);
 
@@ -71,33 +89,37 @@ describe("Pattern Identifier Page", () => {
 
     // 1. Confirm the high input
     const highInputWrapper = candleInputs.find((inputWrapper) =>
-      within(inputWrapper).queryByText("High")
+      within(inputWrapper).queryByText("High:")
     );
 
+    expect(highInputWrapper).toBeTruthy();
     const highInput = within(highInputWrapper).getByTestId("candleValueInput");
     expect(highInput.props.value).toBe("2.0000");
 
     // 2. Confirm the open input
     const openInputWrapper = candleInputs.find((inputWrapper) =>
-      within(inputWrapper).queryByText("Open")
+      within(inputWrapper).queryByText("Open:")
     );
 
+    expect(openInputWrapper).toBeTruthy();
     const openInput = within(openInputWrapper).getByTestId("candleValueInput");
     expect(openInput.props.value).toBe("1.2500");
 
     // 3. Confirm the low input
     const lowInputWrapper = candleInputs.find((inputWrapper) =>
-      within(inputWrapper).queryByText("Low")
+      within(inputWrapper).queryByText("Low:")
     );
 
+    expect(lowInputWrapper).toBeTruthy();
     const lowInput = within(lowInputWrapper).getByTestId("candleValueInput");
     expect(lowInput.props.value).toBe("1.0000");
 
     // 4. Confirm the close input
     const closeInputWrapper = candleInputs.find((inputWrapper) =>
-      within(inputWrapper).queryByText("Close")
+      within(inputWrapper).queryByText("Close:")
     );
 
+    expect(closeInputWrapper).toBeTruthy();
     const closeInput =
       within(closeInputWrapper).getByTestId("candleValueInput");
     expect(closeInput.props.value).toBe("1.7500");
@@ -341,7 +363,7 @@ describe("Pattern Identifier Page", () => {
   });
 
   describe("Allows the candle input values to be cleared", () => {
-    it.each(["High", "Low", "Open", "Close"])(
+    it.each(["High:", "Low:", "Open:", "Close:"])(
       "When the input controls the %s",
       async (candleInputName) => {
         const screen = await asyncRender(<App />);
@@ -365,6 +387,45 @@ describe("Pattern Identifier Page", () => {
         expect(input.props.value).toBe("");
       }
     );
+  });
+
+  it("Hides the identifier which the keyboard is visible if the window height is less than 600", async () => {
+    let capturedSetKeyboardVisibleCallback = null;
+    Keyboard.addListener.mockImplementation((eventName, callback) => {
+      if (eventName === "keyboardDidShow")
+        capturedSetKeyboardVisibleCallback = callback;
+
+      return { remove: jest.fn() };
+    });
+
+    const screen = await asyncRender(<App />);
+
+    await openPatternIdentifierPage(screen);
+
+    const patternIdentifierPage = screen.getByTestId("patternIdentifierPage");
+
+    // 1. Mock small screen height
+    windowHeight.mockReturnValue(599);
+    // 2. Show keyboard
+    await act(async () => capturedSetKeyboardVisibleCallback());
+
+    // 3. Confirm no candles are visible
+    expect(
+      within(patternIdentifierPage).queryAllByTestId("candle")
+    ).toHaveLength(0);
+
+    // 4. Confirm the matching pattern list is missing
+    expect(
+      within(patternIdentifierPage)
+        .queryAllByRole("header")
+        .find(
+          (header) => header.props.children === "Single CandleStick Patterns"
+        )
+    ).toBeFalsy();
+
+    expect(
+      within(patternIdentifierPage).queryByText("No matching patterns")
+    ).toBeFalsy();
   });
 
   it("Allows the pattern overview page to be viewed after a single candle pattern has been identified", async () => {
@@ -471,7 +532,7 @@ describe("Pattern Identifier Page", () => {
 
         // 1. Clear the input
         const inputWrapper = candleInputs.find((inputWrapper) =>
-          within(inputWrapper).queryByText(candleInputName)
+          within(inputWrapper).queryByText(`${candleInputName}:`)
         );
 
         const cancelButton =
@@ -592,7 +653,7 @@ const updateCandleInputValue = async (screen, inputName, inputValue) => {
   );
 
   const inputWrapper = candleInputs.find((inputWrapper) =>
-    within(inputWrapper).queryByText(inputName)
+    within(inputWrapper).queryByText(`${inputName}:`)
   );
 
   const input = within(inputWrapper).getByTestId("candleValueInput");

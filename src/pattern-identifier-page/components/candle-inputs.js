@@ -44,7 +44,7 @@ const Input = ({ title, value, setValue }) => {
       onPress={() => inputRef?.current?.focus()}
     >
       <View style={styles.inputWrapper}>
-        <View style={styles.inputBorder} />
+        <Text>{title}:</Text>
         <TextInput
           testID="candleValueInput"
           ref={inputRef}
@@ -54,16 +54,14 @@ const Input = ({ title, value, setValue }) => {
           keyboardType="numeric"
         />
         <AccessibleTouchableOpacity
-          style={useMemo(() => [styles.clearButton, styles.inputBorder], [])}
-          onPress={() => setValue("")}
+          style={styles.clearButton}
+          onPress={() => {
+            setValue("");
+            inputRef?.current?.focus();
+          }}
         >
           <Icon name="cross" color="black" size={22} />
         </AccessibleTouchableOpacity>
-      </View>
-      <View style={styles.inputTitle}>
-        <Icon name="blankSpace" size={16} />
-        <Text style={styles.title}>{title}</Text>
-        <Icon name="edit" size={14} />
       </View>
     </AccessibleTouchableOpacity>
   );
@@ -71,11 +69,12 @@ const Input = ({ title, value, setValue }) => {
 
 const Warning = ({ error }) => {
   const style = useMemo(
-    () => ({
-      alignItems: "center",
-      flexDirection: "row",
-      opacity: error ? 1 : 0,
-    }),
+    () => [
+      styles.warningText,
+      {
+        opacity: error ? 1 : 0,
+      },
+    ],
     [error]
   );
 
@@ -110,38 +109,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderBottomWidth: 1,
     borderColor: "black",
+    justifyContent: "space-between",
   },
   input: {
-    width: "66%",
+    width: "45%",
     color: "black",
     textAlign: "center",
   },
-  inputTitle: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 5,
-  },
-  inputButton: {
-    padding: 2,
-    borderRadius: 30,
-    borderColor: "gray",
-    borderWidth: 1,
-    margin: 5,
-    flexDirection: "row",
-    backgroundColor: "white",
-    elevation: 2,
-  },
-  warningTitle: {
-    marginTop: 10,
-    flexDirection: "row",
-    alignItems: "center",
-  },
   warningText: {
-    textAlign: "center",
+    alignItems: "center",
+    flexDirection: "row",
   },
-  title: { marginHorizontal: 5 },
   clearButton: { paddingVertical: 5, alignItems: "center" },
-  inputBorder: { width: "16%" },
 });

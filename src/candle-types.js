@@ -1,3 +1,2 @@
-export const BULLISH = "Bullish";
-export const BEARISH = " Bearish";
-export const NEUTRAL = "Neutral";
+module.exports.BULLISH = "Bullish";
+module.exports.BEARISH = "Bearish";

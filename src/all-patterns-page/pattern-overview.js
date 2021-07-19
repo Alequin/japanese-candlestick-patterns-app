@@ -65,8 +65,8 @@ const patternOverviewStyles = StyleSheet.create({
 
 const exampleCandlesStyles = StyleSheet.create({
   container: {
-    height: 150,
-    marginVertical: 20,
+    height: "30%",
+    maxHeight: 150,
     width: "100%",
     justifyContent: "center",
     alignItems: "center",

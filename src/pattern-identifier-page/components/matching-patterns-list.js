@@ -35,9 +35,8 @@ export const MatchingPattersList = ({
 
 const getMatchingPatterns = (candlesShapes) => {
   if (candlesShapes.length === 1) {
-    const candleToCheck = candlesShapes[0];
     return singleCandlePatterns.filter(({ doCandlesMatchPattern }) =>
-      doCandlesMatchPattern(candleToCheck)
+      doCandlesMatchPattern(candlesShapes)
     );
   }
   if (candlesShapes.length === 2) {
