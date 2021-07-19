@@ -1,10 +1,11 @@
 import React, { useMemo } from "react";
-import { Dimensions, FlatList, StyleSheet, View } from "react-native";
-import { allPatterns } from "../patterns";
+import { FlatList, StyleSheet, View } from "react-native";
 import { PatternCard } from "./components/pattern-card";
+import { columnCount } from "./utils/column-count";
+import { patternsToRenderInList } from "./utils/patterns-to-render-in-list";
 
 export const PatternsList = ({ onSelectPattern, onScroll, listRef }) => {
-  const listColumns = columnCount();
+  const listColumns = useMemo(() => columnCount());
 
   return (
     <FlatList
@@ -30,25 +31,6 @@ export const PatternsList = ({ onSelectPattern, onScroll, listRef }) => {
       keyExtractor={({ name }) => name}
     />
   );
-};
-
-const patternsToRenderInList = (listColumns) => {
-  const blankSpaceCount =
-    listColumns <= 1 ? 0 : allPatterns.length % listColumns === 0;
-
-  return [
-    ...allPatterns,
-    ...new Array(blankSpaceCount)
-      .fill()
-      .map((_, index) => ({ isBlankItem: true, blankIndex: index })),
-  ];
-};
-
-const windowWidth = Dimensions.get("window").width;
-const columnCount = () => {
-  if (windowWidth < 350) return 1;
-  if (windowWidth < 600) return 2;
-  return 3;
 };
 
 const styles = StyleSheet.create({
