@@ -6,12 +6,134 @@ import {
   TextSection,
   Title,
 } from "./shared-components/pattern-content-components";
+import { Image } from "react-native";
 
 const isBetween = (value, { smallest, largest }) =>
   value >= smallest && value <= largest;
 
 const PATTERN_MEANING_SECTION_TITLE = "What does this pattern tell you?";
 const PATTERN_DESCRIPTION_SECTION_TITLE = "How to identify the pattern";
+
+const candleStickInformation = {
+  name: "Candlesticks",
+  doCandlesMatchPattern: () => false,
+  exampleCandles: [
+    {
+      candleType: BEARISH,
+      topSpaceHeightPercentage: 0,
+      bodyHeightPercentage: 60,
+      topStickHeightPercentage: 20,
+      bottomStickHeightPercentage: 20,
+      bottomSpaceHeightPercentage: 0,
+    },
+    {
+      candleType: BULLISH,
+      topSpaceHeightPercentage: 0,
+      bodyHeightPercentage: 60,
+      topStickHeightPercentage: 20,
+      bottomStickHeightPercentage: 20,
+      bottomSpaceHeightPercentage: 0,
+    },
+  ],
+  content: (
+    <View testID="Candlesstick content">
+      <Title>What are candlesticks</Title>
+      <TextSection>
+        Candlesticks are used to represent price movements in a particular
+        market, displaying the high, open, close and low prices within a period.
+      </TextSection>
+      <View style={{ alignItems: "center" }}>
+        <Image
+          resizeMode="center"
+          style={{
+            width: "70%",
+            height: 300,
+            resizeMode: "stretch",
+          }}
+          source={require("../assets/candlestick-chart-scheme.png")}
+        />
+      </View>
+      <Title>Key points</Title>
+      <BulletPoint>
+        The difference between the open and close is the body.
+      </BulletPoint>
+      <BulletPoint>
+        The space between the high price and the body is the upper shadow
+      </BulletPoint>
+      <BulletPoint>
+        The space between the low price and the body is the lower shadow
+      </BulletPoint>
+      <Title>Background</Title>
+      <TextSection>
+        Candlestick charting was developed by a Japanese rice trader named
+        Munehisa Homma. He discovered prices in the rice market were influenced
+        by the emotions of traders.
+      </TextSection>
+      <TextSection>
+        To displayed price movements he created candlesticks, using them to
+        identify patterns and make decisions based on the movement of the
+        prices.
+      </TextSection>
+    </View>
+  ),
+};
+
+const candlestickPatternInformation = {
+  name: "Candlesstick Patterns",
+  doCandlesMatchPattern: () => false,
+  exampleCandles: [
+    {
+      candleType: BULLISH,
+      topSpaceHeightPercentage: 50,
+      bodyHeightPercentage: 20,
+      topStickHeightPercentage: 10,
+      bottomStickHeightPercentage: 20,
+      bottomSpaceHeightPercentage: 0,
+    },
+    {
+      candleType: BULLISH,
+      topSpaceHeightPercentage: 30,
+      bodyHeightPercentage: 20,
+      topStickHeightPercentage: 10,
+      bottomStickHeightPercentage: 20,
+      bottomSpaceHeightPercentage: 20,
+    },
+    {
+      candleType: BULLISH,
+      topSpaceHeightPercentage: 10,
+      bodyHeightPercentage: 20,
+      topStickHeightPercentage: 10,
+      bottomStickHeightPercentage: 20,
+      bottomSpaceHeightPercentage: 40,
+    },
+  ],
+  content: (
+    <View testID="Candlesstick Patterns content">
+      <Title>What are candlestick patterns?</Title>
+      <TextSection>
+        Candlesticks are used to represent price movements in a particular
+        market.
+      </TextSection>
+      <TextSection>
+        Candlestick patterns are common candle formations which can be used to
+        analyse the current market sentiment and providing insight into if the
+        current trend is expected to continue or reverse.
+      </TextSection>
+      <Title>Key points</Title>
+      <BulletPoint>
+        It is recommended to use other form of analysis when trading with
+        candlestick patterns
+      </BulletPoint>
+      <BulletPoint>
+        Always wait for the candle to close before trading
+      </BulletPoint>
+      <BulletPoint>
+        It is best to wait for confirmation after seeing a pattern before
+        trading
+      </BulletPoint>
+    </View>
+  ),
+};
 
 export const singleCandlePatterns = [
   {
@@ -859,6 +981,8 @@ export const doubleCandlePatterns = [
 export const tripleCandlePatterns = [];
 
 export const allPatterns = [
+  candleStickInformation,
+  candlestickPatternInformation,
   ...singleCandlePatterns,
   ...doubleCandlePatterns,
   ...tripleCandlePatterns,

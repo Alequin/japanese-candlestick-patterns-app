@@ -20,7 +20,7 @@ export const BottomTabNavigator = () => {
         name={PAGES.allCandlesPatterns}
         component={AllPatternsPage}
         options={{
-          tabBarIcon: () => <Icon name="book" color={darkGray} size={30} />,
+          tabBarIcon: () => <Icon name="book" color={darkGray} size={25} />,
         }}
       />
       <BottomTab.Screen
@@ -28,7 +28,7 @@ export const BottomTabNavigator = () => {
         component={PatternIdentifierPage}
         options={{
           tabBarIcon: () => (
-            <Icon name="underlineEdit" color={darkGray} size={30} />
+            <Icon name="underlineEdit" color={darkGray} size={25} />
           ),
         }}
       />

@@ -63,7 +63,7 @@ const Input = ({ title, value, setValue }) => {
       <View style={styles.inputTitle}>
         <Icon name="blankSpace" size={16} />
         <Text style={styles.title}>{title}</Text>
-        <Icon name="edit" size={16} />
+        <Icon name="edit" size={14} />
       </View>
     </AccessibleTouchableOpacity>
   );

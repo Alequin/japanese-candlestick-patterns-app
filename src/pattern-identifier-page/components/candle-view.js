@@ -57,7 +57,7 @@ const SingleCandle = ({ candleShapeDetails, testID, onSelectCandle }) => (
     onPress={() => onSelectCandle(candleShapeDetails.index)}
   >
     {candleShapeDetails.error ? (
-      <Icon name="warningOutline" color="red" size={30} />
+      <Icon name="warningOutline" color="red" size={27} />
     ) : (
       <Candle candleShapeDetails={candleShapeDetails} />
     )}

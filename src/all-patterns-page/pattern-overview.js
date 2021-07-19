@@ -22,7 +22,7 @@ export const PatternOverview = ({
         style={patternOverviewStyles.backArrowContainer}
         onPress={onPressBack}
       >
-        <Icon name="arrowBack" size={30} />
+        <Icon name="arrowBack" size={27} />
         <Text style={patternOverviewStyles.backArrowText}>
           Back to all patterns
         </Text>

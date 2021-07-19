@@ -14,7 +14,7 @@ export const HelpIcon = () => {
         style={helpIconStyles.helpButton}
         onPress={() => setIsHelpModalOpen(true)}
       >
-        <Icon name="questionCircle" color="white" size={30} />
+        <Icon name="questionCircle" color="white" size={27} />
       </AccessibleTouchableOpacity>
       <HelpModal
         isOpen={isHelpModalOpen}
@@ -36,7 +36,7 @@ const HelpModal = ({ isOpen, onClose }) => (
             style={helpModalStyles.closeButton}
             onPress={onClose}
           >
-            <Icon name="cross" color="black" size={32} />
+            <Icon name="cross" color="black" size={25} />
           </AccessibleTouchableOpacity>
         </View>
         <View style={helpModalStyles.helpTextContainer}>
