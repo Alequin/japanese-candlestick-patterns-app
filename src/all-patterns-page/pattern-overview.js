@@ -5,9 +5,10 @@ import { Candle } from "../components/candle";
 import { Header } from "../components/header";
 import { Icon } from "../components/icon";
 import { useOnPressBackButton } from "../use-on-press-back-button";
+import { PatternContent, patternContent } from "./components/patterns-content";
 
 export const PatternOverview = ({
-  pattern: { name, exampleCandles, content },
+  pattern: { name, exampleCandles },
   onPressBack,
 }) => {
   useOnPressBackButton(() => {
@@ -30,7 +31,7 @@ export const PatternOverview = ({
       <Header style={patternOverviewStyles.header}>{name}</Header>
       <ExampleCandlesView exampleCandles={exampleCandles} />
       <ScrollView style={patternOverviewStyles.contentContainer}>
-        {content}
+        <PatternContent patternName={name} />
       </ScrollView>
     </View>
   );
