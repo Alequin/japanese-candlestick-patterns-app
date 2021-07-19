@@ -440,6 +440,7 @@ const patternContentOptions = {
       </BulletPoint>
     </View>
   ),
+  ["Piercing Line"]: <TextSection>Placeholder</TextSection>,
 };
 
 export const PatternContent = ({ patternName }) =>

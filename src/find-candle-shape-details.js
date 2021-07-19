@@ -39,42 +39,22 @@ module.exports.findCandleShapeDetails = (rawCandles, numberOfCandles) => {
     return validCandle.low;
   }).validCandle.low;
 
-  const setActiveCandleValueFor = (key, index) => (value) => {
-    setRawCandles((previousCandles) => {
-      const newCandles = cloneDeep(previousCandles);
+  return validCandles.map(({ candle, validCandle, isError }, index) => {
+    const rawCandle = rawCandles[index];
+    // Default to be bullish in error situation
+    const candleType = !isError ? getCandleType(validCandle) : BULLISH;
 
-      newCandles[index][key] = isFunction(value)
-        ? value(newCandles[index][key])
-        : value;
-
-      return newCandles;
-    });
-  };
-
-  const candlesShapes = validCandles.map(
-    ({ candle, validCandle, isError }, index) => {
-      const rawCandle = rawCandles[index];
-      // Default to be bullish in error situation
-      const candleType = !isError ? getCandleType(validCandle) : BULLISH;
-
-      return {
-        index,
-        error: isError ? invalidCandleReason(candle) : null,
-        candleType,
-        rawCandle,
-        ...validCandle,
-        ...(!isError
-          ? heights(candleType, validCandle, minPrice, maxPrice)
-          : null),
-        setHigh: setActiveCandleValueFor("high", index),
-        setLow: setActiveCandleValueFor("low", index),
-        setOpen: setActiveCandleValueFor("open", index),
-        setClose: setActiveCandleValueFor("close", index),
-      };
-    }
-  );
-
-  return candlesShapes;
+    return {
+      index,
+      error: isError ? invalidCandleReason(candle) : null,
+      candleType,
+      rawCandle,
+      ...validCandle,
+      ...(!isError
+        ? heights(candleType, validCandle, minPrice, maxPrice)
+        : null),
+    };
+  });
 };
 
 const getValidCandle = (candleData) => {

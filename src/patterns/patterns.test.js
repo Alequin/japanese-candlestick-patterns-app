@@ -124,6 +124,13 @@ describe("Patterns", () => {
       exampleCandles: require("./test-candles/bearish-engulfing.json"),
     });
   });
+
+  it("Matches all the expected Piercing Line patterns", () => {
+    testPattern({
+      patternName: "Piercing Line",
+      exampleCandles: require("./test-candles/piercing-line.json"),
+    });
+  });
 });
 
 const testPattern = ({ patternName, exampleCandles }) => {

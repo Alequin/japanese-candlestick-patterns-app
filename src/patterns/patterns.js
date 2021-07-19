@@ -568,7 +568,55 @@ const doubleCandlePatterns = [
       },
     ],
   },
+  {
+    name: "Piercing Line",
+    doCandlesMatchPattern: (candles) => {
+      return (
+        candles[1].candleType === BULLISH && // Main candle is bullish
+        candles[0].candleType == BEARISH && // previous candle is bearish
+        candles[1].close > (candles[0].high + candles[0].low) / 2 && // Main candles close is above the midpoint of the previous candle
+        candles[1].open <= candles[0].close && // Main candles open is less than or equal to the the previous candles close
+        realCandleBodySizePercentage(candles[1]) >= 0.6 && // Main candles body height should be at least 60% of itself
+        realCandleBodySizePercentage(candles[0]) >= 0.6 && // Previous candles body height should be at least 60% of itself
+        candles[1].high <= candles[0].open // the Main candles high must be less than or equal to the previous candles open
+      );
+    },
+    exampleCandles: [
+      {
+        candleType: BEARISH,
+        high: 69,
+        low: 21,
+        open: 66,
+        close: 26,
+        bodyHeightPercentage: 83,
+        topSpaceHeightPercentage: 1,
+        topStickHeightPercentage: 6,
+        bottomStickHeightPercentage: 10,
+        bottomSpaceHeightPercentage: 1,
+        totalHeight: 100,
+      },
+      {
+        candleType: BULLISH,
+        high: 60,
+        low: 22,
+        open: 26,
+        close: 55,
+        bodyHeightPercentage: 60,
+        topSpaceHeightPercentage: 18,
+        topStickHeightPercentage: 10,
+        bottomStickHeightPercentage: 8,
+        bottomSpaceHeightPercentage: 2,
+        totalHeight: 79,
+      },
+    ],
+  },
 ];
+
+const realCandleBodySizePercentage = (candle) => {
+  const realSizeOfMainCandle = candle.high - candle.low;
+  const realSizeOfMainBody = Math.abs(candle.open - candle.close);
+  return realSizeOfMainBody / realSizeOfMainCandle;
+};
 
 const tripleCandlePatterns = [];
 
