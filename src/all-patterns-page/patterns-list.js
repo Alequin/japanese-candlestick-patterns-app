@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { Dimensions, FlatList, StyleSheet, View } from "react-native";
 import { allPatterns } from "../patterns";
 import { PatternCard } from "./components/pattern-card";
 
@@ -14,7 +14,7 @@ export const PatternsList = ({ onSelectPattern, onScroll, listRef }) => {
       onScroll={onScroll}
       data={useMemo(() => patternsToRenderInList(listColumns), [listColumns])}
       numColumns={listColumns}
-      renderItem={({ item: pattern }, index) =>
+      renderItem={({ item: pattern }) =>
         !pattern.isBlankItem ? (
           <View key={pattern.name} style={styles.patternCardWrapper}>
             <PatternCard
@@ -24,7 +24,7 @@ export const PatternsList = ({ onSelectPattern, onScroll, listRef }) => {
             />
           </View>
         ) : (
-          <View key={index} style={styles.patternCardWrapper} />
+          <View key={pattern.blankIndex} style={styles.patternCardWrapper} />
         )
       }
       keyExtractor={({ name }) => name}
@@ -33,16 +33,23 @@ export const PatternsList = ({ onSelectPattern, onScroll, listRef }) => {
 };
 
 const patternsToRenderInList = (listColumns) => {
-  const blankSpaceCount = allPatterns.length % listColumns === 0;
+  const blankSpaceCount =
+    listColumns <= 1 ? 0 : allPatterns.length % listColumns === 0;
 
   return [
     ...allPatterns,
-    ...new Array(blankSpaceCount).fill({ isBlankItem: true }),
+    ...new Array(blankSpaceCount)
+      .fill()
+      .map((_, index) => ({ isBlankItem: true, blankIndex: index })),
   ];
 };
 
-// TODO change column count based on screen size
-const columnCount = () => 2;
+const windowWidth = Dimensions.get("window").width;
+const columnCount = () => {
+  if (windowWidth < 350) return 1;
+  if (windowWidth < 600) return 2;
+  return 3;
+};
 
 const styles = StyleSheet.create({
   list: { paddingHorizontal: 10 },
