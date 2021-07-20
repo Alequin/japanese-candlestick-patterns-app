@@ -576,12 +576,12 @@ const doubleCandlePatterns = [
     ],
   },
   {
-    name: "Piercing Line",
+    name: "Bullish Piercing Line",
     doCandlesMatchPattern: (candles) => {
       return (
         candles[1].candleType === BULLISH && // Main candle is bullish
         candles[0].candleType == BEARISH && // previous candle is bearish
-        candles[1].close > (candles[0].high + candles[0].low) / 2 && // Main candles close is above the midpoint of the previous candle
+        candles[1].close > realCandleSize(candles[0]) / 2 && // Main candles close is above the midpoint of the previous candle
         candles[1].open <= candles[0].close && // Main candles open is less than or equal to the the previous candles close
         realCandleBodySizePercentage(candles[1]) >= 0.6 && // Main candles body height should be at least 60% of itself
         realCandleBodySizePercentage(candles[0]) >= 0.6 && // Previous candles body height should be at least 60% of itself
@@ -617,6 +617,291 @@ const doubleCandlePatterns = [
       },
     ],
   },
+  {
+    name: "Bearish Piercing Line",
+    doCandlesMatchPattern: (candles) => {
+      return (
+        candles[1].candleType === BEARISH && // Main candle is bearish
+        candles[0].candleType == BULLISH && // previous candle is bullish
+        candles[1].close < realCandleSize(candles[0]) / 2 && // Main candles close is below the midpoint of the previous candle
+        candles[1].open >= candles[0].close && // Main candles open is greater than or equal to the the previous candles close
+        realCandleBodySizePercentage(candles[1]) >= 0.6 && // Main candles body height should be at least 60% of itself
+        realCandleBodySizePercentage(candles[0]) >= 0.6 && // Previous candles body height should be at least 60% of itself
+        candles[1].low >= candles[0].open // the Main candles low must be less than or equal to the previous candles open
+      );
+    },
+    exampleCandles: [
+      {
+        index: 0,
+        error: null,
+        candleType: "Bullish",
+        rawCandle: { high: 73, low: 1, open: 1, close: 67 },
+        high: 73,
+        low: 1,
+        open: 1,
+        close: 67,
+        bodyHeightPercentage: 91.66666666666666,
+        topSpaceHeightPercentage: 1,
+        topStickHeightPercentage: 8.333333333333332,
+        bottomStickHeightPercentage: 0,
+        bottomSpaceHeightPercentage: 1,
+        totalHeight: 99.99999999999999,
+      },
+      {
+        index: 1,
+        error: null,
+        candleType: "Bearish",
+        rawCandle: { high: 70, low: 17, open: 67, close: 22 },
+        high: 70,
+        low: 17,
+        open: 67,
+        close: 22,
+        bodyHeightPercentage: 62.5,
+        topSpaceHeightPercentage: 4.166666666666666,
+        topStickHeightPercentage: 4.166666666666666,
+        bottomStickHeightPercentage: 6.944444444444445,
+        bottomSpaceHeightPercentage: 22.22222222222222,
+        totalHeight: 73.61111111111111,
+      },
+    ],
+  },
+  {
+    name: "Tweezer Top",
+    doCandlesMatchPattern: (candles) => {
+      const candle1Size = realCandleSize(candles[0]);
+      const candle2Size = realCandleSize(candles[1]);
+      const largestCandle =
+        candle2Size > candle1Size ? candle2Size : candle1Size;
+      const highPriceRange = largestCandle * 0.1;
+
+      return (
+        candles[1].candleType === BEARISH && // Main candle is bearish
+        candles[0].candleType == BULLISH && // previous candle is bullish
+        realCandleBodySizePercentage(candles[0]) > 0.6 && // previous candles body is large
+        candles[0].high < candles[1].high + highPriceRange &&
+        candles[0].high > candles[1].high - highPriceRange
+      );
+    },
+    exampleCandles: [
+      {
+        index: 0,
+        error: null,
+        candleType: "Bullish",
+        rawCandle: { high: 100, low: 4, open: 16, close: 86 },
+        high: 100,
+        low: 4,
+        open: 16,
+        close: 86,
+        bodyHeightPercentage: 72.91666666666666,
+        topSpaceHeightPercentage: 1,
+        topStickHeightPercentage: 14.583333333333334,
+        bottomStickHeightPercentage: 12.5,
+        bottomSpaceHeightPercentage: 1,
+        totalHeight: 99.99999999999999,
+      },
+      {
+        index: 1,
+        error: null,
+        candleType: "Bearish",
+        rawCandle: { high: 98, low: 38, open: 86, close: 52 },
+        high: 98,
+        low: 38,
+        open: 86,
+        close: 52,
+        bodyHeightPercentage: 35.41666666666667,
+        topSpaceHeightPercentage: 2.083333333333333,
+        topStickHeightPercentage: 12.5,
+        bottomStickHeightPercentage: 14.583333333333334,
+        bottomSpaceHeightPercentage: 35.41666666666667,
+        totalHeight: 62.50000000000001,
+      },
+    ],
+  },
+  {
+    name: "Tweezer Bottom",
+    doCandlesMatchPattern: (candles) => {
+      const candle1Size = realCandleSize(candles[0]);
+      const candle2Size = realCandleSize(candles[1]);
+      const largestCandle =
+        candle2Size > candle1Size ? candle2Size : candle1Size;
+      const lowPriceRange = largestCandle * 0.1;
+
+      return (
+        candles[1].candleType === BULLISH && // Main candle is bullish
+        candles[0].candleType == BEARISH && // previous candle is bearish
+        realCandleBodySizePercentage(candles[0]) > 0.6 && // previous candles body is large
+        candles[0].low < candles[1].low + lowPriceRange &&
+        candles[0].low > candles[1].low - lowPriceRange
+      );
+    },
+    exampleCandles: [
+      {
+        index: 0,
+        error: null,
+        candleType: "Bearish",
+        rawCandle: { high: 96, low: 17, open: 88, close: 33 },
+        high: 96,
+        low: 17,
+        open: 88,
+        close: 33,
+        bodyHeightPercentage: 67.90123456790124,
+        topSpaceHeightPercentage: 1,
+        topStickHeightPercentage: 9.876543209876543,
+        bottomStickHeightPercentage: 19.753086419753085,
+        bottomSpaceHeightPercentage: 2.4691358024691357,
+        totalHeight: 97.53086419753087,
+      },
+      {
+        index: 1,
+        error: null,
+        candleType: "Bullish",
+        rawCandle: { high: 77, low: 15, open: 33, close: 68 },
+        high: 77,
+        low: 15,
+        open: 33,
+        close: 68,
+        bodyHeightPercentage: 43.20987654320987,
+        topSpaceHeightPercentage: 23.456790123456788,
+        topStickHeightPercentage: 11.11111111111111,
+        bottomStickHeightPercentage: 22.22222222222222,
+        bottomSpaceHeightPercentage: 1,
+        totalHeight: 76.54320987654322,
+      },
+    ],
+  },
+];
+
+const tripleCandlePatterns = [
+  {
+    name: "Three White Soldiers",
+    doCandlesMatchPattern: (candles) => {
+      return (
+        candles.every(({ candleType }) => candleType === BULLISH) &&
+        realCandleSize(candles[1]) >= realCandleSize(candles[0]) * 0.8 &&
+        realCandleSize(candles[2]) >= realCandleSize(candles[1]) * 0.8 &&
+        realCandleBodySizePercentage(candles[0]) > 0.5 &&
+        realCandleBodySizePercentage(candles[1]) > 0.6 &&
+        realCandleBodySizePercentage(candles[2]) > 0.65 &&
+        candles[1].close > candles[0].close &&
+        candles[2].close > candles[1].close
+      );
+    },
+    exampleCandles: [
+      {
+        index: 0,
+        error: null,
+        candleType: "Bullish",
+        rawCandle: { high: 36, low: 5, open: 5, close: 26 },
+        high: 36,
+        low: 5,
+        open: 5,
+        close: 26,
+        bodyHeightPercentage: 23.595505617977526,
+        topSpaceHeightPercentage: 65.1685393258427,
+        topStickHeightPercentage: 11.235955056179774,
+        bottomStickHeightPercentage: 0,
+        bottomSpaceHeightPercentage: 1,
+        totalHeight: 34.8314606741573,
+      },
+      {
+        index: 1,
+        error: null,
+        candleType: "Bullish",
+        rawCandle: { high: 68, low: 21, open: 26, close: 58 },
+        high: 68,
+        low: 21,
+        open: 26,
+        close: 58,
+        bodyHeightPercentage: 35.95505617977528,
+        topSpaceHeightPercentage: 29.213483146067414,
+        topStickHeightPercentage: 11.235955056179774,
+        bottomStickHeightPercentage: 5.617977528089887,
+        bottomSpaceHeightPercentage: 17.97752808988764,
+        totalHeight: 52.80898876404495,
+      },
+      {
+        index: 2,
+        error: null,
+        candleType: "Bullish",
+        rawCandle: { high: 94, low: 50, open: 58, close: 93 },
+        high: 94,
+        low: 50,
+        open: 58,
+        close: 93,
+        bodyHeightPercentage: 39.325842696629216,
+        topSpaceHeightPercentage: 1,
+        topStickHeightPercentage: 1.1235955056179776,
+        bottomStickHeightPercentage: 8.98876404494382,
+        bottomSpaceHeightPercentage: 50.56179775280899,
+        totalHeight: 49.438202247191015,
+      },
+    ],
+  },
+  {
+    name: "Three Black Crows",
+    doCandlesMatchPattern: (candles) => {
+      return (
+        candles.every(({ candleType }) => candleType === BEARISH) &&
+        realCandleSize(candles[1]) >= realCandleSize(candles[0]) * 0.8 &&
+        realCandleSize(candles[2]) >= realCandleSize(candles[1]) * 0.8 &&
+        realCandleBodySizePercentage(candles[0]) > 0.5 &&
+        realCandleBodySizePercentage(candles[1]) > 0.6 &&
+        realCandleBodySizePercentage(candles[2]) > 0.65 &&
+        candles[1].close < candles[0].close &&
+        candles[2].close < candles[1].close
+      );
+    },
+    exampleCandles: [
+      {
+        index: 0,
+        error: null,
+        candleType: "Bearish",
+        rawCandle: { high: 86, low: 63, open: 84, close: 66 },
+        high: 86,
+        low: 63,
+        open: 84,
+        close: 66,
+        bodyHeightPercentage: 21.686746987951807,
+        topSpaceHeightPercentage: 1,
+        topStickHeightPercentage: 2.4096385542168677,
+        bottomStickHeightPercentage: 3.614457831325301,
+        bottomSpaceHeightPercentage: 72.28915662650603,
+        totalHeight: 27.710843373493976,
+      },
+      {
+        index: 1,
+        error: null,
+        candleType: "Bearish",
+        rawCandle: { high: 71, low: 28, open: 66, close: 34 },
+        high: 71,
+        low: 28,
+        open: 66,
+        close: 34,
+        bodyHeightPercentage: 38.55421686746988,
+        topSpaceHeightPercentage: 18.072289156626507,
+        topStickHeightPercentage: 6.024096385542169,
+        bottomStickHeightPercentage: 7.228915662650602,
+        bottomSpaceHeightPercentage: 30.120481927710845,
+        totalHeight: 51.807228915662655,
+      },
+      {
+        index: 2,
+        error: null,
+        candleType: "Bearish",
+        rawCandle: { high: 39, low: 3, open: 34, close: 6 },
+        high: 39,
+        low: 3,
+        open: 34,
+        close: 6,
+        bodyHeightPercentage: 33.734939759036145,
+        topSpaceHeightPercentage: 56.62650602409639,
+        topStickHeightPercentage: 6.024096385542169,
+        bottomStickHeightPercentage: 3.614457831325301,
+        bottomSpaceHeightPercentage: 1,
+        totalHeight: 43.37349397590362,
+      },
+    ],
+  },
 ];
 
 const realCandleSize = (candle) => candle.high - candle.low;
@@ -629,8 +914,6 @@ const realCandleTopStickPercentage = (candle) => {
 const realCandleBodySizePercentage = (candle) => {
   return Math.abs(candle.open - candle.close) / realCandleSize(candle);
 };
-
-const tripleCandlePatterns = [];
 
 module.exports.singleCandlePatterns = singleCandlePatterns;
 module.exports.doubleCandlePatterns = doubleCandlePatterns;

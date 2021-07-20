@@ -125,10 +125,38 @@ describe("Patterns", () => {
     });
   });
 
-  it("Matches all the expected Piercing Line patterns", () => {
+  it("Matches all the expected Bullish Piercing Line patterns", () => {
     testPattern({
-      patternName: "Piercing Line",
-      exampleCandles: require("./test-candles/piercing-line.json"),
+      patternName: "Bullish Piercing Line",
+      exampleCandles: require("./test-candles/bullish-piercing-line.json"),
+    });
+  });
+
+  it("Matches all the expected Bearish Piercing Line patterns", () => {
+    testPattern({
+      patternName: "Bearish Piercing Line",
+      exampleCandles: require("./test-candles/bearish-piercing-line.json"),
+    });
+  });
+
+  it("Matches all the expected Three White Soldiers patterns", () => {
+    testPattern({
+      patternName: "Three White Soldiers",
+      exampleCandles: require("./test-candles/three-white-soldiers.json"),
+    });
+  });
+
+  it("Matches all the expected Three Black Crows patterns", () => {
+    testPattern({
+      patternName: "Three Black Crows",
+      exampleCandles: require("./test-candles/three-black-crows.json"),
+    });
+  });
+
+  it("Matches all the expected Tweezer Top patterns", () => {
+    testPattern({
+      patternName: "Tweezer Top",
+      exampleCandles: require("./test-candles/tweezer-top.json"),
     });
   });
 });

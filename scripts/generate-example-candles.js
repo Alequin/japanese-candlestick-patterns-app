@@ -23,8 +23,10 @@ const run = (targetPattern, candleCount) => {
 
     if (candlesToTest.some(({ error }) => !!error)) continue;
 
-    if (pattern.doCandlesMatchPattern(candlesToTest))
+    if (pattern.doCandlesMatchPattern(candlesToTest)) {
       examples.push(candlesToTest);
+      console.log(examples.length);
+    }
   }
 
   fs.writeFileSync(
@@ -60,10 +62,12 @@ const newCandle = (previousClose) => {
 
 const namesBlockList = ["Four Price Doji"];
 
-singleCandlePatterns
-  .filter(({ name }) => !namesBlockList.includes(name))
-  .forEach(({ name }) => run(name, 1));
+// singleCandlePatterns
+//   .filter(({ name }) => !namesBlockList.includes(name))
+//   .forEach(({ name }) => run(name, 1));
 
-doubleCandlePatterns
-  .filter(({ name }) => !namesBlockList.includes(name))
-  .forEach(({ name }) => run(name, 2));
+// doubleCandlePatterns
+//   .filter(({ name }) => !namesBlockList.includes(name))
+//   .forEach(({ name }) => run(name, 2));
+
+run("Tweezer Bottom", 2);

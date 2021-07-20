@@ -442,11 +442,6 @@ const patternContentOptions = {
       </BulletPoint>
     </View>
   ),
-  ["Piercing Line"]: (
-    <View testID="Piercing Line content">
-      <TextSection>Placeholder</TextSection>
-    </View>
-  ),
 };
 
 export const PatternContent = ({ patternName }) =>
