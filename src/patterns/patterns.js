@@ -1,4 +1,5 @@
 const { BEARISH, BULLISH } = require("../candle-types");
+const { testPatterns } = require("./test-patterns");
 
 const isBetween = (value, { smallest, largest }) =>
   value >= smallest && value <= largest;
@@ -8,20 +9,20 @@ const candleStickInformation = {
   doCandlesMatchPattern: () => false,
   exampleCandles: [
     {
-      candleType: BEARISH,
-      topSpaceHeightPercentage: 0,
-      bodyHeightPercentage: 60,
-      topStickHeightPercentage: 20,
-      bottomStickHeightPercentage: 20,
-      bottomSpaceHeightPercentage: 0,
-    },
-    {
-      candleType: BULLISH,
-      topSpaceHeightPercentage: 0,
-      bodyHeightPercentage: 60,
-      topStickHeightPercentage: 20,
-      bottomStickHeightPercentage: 20,
-      bottomSpaceHeightPercentage: 0,
+      index: 0,
+      error: null,
+      candleType: "Bullish",
+      rawCandle: { high: 99, low: 27, open: 81, close: 83 },
+      high: 99,
+      low: 27,
+      open: 81,
+      close: 83,
+      bodyHeightPercentage: 2.7777777777777777,
+      topSpaceHeightPercentage: 1,
+      topStickHeightPercentage: 22.22222222222222,
+      bottomStickHeightPercentage: 75,
+      bottomSpaceHeightPercentage: 1,
+      totalHeight: 100,
     },
   ],
 };
@@ -69,14 +70,14 @@ const singleCandlePatterns = [
     ]) => {
       const isBodyHightCorrect = isBetween(bodyHeightPercentage, {
         smallest: 10,
-        largest: 34,
+        largest: 40,
       });
       const isTopStickSizeCorrect = isBetween(topStickHeightPercentage, {
-        smallest: 30,
+        smallest: 25,
         largest: 60,
       });
       const isBottomStickSizeCorrect = isBetween(bottomStickHeightPercentage, {
-        smallest: 30,
+        smallest: 25,
         largest: 60,
       });
 
@@ -109,11 +110,11 @@ const singleCandlePatterns = [
         largest: 10,
       });
       const isTopStickSizeCorrect = isBetween(topStickHeightPercentage, {
-        smallest: 25,
+        smallest: 15,
         largest: 75,
       });
       const isBottomStickSizeCorrect = isBetween(bottomStickHeightPercentage, {
-        smallest: 25,
+        smallest: 15,
         largest: 75,
       });
 
@@ -151,7 +152,7 @@ const singleCandlePatterns = [
       });
       const isBottomStickSizeCorrect = isBetween(bottomStickHeightPercentage, {
         smallest: 0,
-        largest: 25,
+        largest: 15,
       });
 
       return (
@@ -184,7 +185,7 @@ const singleCandlePatterns = [
       });
       const isTopStickSizeCorrect = isBetween(topStickHeightPercentage, {
         smallest: 0,
-        largest: 25,
+        largest: 15,
       });
       const isBottomStickSizeCorrect = isBetween(bottomStickHeightPercentage, {
         smallest: 75,
@@ -406,7 +407,7 @@ const singleCandlePatterns = [
         largest: 95,
       });
       const isTopStickSizeCorrect = isBetween(topStickHeightPercentage, {
-        smallest: 5,
+        smallest: 10,
         largest: 25,
       });
       const isBottomStickSizeCorrect = isBetween(bottomStickHeightPercentage, {
@@ -443,14 +444,14 @@ const singleCandlePatterns = [
 
       const isBodyHightCorrect = isBetween(bodyHeightPercentage, {
         smallest: 75,
-        largest: 95,
+        largest: 80,
       });
       const isTopStickSizeCorrect = isBetween(topStickHeightPercentage, {
         smallest: 0,
         largest: 5,
       });
       const isBottomStickSizeCorrect = isBetween(bottomStickHeightPercentage, {
-        smallest: 5,
+        smallest: 10,
         largest: 25,
       });
 
@@ -473,7 +474,7 @@ const singleCandlePatterns = [
     name: "Bullish Marubozu",
     doCandlesMatchPattern: ([{ bodyHeightPercentage, candleType }]) => {
       if (candleType !== BULLISH) return false;
-      return bodyHeightPercentage >= 100;
+      return bodyHeightPercentage >= 85;
     },
     exampleCandles: [
       {
@@ -490,7 +491,7 @@ const singleCandlePatterns = [
     name: "Bearish Marubozu",
     doCandlesMatchPattern: ([{ bodyHeightPercentage, candleType }]) => {
       if (candleType !== BEARISH) return false;
-      return bodyHeightPercentage >= 100;
+      return bodyHeightPercentage >= 85;
     },
     exampleCandles: [
       {
@@ -513,7 +514,10 @@ const doubleCandlePatterns = [
         candles[1].candleType === BULLISH && // Main candle is bullish
         candles[0].candleType === BEARISH && // previous candle is bearish
         candles[1].totalHeight > candles[0].totalHeight && // Main candles total height is larger than the previous candles
-        candles[1].bodyHeightPercentage > candles[0].bodyHeightPercentage && // Main candles body height is larger than the previous candles
+        realCandleTopStickPercentage(candles[1]) < 0.2 && // Main candles top stick is not too large
+        realCandleBodySizePercentage(candles[1]) >= 0.5 && // Main candle is large
+        realCandleBodySizePercentage(candles[0]) >= 0.5 && // Previous candle is large
+        realCandleSize(candles[0]) > realCandleSize(candles[1]) * 0.5 && // Previous candle is at least half the size of the main candle
         candles[1].close > candles[0].open && // Main candles close price is more than previous candles open price
         candles[1].open <= candles[0].close // Main candles open price is less than or equal to previous candles close price
       );
@@ -544,7 +548,10 @@ const doubleCandlePatterns = [
         candles[1].candleType === BEARISH && // Main candle is bearish
         candles[0].candleType == BULLISH && // previous candle is bullish
         candles[1].totalHeight > candles[0].totalHeight && // Main candles total height is larger than the previous candles
-        candles[1].bodyHeightPercentage > candles[0].bodyHeightPercentage && // Main candles body height is larger than the previous candles
+        realCandleTopStickPercentage(candles[1]) < 0.2 && // Main candles top stick is not too large
+        realCandleBodySizePercentage(candles[1]) >= 0.5 && // Main candle is large
+        realCandleBodySizePercentage(candles[0]) >= 0.5 && // Previous candle is large
+        realCandleSize(candles[0]) > realCandleSize(candles[1]) * 0.5 && // Previous candle is at least half the size of the main candle
         candles[1].close < candles[0].open && // Main candles close price is less than previous candles open price
         candles[1].open >= candles[0].close // Main candles open price is greater than or equal to previous candles close price
       );
@@ -612,10 +619,15 @@ const doubleCandlePatterns = [
   },
 ];
 
+const realCandleSize = (candle) => candle.high - candle.low;
+
+const realCandleTopStickPercentage = (candle) => {
+  const topBodyPrice = candle.close > candle.open ? candle.close : candle.open;
+  return (candle.high - topBodyPrice) / realCandleSize(candle);
+};
+
 const realCandleBodySizePercentage = (candle) => {
-  const realSizeOfMainCandle = candle.high - candle.low;
-  const realSizeOfMainBody = Math.abs(candle.open - candle.close);
-  return realSizeOfMainBody / realSizeOfMainCandle;
+  return Math.abs(candle.open - candle.close) / realCandleSize(candle);
 };
 
 const tripleCandlePatterns = [];
@@ -630,6 +642,7 @@ module.exports.allPatterns = [
   ...doubleCandlePatterns,
   ...tripleCandlePatterns,
 ];
+// module.exports.allPatterns = testPatterns;
 /*
 
 Morning star

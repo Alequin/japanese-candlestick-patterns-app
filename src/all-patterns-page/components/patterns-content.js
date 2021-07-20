@@ -417,8 +417,7 @@ const patternContentOptions = {
     <View testID="Bearish Engulfing content">
       <Title>{PATTERN_MEANING_SECTION_TITLE}</Title>
       <TextSection>
-        The Bearish Engulfing pattern signals a reversal after a recent
-        downtrend.
+        The Bearish Engulfing pattern signals a reversal after a recent uptrend.
       </TextSection>
       <TextSection>
         The smaller the lower shadow is on the bearish candle, the more reliable
@@ -438,9 +437,16 @@ const patternContentOptions = {
       <BulletPoint>
         The bearish candles close is less than the bullish candles open
       </BulletPoint>
+      <BulletPoint>
+        Both candles are a decent size when compared to those around them
+      </BulletPoint>
     </View>
   ),
-  ["Piercing Line"]: <TextSection>Placeholder</TextSection>,
+  ["Piercing Line"]: (
+    <View testID="Piercing Line content">
+      <TextSection>Placeholder</TextSection>
+    </View>
+  ),
 };
 
 export const PatternContent = ({ patternName }) =>

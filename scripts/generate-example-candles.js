@@ -16,7 +16,6 @@ const run = (targetPattern, candleCount) => {
 
   const examples = [];
   while (examples.length < TOTAL_EXAMPLES) {
-    console.log(examples.length);
     const candlesToTest = findCandleShapeDetails(
       newCandles(candleCount),
       candleCount
@@ -46,7 +45,7 @@ const newCandles = (candleCount) => {
 };
 
 const newCandle = (previousClose) => {
-  const open = previousClose ? previousClose : random(low, high);
+  const open = previousClose ? previousClose : random(0, 100);
   const high = random(open, 100);
   const low = random(0, open);
   const close = random(low, high);
@@ -59,4 +58,12 @@ const newCandle = (previousClose) => {
   };
 };
 
-run("Piercing Line", 2);
+const namesBlockList = ["Four Price Doji"];
+
+singleCandlePatterns
+  .filter(({ name }) => !namesBlockList.includes(name))
+  .forEach(({ name }) => run(name, 1));
+
+doubleCandlePatterns
+  .filter(({ name }) => !namesBlockList.includes(name))
+  .forEach(({ name }) => run(name, 2));
